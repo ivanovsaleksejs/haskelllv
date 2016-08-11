@@ -8,22 +8,22 @@
 <body>
     <div class="header">
         <div class="nav">
-           <a href="/">Tutorial</a> 
+           <a href="/">Apmācība</a> 
            <a href="https://www.haskell.org/downloads" target="_blank">Lejuplādēt</a> 
            <a href="/irc.html">IRC</a> 
            <a href="/news.html">Ziņas</a> 
            <a href="/links.html">Ārējas saites</a> 
         </div>
     </div>
-    <h1>Tutorial</h1>
+    <h1>Apmācība</h1>
     <div class="content">
         <div class="tutorial">
             <div id="prev" class="slide-button inactive"><</div>
             <div id="next" class="slide-button">></div>
             <div class="wrapper">
                 <div class="slide active">
-                    <h2>Par šo tutorialu</h2>
-                    <p class="intro">Šis tutorial ir domāts cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Tutorial pirmkārt ir domāts tiem, kas jau māk programmēt citās valodās. Bet ja Jums nav pieredzes programmēšanā, vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvitrotiem terminiem un izlasīt definīciju.</p>
+                    <h2>Par šo apmācību</h2>
+                    <p class="intro">Šī ampācība ir domāta cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Apmācība pirmkārt ir domāta tiem, kas jau māk programmēt citās valodās. Bet ja Jums nav pieredzes programmēšanā, vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvitrotiem terminiem un izlasīt definīciju.</p>
                 </div>
                 <div class="slide">
                     <h2>Kas ir Haskell</h2>
@@ -76,7 +76,25 @@ main = print (cube 4)</pre>
                     <pre>cube = (^3)</pre>
                     <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasamāks.</p>
                 </div>
-                
+                <div class="slide">
+                    <h2>Kā iesākt</h2>
+                    <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform. Tas iekļauj sevī GHC kompilātoru, Cabal paku menedžeri un dažas izplatītas pakas.</p>
+                    <p>Lai instalētu vvajadzīgas pakas, var izmantot komandu <pre>cabal install package_name</pre></p>
+                    <p>Ir noderīgi apgūt arī interaktīvo interpretātoru, ghci.</p>
+                </div>
+                <div class="slide">
+                    <h2>Pirmā programma</h2>
+                    <p>Izveidojiet failu hello.hs un ierakstiet šo kodu:</p>
+                    <pre>main = print "Hello world!"</pre>
+                    <p>Sakompilējiet to ar</p>
+                    <pre>ghc hello.hs</pre>
+                    <p>Jūs redzēsiet paziņojumus:</p>
+                    <pre>
+[1 of 1] Compiling Main             ( hello.hs, hello.o )
+Linking hello ...
+                    </pre>
+                    <p>Sakompilēto programmu var palaist ar <pre>./hello</pre></p>
+                </div>
             </div>
         </div>
         <div class="tryit">
