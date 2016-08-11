@@ -43,38 +43,117 @@ table {
 
 .nav a {
     font-size: 1.6em;
-    margin: 0 0.6em;
+    margin: 0 .6em;
+}
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0 2em;
 }
 .content {
+    display: flex;
+    justify-content: space-between;
     padding: 0 4em;
 }
 .content .tutorial {
+    height: 30em;
+    overflow: hidden;
+    position: relative;
     width: 60%;
 }
-.content .tryit {
-    width: 40%;
+
+.content .tutorial .wrapper {
+    position: absolute;
+    width: 200%;
+
 }
-.content h1 {
-    font-size: 2em;
-    font-weight: bold;
+.content .tryit {
+    width: 35%;
 }
 .content h2 {
     font-size: 1.5em;
     margin: 1em 0 0;
 }
 .content p {
+    font-size: 1.3em;
     margin: 1em 0 0;
-} 
-.content pre {
+}
+.content pre, .tryit {
     background: #ededed none repeat scroll 0 0;
     border: 1px solid #ababab;
     font-family: monospace;
     margin: 1em 0 0;
-    padding: 0.4em;
+    padding: .4em;
 }
 .content ol {
     margin: 1em 0 0;
 }
 .content ol p {
     margin: 0 0 1em;
+}
+
+.content .tutorial .slide {
+    left: 100%;
+    position: absolute;
+    width: 50%;
+}
+.content .tutorial .slide.active {
+    -webkit-animation-name: slide;
+    -webkit-animation-duration: .5s;
+    animation-name: slide;
+    animation-duration: .5s;
+    left: 0;
+}
+@-webkit-keyframes slide {
+    from {left: 100%}
+    to {left: 0}
+}
+
+@keyframes slide {
+    from {left: 100%}
+    to {left: 0}
+}
+
+.slide-button {
+    background: #fff none repeat scroll 0 0;
+    cursor: pointer;
+    font-size: 5em;
+    height: 100%;
+    line-height: 5em;
+    opacity: .1;
+    position: absolute;
+    width: 1em;
+    z-index: 2;
+    -webkit-animation-name: fadeOut;
+    -webkit-animation-duration: .5s;
+    animation-name: fadeOut;
+    animation-duration: .5s;
+}
+.slide-button#next {
+    right: 0;
+}
+.slide-button:hover {
+    opacity: .8; 
+    -webkit-animation-name: fadeIn;
+    -webkit-animation-duration: .5s;
+    animation-name: fadeIn;
+    animation-duration: .5s;
+}
+@-webkit-keyframes fadeIn {
+    from {opacity: .1}
+    to {opacity: .8}
+}
+
+@keyframes fadeIn {
+    from {opacity: .1}
+    to {opacity: .8}
+}
+@-webkit-keyframes fadeOut {
+    from {opacity: .8}
+    to {opacity: .1}
+}
+
+@keyframes fadeOut {
+    from {opacity: .8}
+    to {opacity: .1}
 }

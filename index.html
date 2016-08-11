@@ -15,57 +15,73 @@
            <a href="/links">Ārējas saites</a> 
         </div>
     </div>
+    <h1>Tutorial</h1>
     <div class="content">
         <div class="tutorial">
-            <h1>Tutorial</h1>
-            <p class="intro">Šis tutorial ir domāts cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Tutorial pirmkārt ir domāts tiem, kas jau māk programmēt citās valodās. Bet ja jums nav pieredzes programmēšanā, tad jūs varat nospiest uz pasvitrotiem terminiem un izlasīt definīciju.</p>
-            <h2>Kas ir Haskell</h2>
-            <p>Haskell ir funkcionāla valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir tīri funkcionāla, bet tajā paša laikā ļauj viegli rakstīt imperatīvo kodu. Tai ir ļoti attistīta tipu sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
-            <p>Daži koda piemēri:</p>
-            <pre>a = 2 + 3</pre>
-            <p>a saturēs 5.</p>
-            <pre>
+            <div id="prev" class="slide-button inactive"><</div>
+            <div id="next" class="slide-button">></div>
+            <div class="wrapper">
+                <div class="slide active">
+                    <h2>Par šo tutorialu</h2>
+                    <p class="intro">Šis tutorial ir domāts cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Tutorial pirmkārt ir domāts tiem, kas jau māk programmēt citās valodās. Bet ja jums nav pieredzes programmēšanā, tad jūs varat nospiest uz pasvitrotiem terminiem un izlasīt definīciju.</p>
+                </div>
+                <div class="slide">
+                    <h2>Kas ir Haskell</h2>
+                    <p>Haskell ir funkcionāla valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir tīri funkcionāla, bet tajā paša laikā ļauj viegli rakstīt imperatīvo kodu. Tai ir ļoti attistīta tipu sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
+                </div>
+                <div class="slide">
+                    <h2>Daži koda piemēri</h2>
+                    <pre>a = 2 + 3</pre>
+                    <p>a saturēs 5.</p>
+                    <pre>
 list = [1,2,3,4,5]
-another_list = [1..10]</pre>
-            <p>Tiek izveidotas 2 listes, viena ar skaitļiem no 1 līdz 5, otra - no 1 līdz 10.</p>
-            <pre>toUpper 'a'</pre>
-            <p>Atgriež 'A'.</p>
-            <h2>Funkcijas</h2>
-            <p>Haskell valodas galvēnais elements ir funkcijas. Funkciju definīcija arī ir īsa un lakoniska:</p>
-            <pre>cube x = x ^ 3</pre>
-            <p>Kā var redzēt, Haskell neprasa nekādu funkcijas atslēgvārdu, piemēram, function, vai def. Tas tiek panākts ar to, ka funkcijas ir valodas pamatelements.</p>
-            <p>Pašas Haskell programmas arī ir ļoti lakoniskas un satur ļoti maz boilerplate:</p>
-            <pre>
+
+anotherList = [1..10]</pre>
+                    <p>Tiek izveidotas 2 listes, viena ar skaitļiem no 1 līdz 5, otra - no 1 līdz 10.</p>
+                    <pre>toUpper 'a'</pre>
+                    <p>Atgriež 'A'.</p>
+                </div>
+                <div class="slide">
+                    <h2>Funkcijas</h2>
+                    <p>Haskell valodas galvēnais elements ir funkcijas. Funkciju definīcija arī ir īsa un lakoniska:</p>
+                    <pre>cube x = x ^ 3</pre>
+                    <p>Kā var redzēt, Haskell neprasa nekādu funkcijas atslēgvārdu, piemēram, function, vai def. Tas tiek panākts ar to, ka funkcijas ir valodas pamatelements.</p>
+                    <p>Funkcijas argumenti tiek padoti pēc funkcijas nosaukuma, caur atstarpi, piemēram:</p>
+                    <pre>triangleArea a h = a * h / 2</pre>
+                </div>
+                <div class="slide">
+                    <h2>Programmas</h2>
+                    <p>Haskell programmas arī ir ļoti lakoniskas un satur ļoti maz boilerplate:</p>
+                    <pre>
 cube x = x ^ 3
             
 main = print (cube 4)</pre>
-            <p>Un pat šo programmu var padarīt īsāku. Ja mēs skatamies uz funkciju cube, tad viss, ko tā dara - ieceļ argumentu trešajā pakāpē. Mums šajā situācijā ir vienalga, kāds ir arguments, mums ir svarīgi, ko funkcija dara. Tāpēc pierakstīsim to savādāk:<p>
-            <pre>cube = (^3)</pre>
-            <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasamāks.</p>
-            <h2>Mīti par Haskell</h2>
-            <p>Haskell ir viena no populārākām funkcionālām valodām. Ir diezgan daudz cilvēku, kas māk rakstīt kodu ar Haskell (diemžēl, Latvijā tādu cilvēku joprojām ir maz). Bet vēl vairāk ir cilvēku, kas par Haskell ir dzirdējuši visādus mītus un turpinā tos izplatīt. Šeit es apkopošu tos mītus un paskaidrošu, kāpēc tie ir tikai mīti.</p>
-            <ol>
-                <li>
-                    <h3>Lai apgūtu Haskell, ir vajadzīgas augstākas matemātikas zināšanas.</h3>
-                    <p>Haskell izmanto dažus kategorijas teorijas principus un ir mantojis terminus no tās. Bet kategoriju teoriju nav jāzin, lai varētu apgūt Haskell. Otrādi - ja cilvēks ir apgūvis Haskell, var teikt, ka viņš ir apguvis kategorijas teorijas pamatus.</p>
-                </li>
-                <li>
-                    <h3>Haskell ir grūta valoda</h3>
+                    <p>Un pat šo programmu var padarīt īsāku. Ja mēs skatamies uz funkciju cube, tad viss, ko tā dara - ieceļ argumentu trešajā pakāpē. Mums šajā situācijā ir vienalga, kāds ir arguments, mums ir svarīgi, ko funkcija dara. Tāpēc pierakstīsim to savādāk:<p>
+                    <pre>cube = (^3)</pre>
+                    <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasamāks.</p>
+                </div>
+                <div class="slide">
+                    <h2>Mīti par Haskell</h2>
+                    <p>Haskell ir viena no populārākām funkcionālām valodām. Ir diezgan daudz cilvēku, kas māk rakstīt kodu ar Haskell (diemžēl, Latvijā tādu cilvēku joprojām ir maz). Bet vēl vairāk ir cilvēku, kas par Haskell ir dzirdējuši visādus mītus un turpinā tos izplatīt. Šeit es apkopošu tos mītus un paskaidrošu, kāpēc tie ir tikai mīti.</p>
+                </div>
+                <div class="slide">
+                    <h2>Lai apgūtu Haskell, ir vajadzīgas augstākas matemātikas zināšanas.</h2>
+                    <p>Haskell izmanto dažus kategorijas teorijas principus un ir mantojis terminus no tās. Bet kategoriju teoriju nav jāzin, lai varētu apgūt Haskell. Otrādi - ja cilvēks ir apgūvis Haskell, var teikt, ka viņš ir apguvis kategoriju teorijas pamatus.</p>
+                    <h2>Haskell ir grūta valoda</h2>
                     <p>Haskell ir diezgan vienkārša valoda. Tajā ir ļoti maz elementu, mazāk, nekā OOP valodās. Sākumā ir grūti pierast pie valodas lakoniskuma, pie dažu boilerplate elementu neesamības. Bet pie tā pierod pāris dienu laikā.</p>
-                </li>
-                <li>
-                    <h3>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h3>
-                    <p>Cilvēkiem, kuri nāk no OOP pasaules, ir grūti pierast pie tā, ka Haskellā nepastāv mainīgie un stāvoklis. Kad cilvēks sakrāj pieredzi un iemācas pareizi strukturēt kodu, viņš saprot, kāpēc stāvoklis ir tas, kas veicina kļūdas programmas izpildes laikā.</p>
-                </li>
-                <li>
-                    <h3>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h3>
+                </div>
+                <div class="slide">
+                    <h2>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h2>
+                    <p>Cilvēkiem, kuri nāk no OOP pasaules, ir grūti pierast pie tā, ka Haskellā nepastāv mainīgie un stāvoklis. Kad cilvēks sakrāj pieredzi un iemācas pareizi strukturēt kodu, viņš saprot, kāpēc stāvoklis ir tas, kas veicina kļūdas programmas izpildes laikā. Savukārt, stāvoklis Haskell programmās ir iegūstams ar speciāliem datu tipiem.</p>
+                    <h2>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h2>
                     <p>Haskell nav izplatīts Latvijā, bet mūsdienās programmētājiem attālums nav šķērslis, un par Haskell darbiem ārzemnieki ir gatavi maksāt diezgan lielu naudu. Kā arī, Haskell apgūšana maina programmētāja domāšanu un atvēr pavisam savādāku skatu uz programmēšanu.</p>
-                </li>
-            </ol>
+                </div>
+            </div>
         </div>
         <div class="tryit">
         
         </div>
     </div>
+    <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
