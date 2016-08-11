@@ -208,8 +208,8 @@ h1 {
     to {opacity: .1}
 }
 .tooltip {
-    background: #fff none repeat scroll 0 0;
-    border: 1px solid #ededed;
+    background: #ededed none repeat scroll 0 0;
+    border: 1px solid #ababab;
     border-radius: 5px;
     left: 2em;
     opacity: 0;
@@ -250,3 +250,7 @@ h1 {
     to {opacity: 0}
 }
 
+#chat_iframe {
+    width: 100%;
+    height: 30em;
+}
