@@ -74,9 +74,13 @@ h1 {
     font-size: 1.5em;
     margin: 1em 0 0;
 }
-.content p {
+.content p, .content u {
     font-size: 1.3em;
     margin: 1em 0 0;
+}
+.content u {
+    font-size: 1em;
+    text-decoration: underline;    
 }
 .content pre, .tryit {
     background: #ededed none repeat scroll 0 0;
@@ -104,30 +108,76 @@ h1 {
     animation-duration: .5s;
     left: 0;
 }
+.content .tutorial .slide.active.left {
+    -webkit-animation-name: slideLeft;
+    -webkit-animation-duration: .5s;
+    animation-name: slideLeft;
+    animation-duration: .5s;
+    left: 0;
+}
+.content .tutorial .slide.rightside {
+    -webkit-animation-name: slideRight;
+    -webkit-animation-duration: .5s;
+    animation-name: slideRight;
+    animation-duration: .5s;
+    left: -100%;
+}
+.content .tutorial .slide.leftside {
+    -webkit-animation-name: slideOut;
+    -webkit-animation-duration: .5s;
+    animation-name: slideOut;
+    animation-duration: .5s;
+    left: -100%;
+}
 @-webkit-keyframes slide {
     from {left: 100%}
     to {left: 0}
 }
-
 @keyframes slide {
     from {left: 100%}
     to {left: 0}
 }
 
+@-webkit-keyframes slideOut {
+    from {left: 0}
+    to {left: 100%}
+}
+@keyframes slideOut {
+    from {left: 0}
+    to {left: 100%}
+}
+
+@-webkit-keyframes slideRight {
+    from {left: 0}
+    to {left: -100%}
+}
+@keyframes slideRight {
+    from {left: 0}
+    to {left: -100%}
+}
+
+@-webkit-keyframes slideLeft {
+    from {left: -100%}
+    to {left: 0}
+}
+@keyframes slideLeft {
+    from {left: -100%}
+    to {left: 0}
+}
+
 .slide-button {
+    animation-duration: 0.5s;
+    animation-name: fadeOut;
     background: #fff none repeat scroll 0 0;
     cursor: pointer;
     font-size: 5em;
     height: 100%;
     line-height: 5em;
-    opacity: .1;
+    opacity: 0.1;
     position: absolute;
+    text-align: center;
     width: 1em;
     z-index: 2;
-    -webkit-animation-name: fadeOut;
-    -webkit-animation-duration: .5s;
-    animation-name: fadeOut;
-    animation-duration: .5s;
 }
 .slide-button#next {
     right: 0;
@@ -157,3 +207,46 @@ h1 {
     from {opacity: .8}
     to {opacity: .1}
 }
+.tooltip {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ededed;
+    border-radius: 5px;
+    left: 2em;
+    opacity: 0;
+    padding: 0.6em;
+    position: fixed;
+    top: 5em;
+    width: 10em;
+}
+.tooltip.visible {
+    opacity: .9;
+    -webkit-animation-name: showTooltip;
+    -webkit-animation-duration: .5s;
+    animation-name: showTooltip;
+    animation-duration: .5s;
+}
+.tooltip.hidden {
+    -webkit-animation-name: hideTooltip;
+    -webkit-animation-duration: .5s;
+    animation-name: hideTooltip;
+    animation-duration: 0.5s;
+}
+@-webkit-keyframes showTooltip {
+    from {opacity: 0}
+    to {opacity: .95}
+}
+
+@keyframes showTooltip {
+    from {opacity: 0}
+    to {opacity: .95}
+}
+@-webkit-keyframes hideTooltip {
+    from {opacity: .9}
+    to {opacity: 0}
+}
+
+@keyframes hideTooltip {
+    from {opacity: .9}
+    to {opacity: 0}
+}
+

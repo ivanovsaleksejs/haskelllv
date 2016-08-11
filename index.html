@@ -23,11 +23,27 @@
             <div class="wrapper">
                 <div class="slide active">
                     <h2>Par šo tutorialu</h2>
-                    <p class="intro">Šis tutorial ir domāts cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Tutorial pirmkārt ir domāts tiem, kas jau māk programmēt citās valodās. Bet ja jums nav pieredzes programmēšanā, tad jūs varat nospiest uz pasvitrotiem terminiem un izlasīt definīciju.</p>
+                    <p class="intro">Šis tutorial ir domāts cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Tutorial pirmkārt ir domāts tiem, kas jau māk programmēt citās valodās. Bet ja Jums nav pieredzes programmēšanā, vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvitrotiem terminiem un izlasīt definīciju.</p>
                 </div>
                 <div class="slide">
                     <h2>Kas ir Haskell</h2>
-                    <p>Haskell ir funkcionāla valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir tīri funkcionāla, bet tajā paša laikā ļauj viegli rakstīt imperatīvo kodu. Tai ir ļoti attistīta tipu sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
+                    <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir tīri funkcionāla, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvo</u> kodu. Tai ir ļoti attistīta tipu sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
+                </div>
+                <div class="slide">
+                    <h2>Mīti par Haskell</h2>
+                    <p>Haskell ir viena no populārākām funkcionālām valodām. Ir diezgan daudz cilvēku, kas māk rakstīt kodu ar Haskell (diemžēl, Latvijā tādu cilvēku joprojām ir maz). Bet vēl vairāk ir cilvēku, kas par Haskell ir dzirdējuši visādus mītus un turpinā tos izplatīt. Šeit es apkopošu tos mītus un paskaidrošu, kāpēc tie ir tikai mīti.</p>
+                </div>
+                <div class="slide">
+                    <h2>Lai apgūtu Haskell, ir vajadzīgas augstākas matemātikas zināšanas.</h2>
+                    <p>Haskell izmanto dažus kategorijas teorijas principus un ir mantojis terminus no tās. Bet kategoriju teoriju nav jāzin, lai varētu apgūt Haskell. Otrādi - ja cilvēks ir apgūvis Haskell, var teikt, ka viņš ir apguvis kategoriju teorijas pamatus.</p>
+                    <h2>Haskell ir grūta valoda</h2>
+                    <p>Haskell ir diezgan vienkārša valoda. Tajā ir ļoti maz elementu, mazāk, nekā OOP valodās. Sākumā ir grūti pierast pie valodas lakoniskuma, pie dažu boilerplate elementu neesamības. Bet pie tā pierod pāris dienu laikā.</p>
+                </div>
+                <div class="slide">
+                    <h2>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h2>
+                    <p>Cilvēkiem, kuri nāk no OOP pasaules, ir grūti pierast pie tā, ka Haskellā nepastāv mainīgie un stāvoklis. Kad cilvēks sakrāj pieredzi un iemācas pareizi strukturēt kodu, viņš saprot, kāpēc stāvoklis ir tas, kas veicina kļūdas programmas izpildes laikā. Savukārt, stāvoklis Haskell programmās ir iegūstams ar speciāliem datu tipiem.</p>
+                    <h2>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h2>
+                    <p>Haskell nav izplatīts Latvijā, bet mūsdienās programmētājiem attālums nav šķērslis, un par Haskell darbiem ārzemnieki ir gatavi maksāt diezgan lielu naudu. Kā arī, Haskell apgūšana maina programmētāja domāšanu un atvēr pavisam savādāku skatu uz programmēšanu.</p>
                 </div>
                 <div class="slide">
                     <h2>Daži koda piemēri</h2>
@@ -60,27 +76,16 @@ main = print (cube 4)</pre>
                     <pre>cube = (^3)</pre>
                     <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasamāks.</p>
                 </div>
-                <div class="slide">
-                    <h2>Mīti par Haskell</h2>
-                    <p>Haskell ir viena no populārākām funkcionālām valodām. Ir diezgan daudz cilvēku, kas māk rakstīt kodu ar Haskell (diemžēl, Latvijā tādu cilvēku joprojām ir maz). Bet vēl vairāk ir cilvēku, kas par Haskell ir dzirdējuši visādus mītus un turpinā tos izplatīt. Šeit es apkopošu tos mītus un paskaidrošu, kāpēc tie ir tikai mīti.</p>
-                </div>
-                <div class="slide">
-                    <h2>Lai apgūtu Haskell, ir vajadzīgas augstākas matemātikas zināšanas.</h2>
-                    <p>Haskell izmanto dažus kategorijas teorijas principus un ir mantojis terminus no tās. Bet kategoriju teoriju nav jāzin, lai varētu apgūt Haskell. Otrādi - ja cilvēks ir apgūvis Haskell, var teikt, ka viņš ir apguvis kategoriju teorijas pamatus.</p>
-                    <h2>Haskell ir grūta valoda</h2>
-                    <p>Haskell ir diezgan vienkārša valoda. Tajā ir ļoti maz elementu, mazāk, nekā OOP valodās. Sākumā ir grūti pierast pie valodas lakoniskuma, pie dažu boilerplate elementu neesamības. Bet pie tā pierod pāris dienu laikā.</p>
-                </div>
-                <div class="slide">
-                    <h2>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h2>
-                    <p>Cilvēkiem, kuri nāk no OOP pasaules, ir grūti pierast pie tā, ka Haskellā nepastāv mainīgie un stāvoklis. Kad cilvēks sakrāj pieredzi un iemācas pareizi strukturēt kodu, viņš saprot, kāpēc stāvoklis ir tas, kas veicina kļūdas programmas izpildes laikā. Savukārt, stāvoklis Haskell programmās ir iegūstams ar speciāliem datu tipiem.</p>
-                    <h2>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h2>
-                    <p>Haskell nav izplatīts Latvijā, bet mūsdienās programmētājiem attālums nav šķērslis, un par Haskell darbiem ārzemnieki ir gatavi maksāt diezgan lielu naudu. Kā arī, Haskell apgūšana maina programmētāja domāšanu un atvēr pavisam savādāku skatu uz programmēšanu.</p>
-                </div>
+                
             </div>
         </div>
         <div class="tryit">
         
         </div>
+    </div>
+    <div id="tooltip">
+        <div id="tooltip_functional" class="tooltip">Funkcionālas valodas ir valodas, kas izpilda programmu līdzīgi matemātiskai funkcijai, neizmantojot stāvokli un mainīgus datus.</div>
+        <div id="tooltip_imperative" class="tooltip">Imperatīvais valodas ir valodas, kas veido programmu kā sarakstu ar soļiem, un pēc katra soļa mainās programmas stāvoklis.</div>
     </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
