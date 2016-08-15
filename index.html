@@ -71,13 +71,13 @@ cube x = x ^ 3
 main = print (cube 4)</pre>
                     <p>Un pat šo programmu var padarīt īsāku. Ja mēs skatāmies uz funkciju cube, tad viss, ko tā dara - kāpina argumentu trešajā pakāpē. Mums šajā situācijā ir vienalga, kāds ir arguments, mums ir svarīgi, ko funkcija dara. Tāpēc pierakstīsim to citādāk:<p>
                     <pre>cube = (^3)</pre>
-                    <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasamāks.</p>
+                    <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasāmāks.</p>
                 </div>
                 <div class="slide">
                     <h2>Kā iesākt</h2>
                     <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform. Tas iekļauj sevī GHC <u id="compiler" class="def">kompilātoru</u>, Cabal paku menedžeri un dažas izplatītas pakas.</p>
-                    <p>Lai instalētu vvajadzīgas pakas, var izmantot komandu <pre>cabal install package_name</pre></p>
-                    <p>Ir noderīgi apgūt arī interaktīvo interpretātoru, ghci.</p>
+                    <p>Lai instalētu vajadzīgās pakas, var izmantot komandu <pre>cabal install package_name</pre></p>
+                    <p>Ir noderīgi apgūt arī interaktīvo interpretatoru, ghci.</p>
                 </div>
                 <div class="slide">
                     <h2>Pirmā programma</h2>
@@ -97,26 +97,26 @@ Linking hello ...</pre>
                     <p>Lai aprakstītu šīs funkcijas tipu, tiek izmantots šāds pieraksts:<pre>add :: Int -> Int -> Int</pre></p>
                     <p>Šo pierakstu jālasa tā: funkcija add saņem divus argumentus ar tipu Int un atgriež rezultātu ar tipu Int.</p>
                     <p>Sākumā šitāds pieraksts liekas neloģisks, jo argumenti ir samesti kopā ar rezultātu. Ar laiku Jūs sapratīsiet, kāpēc pieraksts ir tieši šāds, pateicoties procesam, kas saucās karings.</p>
-                    <p>Pierakstīt funkcijas tipu lielākoties nav obligāti. Šāda vajadzība parādās diezgan reti. Bet ir jāprot lasīt tos, lai varētu viegli orientēties gatavās funkcijās.</p>
+                    <p>Pierakstīt funkcijas tipu lielākoties nav obligāti. Šāda vajadzība parādās diezgan reti. Bet tos ir jāprot lasīt, lai varētu viegli orientēties gatavajās funkcijās.</p>
                 </div>
                 <div class="slide">
                     <h2>Primitīvie tipi</h2>
-                    <p>Var atdalīt 5 primitīvus tipus: Int, Integer, Float, Char, Bool.</p>
+                    <p>Var nošķirt 5 primitīvus tipus: Int, Integer, Float, Char, Bool.</p>
                     <p>Int tiek ierobežots ar datora arhitektūras "vārda" izmēru.</p>
-                    <p>Integer ir neierobežotie veselie skaitļi. Float ir skaitļi ar peldošo punktu.</p>
-                    <p>Char ir simbolu tips: viens simbols ir ierobežots ar parastām pēdiņām - 'a'. </p>
+                    <p>Integer ir neierobežoti veselie skaitļi. Float ir skaitļi ar peldošo punktu.</p>
+                    <p>Char ir simbolu tips: viens simbols ir ierobežots ar parastajām pēdiņām - 'a'. </p>
                     <p>Bool ir būla mainīgie, kas var būt True vai False.</p>
                 </div>
                 <div class="slide">
-                    <h2>Listes</h2>
-                    <p>Tāpat, kā citās valodās, Haskell ļauj izveidot sarakstu ar noteikta tipa elementiem. Piemēram, [1,2,3,4,5] ir liste ar skaitļiem.</p>
-                    <p>Listes elementiem ir jābūt viena tipa. Izveidojot listi ar jauktiem tipiem, piemēram [1, 'a'] izsauks kompilācijas kļūdu.</p>
-                    <p>Simbolu liste atzīmējas kā liste [Char], vai ar tās sinonimu, String. Lai izveidotu String tipa mainīgo, vajag izmantot dubultpēdiņas - "abcd". Tas pieraksts ir <u id="sugar" class="def">sintaktiskais atvieglojums</u> simbolu listei - ['a', 'b', 'c', 'd'].</p>
-                    <p>Atšķirībā no tādām valodām, kā PHP vai JavaScript, Haskell piespiež programmētāju izmantot vajadzīgas pēdiņas. Tas nozīmē, ka konstrukcija 'abcd' izsauks kompilācijas kļūdu - Haskell gaida, ka ar '' ir definēts mainīgais tipa Char, nevis [Char]. Savukārt, konstrukcija "a" neizsauks kļūdu, bet izveidos [Char] tipa mainīgo.</p>
+                    <h2>Saraksti</h2>
+                    <p>Tāpat, kā citās valodās, Haskell ļauj izveidot sarakstu ar noteikta tipa elementiem. Piemēram, [1, 2, 3, 4, 5] ir saraksts ar skaitļiem.</p>
+                    <p>Saraksta elementiem ir jābūt viena tipa. Izveidojot sarakstu ar jauktiem tipiem, piemēram, [1, 'a'] izsauks kompilācijas kļūdu.</p>
+                    <p>Simbolu saraksts atzīmējas kā saraksts [Char] vai ar tā sinonīmu, String. Lai izveidotu String tipa mainīgo, vajag izmantot dubultpēdiņas - "abcd". Tas pieraksts ir <u id="sugar" class="def">sintaktiskais atvieglojums</u> simbolu sarakstam - ['a', 'b', 'c', 'd'].</p>
+                    <p>Atšķirībā no tādām valodām kā PHP vai JavaScript, Haskell piespiež programmētāju izmantot vajadzīgā veida pēdiņas. Tas nozīmē, ka konstrukcija 'abcd' izsauks kompilācijas kļūdu - Haskell gaida, ka ar '' ir definēts Char tipa mainīgais, nevis [Char]. Savukārt konstrukcija "a" neizsauks kļūdu, bet izveidos [Char] tipa mainīgo.</p>
                 </div>
                 <div class="slide">
                     <h2>Pāri</h2>
-                    <p>Pāris ir konstrukcija, kas var būt pazistama Python programmētājiem. Pāris satur divus elementus, kuriem var būt dažādi tipi, piemēram (1, "abcd").</p>
+                    <p>Pāris ir konstrukcija, kas var būt pazīstama Python programmētājiem. Pāris satur divus elementus, kuriem var būt dažādi tipi, piemēram, (1, "abcd").</p>
                     <p>Pāris var sastāvēt no vairākiem elementiem, piemēram, (1, "Jānis Bērziņš", 1987). Bet funkcijas, kas ir domātas pāriem no diviem elementiem, nestrādās ar pāriem no vairākiem elementiem, piemēram:</p>
                     <pre>foo (a, b) = a
 
@@ -126,7 +126,7 @@ main = print (foo (1, "Jānis Bērziņš", 1987))</pre>
                 </div>
                 <div class="slide">
                     <h2>Argumenti</h2>
-                    <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucāmais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāla</u> funkciju:<pre>fact n = if n == 0 then 1 else n * fact (n - 1)</pre></p>
+                    <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0 then 1 else n * fact (n - 1)</pre></p>
                     <p>Mēs varam padarīt to nedaudz lasāmāku ar guard simboliem:</p>
                     <pre>fact n
     | n == 0    = 1
@@ -136,17 +136,17 @@ main = print (foo (1, "Jānis Bērziņš", 1987))</pre>
 fact n = n * fact (n - 1)</pre>
                 </div>
                 <div class="slide">
-                    <h2>Funkcijas ar listēm</h2>
-                    <p>Haskell atbalsta pattern matching iespējas, kas ir domātas listēm. Piemēram, var definēt funkcijas versiju tukšai listei, vai izdalot listes elementus. </p>
-                    <p>Izveidosim funkciju, kas pārveido vārda pirmo burtu augšejā reģistrā (atceramies, ka rinda ir simbolu liste):</p>
+                    <h2>Funkcijas ar sarakstiem</h2>
+                    <p>Haskell atbalsta pattern matching iespējas, kas ir domātas sarakstiem. Piemēram, var definēt funkcijas versiju tukšam sarakstam vai izdalot saraksta elementus.</p>
+                    <p>Izveidosim funkciju, kas pārveido vārda pirmo burtu augšējā reģistrā (atceramies, ka rinda ir simbolu saraksts):</p>
                     <pre>import Data.Char
 
 cap [] = ""
 cap (x:xs) = toUpper x : xs
 
 main = print (cap "hello")</pre>
-                    <p>Pirmā rinda pievieno bibliotēku Data.Char, kas satur funkciju toUpper. Nākama rinda definē funkcijas cap versiju gadījumam, ja tiek padota tukša liste - tajā gadījumā mēs atgriežam tukšo rindu.</p>
-                    <p>Nākamā rindā mēs ar pattern matching pierakstu (x:xs) atdalam pirmo elementu x no pārējas listes xs. Mēs ieceļam to simbolu augšējā reģistrā ar toUpper un tad pievienojam pie pārējas listes ar : operātoru.</p>
+                    <p>Pirmā rinda pievieno bibliotēku Data.Char, kas satur funkciju toUpper. Nākamā rinda definē funkcijas cap versiju gadījumam, ja tiek padots tukšs saraksts - tajā gadījumā mēs atgriežam tukšu sarakstu.</p>
+                    <p>Nākamajā rindā mēs ar pattern matching pierakstu (x:xs) atdalam pirmo elementu x no pārējas listes xs. Mēs ieceļam to simbolu augšējā reģistrā ar toUpper un tad pievienojam pie pārējā saraksta ar : operātoru.</p>
                 </div>
                 <div class="slide">
                     <h2>Citas pattern matching iespējas</h2>
@@ -155,37 +155,37 @@ foo _ = 456</pre>
                     <p>Pirmā rinda definē funkciju foo gadījumam, ja arguments n ir vienāds ar 123. Otrā rindā pattern "_" tiek izmantots, lai pilnībā ignorētu argumentu.</p>
                     <pre>first  (a, b) = a
 second (a, b) = b</pre>
-                    <p>Atdalam pāra elementus.</p>
+                    <p>Atdalām pāra elementus.</p>
                 </div>
                 <div class="slide">
                     <h2>Map & Fold</h2>
-                    <p>Listēm ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvēnas funkcijas darbam ar listēm: map un fold. Citās valodās fold tiek saukts par reduce, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā liste tiek "salikta" vienā vērtībā.</p>
-                    <p>Funkcija map pieņem divus argumentus - funkciju un listi. Map funkcija iziet cauri listei un izpilda padoto funkciju uz katra listes elementa. Piemēram, mums ir liste, un mums vajag atrast kvadrātu no katra elementa:</p>
+                    <p>Sarakstiem ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvenās funkcijas darbam ar sarakstiem: map un fold. Citās valodās fold tiek saukts par reduce, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā liste tiek "salikta" vienā vērtībā.</p>
+                    <p>Funkcija map pieņem divus argumentus - funkciju un sarakstu. Map funkcija iziet cauri sarakstam un izpilda padoto funkciju ar katru saraksta elementu. Piemēram, mums ir saraksts un mums vajag atrast kvadrātu no katra elementa:</p>
                     <pre>sqr n = n ^ 2
 
 main = print (map sqr [1,2,3,4,5])</pre>
                     <p>Rezultātā redzēsim [1, 4, 9, 16, 25].</p>
-                    <p>Funkcijas map tips ir map :: (a -> b) -> [a] -> [b]. Šo var izlasīt: pirmais arguments ir funkcija tipa a -> b, tas ir funkcija, kas pieņem argumentu ar tipu a un atgriež rezultātu ar tipu b. Otrais ir liste ar vērtībam tipa a. Rezultāts ir liste ar vērtībam tipa b. a un b šajā pieraksta ir simboliskie aizvietojumi, kas demonstrē, ka tur var būt jebkādi tipi.</p>
+                    <p>Funkcijas map tips ir map :: (a -> b) -> [a] -> [b]. Šo var izlasīt: pirmais arguments ir tipa a -> b funkcija, tas ir funkcija, kas pieņem argumentu ar tipu a un atgriež rezultātu ar tipu b. Otrais ir saraksts ar tipa a vērtībām. Rezultāts ir saraksts ar tipa b vērtībam. a un b šajā pierakstā ir simboliski aizvietojumi, kas demonstrē, ka tur var būt jebkādi tipi.</p>
                 </div>
                 <div class="slide">
                     <h2>Map & Fold</h2>
-                    <p>Funkcija fold ir nedaudz sarežģītāka. Tā uzkrāj rezultātu vienā mainīgajā, ko sauc par akumulātoru. Tā izmanto funkciju ar diviem mainīgajiem. Kā pirmo tai tiek padota akumulātora vērtība, otrais arguments tiek paņemts no listes. Rezultāts atjauno akumulātora vērtību.</p>
-                    <p>Piemeram, mēs izmantojam akumulātora vērtību 1, listi [2,3,4] un funkciju foo a b = 2 * a + b. Izmantosim fold versiju, kas sāk no listes kreisās puses - foldl:</p>
+                    <p>Funkcija fold ir nedaudz sarežģītāka. Tā uzkrāj rezultātu vienā mainīgajā, ko sauc par akumulatoru. Tā izmanto funkciju ar diviem mainīgajiem. Kā pirmā tai tiek padota akumulatora vērtība, otrais arguments tiek paņemts no saraksta. Rezultāts atjauno akumulatora vērtību.</p>
+                    <p>Piemēram, mēs izmantojam akumulatora vērtību 1, sarakstu [2, 3, 4] un funkciju foo a b = 2 * a + b. Izmantosim fold versiju, kas sāk no saraksta kreisās puses - foldl:</p>
                     <pre>foo a b = 2 * a + b
 
 main = print (foldl foo 1 [2,3,4])</pre>
-                    <p>Ja attēlot, ko dara foldl, sanāk 4 soļi:
+                    <p>Ja attēlo, ko dara foldl, sanāk 4 soļi:
                         <ol>
-                            <li>1. Funkcija foo saņem argumentus 1 un 2, rezultāts 1*2 + 2 = 4 tiek ierakstīts akumulātorā, listē paliek [3,4]</li>
-                            <li>2. Funkcija foo saņem argumentus 4 un 3, rezultāts 4*2 + 3 = 11 tiek ierakstīts akumulātorā, listē paliek [4]</li>
-                            <li>3. Funkcija foo saņem argumentus 11 un 4, rezultāts 11*2 + 4 = 26 tiek ierakstīts akumulātorā, liste ir tukša</li>
-                            <li>4. Šis solis notiek kad liste paliek tukša. Šajā gadījumā tiek vienkārši atgriezta akumulātora vērtība, un rekursija apstājas.</li>
+                            <li>1. Funkcija foo saņem argumentus 1 un 2, rezultāts 1 * 2 + 2 = 4 tiek ierakstīts akumulatorā, sarakstā paliek [3, 4]</li>
+                            <li>2. Funkcija foo saņem argumentus 4 un 3, rezultāts 4 * 2 + 3 = 11 tiek ierakstīts akumulatorā, sarakstā paliek [4]</li>
+                            <li>3. Funkcija foo saņem argumentus 11 un 4, rezultāts 11 * 2 + 4 = 26 tiek ierakstīts akumulatorā, saraksts ir tukšs</li>
+                            <li>4. Šis solis notiek, kad saraksts kļuvis tukšs. Šajā gadījumā tiek vienkārši atgriezta akumulatora vērtība, un rekursija apstājas.</li>
                         </ol>
                     </p>
                 </div>
                 <div class="slide">
                     <h2>Map & Fold</h2>
-                    <p>Patreiz jums ir jābūt pietiekami daudz zināšanu, lai pašiem saprastu, kā darbojas funkcijas map un foldl, izlasot šo funkciju kodu. Pamēģiniet to izdarīt, pirms turpināsiet lasīt:</p>
+                    <p>Patreiz jums ir jābūt pietiekami daudz zināšanām, lai paši saprastu, kā darbojas funkcijas map un foldl, izlasot šo funkciju kodu. Pamēģiniet to izdarīt, pirms turpināsiet lasīt:</p>
                     <pre>map :: (a -> b) -> [a] -> [b]
 map _ []     = []
 map f (x:xs) = f x : map f xs</pre>
@@ -200,16 +200,16 @@ foldl f z (x:xs) = foldl f (f z x) xs</pre>
         </div>
     </div>
     <div id="tooltip">
-        <div id="tooltip_functional" class="tooltip">Funkcionālas valodas ir valodas, kas izpilda programmu līdzīgi matemātiskai funkcijai, neizmantojot stāvokli un mainīgus datus.</div>
-        <div id="tooltip_imperative" class="tooltip">Imperatīvais valodas ir valodas, kas veido programmu kā sarakstu ar soļiem, un pēc katra soļa mainās programmas stāvoklis.</div>
-        <div id="tooltip_compiler" class="tooltip">Kompilātors ir programma, kas pārveido kodu, uzrakstītu programmēšanas valodā, par kodu, kuru var izpildīt dators.</div>
-        <div id="tooltip_pure" class="tooltip">Tīri funkcionāla valoda ir valoda, kurā funkcijas nesatur blakus efektus. Tas nozīmē, ka funkcijas saņem argumentus, apstradā un atgriež rezultātu un nedara neko citu - ne datu attēlošanu vai saglabāšanu failos vai jebkādu citu darbību.</div>
+        <div id="tooltip_functional" class="tooltip">Funkcionālās valodas ir valodas, kas izpilda programmu līdzīgi matemātiskai funkcijai, neizmantojot stāvokli un mainīgus datus.</div>
+        <div id="tooltip_imperative" class="tooltip">Imperatīvās valodas ir valodas, kas veido programmu kā sarakstu ar soļiem, un pēc katra soļa mainās programmas stāvoklis.</div>
+        <div id="tooltip_compiler" class="tooltip">Kompilators ir programma, kas pārveido kodu, uzrakstītu programmēšanas valodā, par kodu, kuru var izpildīt dators.</div>
+        <div id="tooltip_pure" class="tooltip">Tīri funkcionāla valoda ir valoda, kurā funkcijas nesatur blakus efektus. Tas nozīmē, ka funkcijas saņem argumentus, apstradā un atgriež rezultātu, un nedara neko citu - ne datu attēlošanu, ne saglabāšanu failos vai jebkādu citu darbību.</div>
         <div id="tooltip_oop" class="tooltip">Object Oriented valodas ir valodas, kas izmanto objektus kā valodas pamatelementus. Objekti sastāv no elementiem un metodēm.</div>
         <div id="tooltip_boilerplate" class="tooltip">Boilerplate ir daļa no koda, kuru gandrīz vienmēr vai vienmēr ir jāliek programmā.</div>
-        <div id="tooltip_type" class="tooltip">Mainīgo vai argumentu tips programmēšanā nosaka, kādi dati var būt izmantoti ar šo mainīgo un kādas operācijas ir atļautas. Piemēram skaitļu tipiem ir atļautas aritmetiskās operācijas.</div>
+        <div id="tooltip_type" class="tooltip">Mainīgo vai argumentu tips programmēšanā nosaka, kādi dati var būt izmantoti ar šo mainīgo un kādas operācijas ir atļautas. Piemēram, skaitļu tipiem ir atļautas aritmētiskās operācijas.</div>
         <div id="tooltip_recursive" class="tooltip">Rekursīva funkcija ir funkcija, kas izsauc pati sevi.</div>
-        <div id="tooltip_sugar" class="tooltip">Sintaktiskais atvieglojums, vai sintaktiskais cukurs ir kāda koda aizvietojums, kas padara to lasamāku vai ērtāk izmantojamu.</div>
-        <div id="tooltip_factorial" class="tooltip">Faktoriāls ir funkcija ar argumentu n, kuras rezultāts ir visu skaitļu no 1 līdz n reizinājums, piemēram fact(5) = 1*2*3*4*5 = 120. Tiek peņemta faktoriāla definīcija: ja n ir 0, tad faktoriāls ir 1, citos gadījumos faktoriāls ir n reiz faktoriāls no n-1.</div>
+        <div id="tooltip_sugar" class="tooltip">Sintaktiskais atvieglojums jeb sintaktiskais cukurs ir kāda koda aizvietojums, kas padara to lasāmāku vai ērtāk izmantojamu.</div>
+        <div id="tooltip_factorial" class="tooltip">Faktoriālis ir funkcija ar argumentu n, kuras rezultāts ir visu skaitļu no 1 līdz n reizinājums, piemēram, fact(5) = 1*2*3*4*5 = 120. Tiek pieņemta faktoriāļa definīcija: ja n ir 0, tad faktoriālis ir 1, citos gadījumos faktoriālis ir n reiz faktoriālis no n-1.</div>
     </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
