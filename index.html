@@ -2,17 +2,17 @@
 <head>
     <meta charset="utf-8">
     <title>haskell.lv</title>
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/index.css">
 </head>
 <body>
     <div class="header">
         <div class="nav">
-           <a href="/">Apmācība</a> 
-           <a href="https://www.haskell.org/downloads" target="_blank">Lejuplādēt</a> 
-           <a href="/irc.html">IRC</a> 
-           <a href="/news.html">Ziņas</a> 
-           <a href="/links.html">Ārējas saites</a> 
+           <a href="/">Apmācība</a>
+           <a href="https://www.haskell.org/downloads" target="_blank">Lejuplādēt</a>
+           <a href="/irc.html">IRC</a>
+           <a href="/news.html">Ziņas</a>
+           <a href="/links.html">Ārējas saites</a>
         </div>
     </div>
     <h1>Apmācība</h1>
@@ -21,25 +21,22 @@
             <div id="prev" class="slide-button inactive"><</div>
             <div id="next" class="slide-button">></div>
             <div class="wrapper">
-                <div class="slide active">
+                <div class="slide">
                     <h2>Par šo apmācību</h2>
                     <p class="intro">Šī ampācība ir domāta cilvēkiem, kas vēlās apgūt Haskell programmēšanas valodu. Apmācība pirmkārt ir domāta tiem, kas jau māk programmēt citās valodās. Bet ja Jums nav pieredzes programmēšanā, vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvitrotiem terminiem un izlasīt definīciju.</p>
-                </div>
-                <div class="slide">
                     <h2>Kas ir Haskell</h2>
-                    <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir tīri funkcionāla, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvo</u> kodu. Tai ir ļoti attistīta tipu sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
+                    <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir <u id="pure" class="def">tīri funkcionāla</u>, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvo</u> kodu. Tai ir ļoti attistīta <u id="type" class="def">tipu</u> sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
                 </div>
                 <div class="slide">
                     <h2>Mīti par Haskell</h2>
                     <p>Haskell ir viena no populārākām funkcionālām valodām. Ir diezgan daudz cilvēku, kas māk rakstīt kodu ar Haskell (diemžēl, Latvijā tādu cilvēku joprojām ir maz). Bet vēl vairāk ir cilvēku, kas par Haskell ir dzirdējuši visādus mītus un turpinā tos izplatīt. Šeit es apkopošu tos mītus un paskaidrošu, kāpēc tie ir tikai mīti.</p>
-                </div>
-                <div class="slide">
                     <h2>Lai apgūtu Haskell, ir vajadzīgas augstākas matemātikas zināšanas.</h2>
                     <p>Haskell izmanto dažus kategorijas teorijas principus un ir mantojis terminus no tās. Bet kategoriju teoriju nav jāzin, lai varētu apgūt Haskell. Otrādi - ja cilvēks ir apgūvis Haskell, var teikt, ka viņš ir apguvis kategoriju teorijas pamatus.</p>
                     <h2>Haskell ir grūta valoda</h2>
-                    <p>Haskell ir diezgan vienkārša valoda. Tajā ir ļoti maz elementu, mazāk, nekā OOP valodās. Sākumā ir grūti pierast pie valodas lakoniskuma, pie dažu boilerplate elementu neesamības. Bet pie tā pierod pāris dienu laikā.</p>
+                    <p>Haskell ir diezgan vienkārša valoda. Tajā ir ļoti maz elementu, mazāk, nekā <u id="oop" class="def">OOP</u> valodās. Sākumā ir grūti pierast pie valodas lakoniskuma, pie dažu <u id="boilerplate">boilerplate</u> elementu neesamības. Bet pie tā pierod pāris dienu laikā.</p>
                 </div>
                 <div class="slide">
+                    <h2>Mīti par Haskell</h2>
                     <h2>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h2>
                     <p>Cilvēkiem, kuri nāk no OOP pasaules, ir grūti pierast pie tā, ka Haskellā nepastāv mainīgie un stāvoklis. Kad cilvēks sakrāj pieredzi un iemācas pareizi strukturēt kodu, viņš saprot, kāpēc stāvoklis ir tas, kas veicina kļūdas programmas izpildes laikā. Savukārt, stāvoklis Haskell programmās ir iegūstams ar speciāliem datu tipiem.</p>
                     <h2>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h2>
@@ -70,7 +67,7 @@ anotherList = [1..10]</pre>
                     <p>Haskell programmas arī ir ļoti lakoniskas un satur ļoti maz boilerplate:</p>
                     <pre>
 cube x = x ^ 3
-            
+
 main = print (cube 4)</pre>
                     <p>Un pat šo programmu var padarīt īsāku. Ja mēs skatamies uz funkciju cube, tad viss, ko tā dara - ieceļ argumentu trešajā pakāpē. Mums šajā situācijā ir vienalga, kāds ir arguments, mums ir svarīgi, ko funkcija dara. Tāpēc pierakstīsim to savādāk:<p>
                     <pre>cube = (^3)</pre>
@@ -78,7 +75,7 @@ main = print (cube 4)</pre>
                 </div>
                 <div class="slide">
                     <h2>Kā iesākt</h2>
-                    <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform. Tas iekļauj sevī GHC kompilātoru, Cabal paku menedžeri un dažas izplatītas pakas.</p>
+                    <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform. Tas iekļauj sevī GHC <u id="compiler" class="def">kompilātoru</u>, Cabal paku menedžeri un dažas izplatītas pakas.</p>
                     <p>Lai instalētu vvajadzīgas pakas, var izmantot komandu <pre>cabal install package_name</pre></p>
                     <p>Ir noderīgi apgūt arī interaktīvo interpretātoru, ghci.</p>
                 </div>
@@ -91,9 +88,110 @@ main = print (cube 4)</pre>
                     <p>Jūs redzēsiet paziņojumus:</p>
                     <pre>
 [1 of 1] Compiling Main             ( hello.hs, hello.o )
-Linking hello ...
-                    </pre>
+Linking hello ...</pre>
                     <p>Sakompilēto programmu var palaist ar <pre>./hello</pre></p>
+                </div>
+                <div class="slide">
+                    <h2>Tipi</h2>
+                    <p>Haskell tipu sistēma ir ļoti advancēta un dara ļoti daudz darba, lai nodrošinātu programmas stabilitāti. Bet sākumā ir nepieciešams saprast, kā Haskell funkcijām tiek aprakstīti tipi. Paņemsim elementāru funkciju ar diviem argumentiem:<pre>add a b = a + b</pre></p>
+                    <p>Lai aprakstītu šīs funkcijas tipu, tiek izmantots šāds pieraksts:<pre>add :: Int -> Int -> Int</pre></p>
+                    <p>Šo pierakstu jālasa tā: funkcija add saņem divus argumentus ar tipu Int un atgriež rezultātu ar tipu Int.</p>
+                    <p>Sākumā šitāds pieraksts liekas neloģisks, jo argumenti ir samesti kopā ar rezultātu. Ar laiku Jūs sapratīsiet, kāpēc pieraksts ir tieši šāds, pateicoties procesam, kas saucās karings.</p>
+                    <p>Pierakstīt funkcijas tipu lielākoties nav obligāti. Šāda vajadzība parādās diezgan reti. Bet ir jāprot lasīt tos, lai varētu viegli orientēties gatavās funkcijās.</p>
+                </div>
+                <div class="slide">
+                    <h2>Primitīvie tipi</h2>
+                    <p>Var atdalīt 5 primitīvus tipus: Int, Integer, Float, Char, Bool.</p>
+                    <p>Int tiek ierobežots ar datora arhitektūras "vārda" izmēru.</p>
+                    <p>Integer ir neierobežotie veselie skaitļi. Float ir skaitļi ar peldošo punktu.</p>
+                    <p>Char ir simbolu tips: viens simbols ir ierobežots ar parastām pēdiņām - 'a'. </p>
+                    <p>Bool ir būla mainīgie, kas var būt True vai False.</p>
+                </div>
+                <div class="slide">
+                    <h2>Listes</h2>
+                    <p>Tāpat, kā citās valodās, Haskell ļauj izveidot sarakstu ar noteikta tipa elementiem. Piemēram, [1,2,3,4,5] ir liste ar skaitļiem.</p>
+                    <p>Listes elementiem ir jābūt viena tipa. Izveidojot listi ar jauktiem tipiem, piemēram [1, 'a'] izsauks kompilācijas kļūdu.</p>
+                    <p>Simbolu liste atzīmējas kā liste [Char], vai ar tās sinonimu, String. Lai izveidotu String tipa mainīgo, vajag izmantot dubultpēdiņas - "abcd". Tas pieraksts ir <u id="sugar" class="def">sintaktiskais atvieglojums</u> simbolu listei - ['a', 'b', 'c', 'd'].</p>
+                    <p>Atšķirībā no tādām valodām, kā PHP vai JavaScript, Haskell piespiež programmētāju izmantot vajadzīgas pēdiņas. Tas nozīmē, ka konstrukcija 'abcd' izsauks kompilācijas kļūdu - Haskell gaida, ka ar '' ir definēts mainīgais tipa Char, nevis [Char]. Savukārt, konstrukcija "a" neizsauks kļūdu, bet izveidos [Char] tipa mainīgo.</p>
+                </div>
+                <div class="slide">
+                    <h2>Pāri</h2>
+                    <p>Pāris ir konstrukcija, kas var būt pazistama Python programmētājiem. Pāris satur divus elementus, kuriem var būt dažādi tipi, piemēram (1, "abcd").</p>
+                    <p>Pāris var sastāvēt no vairākiem elementiem, piemēram, (1, "Jānis Bērziņš", 1987). Bet funkcijas, kas ir domātas pāriem no 2 elementiem, nestrādās ar pāriem no 2 elementiem, piemēram:</p>
+                    <pre>foo (a, b) = a
+
+main = print (foo (1, "Jānis Bērziņš", 1987))</pre>
+                    <p>Šis kods izsauks kompilācijas kļūdu.</p>
+                    <p>Visbiežāk tiek izmantots pāris no 2 elementiem, un tam ir definētas funkcijas, kas ir pieejamas ar bāzes paku Prelude - fst un snd, kuras atgriež attiecīgi pirmo un otro pāra elementu.</p>
+                </div>
+                <div class="slide">
+                    <h2>Argumenti</h2>
+                    <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucāmais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāla</u> funkciju:<pre>fact n = if n == 0 then 1 else n * fact (n - 1)</pre></p>
+                    <p>Mēs varam padarīt to nedaudz lasāmāku ar guard simboliem:</p>
+                    <pre>fact n
+    | n == 0    = 1
+    | otherwise = n * fact (n - 1)</pre>
+                    <p>vai definējot funkciju specifiskai vērtībai:
+                    <pre>fact 0 = 1
+fact n = n * fact (n - 1)</pre>
+                </div>
+                <div class="slide">
+                    <h2>Funkcijas ar listēm</h2>
+                    <p>Haskell atbalsta pattern matching iespējas, kas ir domātas listēm. Piemēram, var definēt funkcijas versiju tukšai listei, vai izdalot listes elementus. </p>
+                    <p>Izveidosim funkciju, kas pārveido vārda pirmo burtu augšejā reģistrā (atceramies, ka rinda ir simbolu liste):</p>
+                    <pre>import Data.Char
+
+cap [] = ""
+cap (x:xs) = toUpper x : xs
+
+main = print (cap "hello")</pre>
+                    <p>Pirmā rinda pievieno bibliotēku Data.Char, kas satur funkciju toUpper. Nākama rinda definē funkcijas cap versiju gadījumam, ja tiek padota tukša liste - tajā gadījumā mēs atgriežam tukšo rindu.</p>
+                    <p>Nākamā rindā mēs ar pattern matching pierakstu (x:xs) atdalam pirmo elementu x no pārējas listes xs. Mēs ieceļam to simbolu augšējā reģistrā ar toUpper un tad pievienojam pie pārējas listes ar : operātoru.</p>
+                </div>
+                <div class="slide">
+                    <h2>Citas pattern patching iespējas</h2>
+                    <pre>foo n@123 = n
+foo _ = 456</pre>
+                    <p>Pirmā rinda definē funkciju foo gadījumam, ja arguments n ir vienāds ar 123. Otrā rindā pattern "_" tiek izmantots, lai pilnībā ignorētu argumentu.</p>
+                    <pre>first  (a, b) = a
+second (a, b) = b</pre>
+                    <p>Atdalam pāra elementus.</p>
+                </div>
+                <div class="slide">
+                    <h2>Map & Fold</h2>
+                    <p>Listēm ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvēnas funkcijas darbam ar listēm: map un fold. Citās valodās fold tiek saukts par reduce, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā liste tiek "salikta" vienā vērtībā.</p>
+                    <p>Funkcija map pieņem divus argumentus - funkciju un listi. Map funkcija iziet cauri listei un izpilda padoto funkciju uz katra listes elementa. Piemēram, mums ir liste, un mums vajag atrast kvadrātu no katra elementa:</p>
+                    <pre>sqr n = n ^ 2
+
+main = print (map sqr [1,2,3,4,5])</pre>
+                    <p>Rezultātā redzēsim [1, 4, 9, 16, 25].</p>
+                    <p>Funkcijas map tips ir map :: (a -> b) -> [a] -> [b]. Šo var izlasīt: pirmais arguments ir funkcija tipa a -> b, tas ir funkcija, kas pieņem argumentu ar tipu a un atgriež rezultātu ar tipu b. Otrais ir liste ar vērtībam tipa a. Rezultāts ir liste ar vērtībam tipa b. a un b šajā pieraksta ir simboliskie aizvietojumi, kas demonstrē, ka tur var būt jebkādi tipi.</p>
+                </div>
+                <div class="slide">
+                    <h2>Map & Fold</h2>
+                    <p>Funkcija fold ir nedaudz sarežģītāka. Tā uzkrāj rezultātu vienā mainīgajā, ko sauc par akumulātoru. Tā izmanto funkciju ar diviem mainīgajiem. Kā pirmo tai tiek padota akumulātora vērtība, otrais arguments tiek paņemts no listes. Rezultāts atjauno akumulātora vērtību.</p>
+                    <p>Piemeram, mēs izmantojam akumulātora vērtību 1, listi [2,3,4] un funkciju foo a b = 2 * a + b. Izmantosim fold versiju, kas sāk no listes kreisās puses - foldl:</p>
+                    <pre>foo a b = 2 * a + b
+
+main = print (foldl foo 1 [2,3,4])</pre>
+                    <p>Ja attēlot, ko dara foldl, sanāk 4 soļi:
+                        <ol>
+                            <li>1. Funkcija foo saņem argumentus 1 un 2, rezultāts 1*2 + 2 = 4 tiek ierakstīts akumulātorā, listē paliek [3,4]</li>
+                            <li>2. Funkcija foo saņem argumentus 4 un 3, rezultāts 4*2 + 3 = 11 tiek ierakstīts akumulātorā, listē paliek [4]</li>
+                            <li>3. Funkcija foo saņem argumentus 11 un 4, rezultāts 11*2 + 4 = 26 tiek ierakstīts akumulātorā, liste ir tukša</li>
+                            <li>4. Šis solis notiek kad liste paliek tukša. Šajā gadījumā tiek vienkārši atgriezta akumulātora vērtība, un rekursija apstājas.</li>
+                        </ol>
+                    </p>
+                </div>
+                <div class="slide">
+                    <h2>Map & Fold</h2>
+                    <p>Patreiz jums ir jābūt pietiekami daudz zināšanu, lai pašiem saprastu, kā darbojas funkcijas map un foldl, izlasot šo funkciju kodu. Pamēģiniet to izdarīt, pirms turpināsiet lasīt:</p>
+                    <pre>map :: (a -> b) -> [a] -> [b]
+map _ []     = []
+map f (x:xs) = f x : map f xs</pre>
+                    <pre>foldl :: (a -> b -> a) -> a -> [b] -> a
+foldl f z []     = z
+foldl f z (x:xs) = foldl f (f z x) xs</pre>
                 </div>
             </div>
         </div>
@@ -104,6 +202,14 @@ Linking hello ...
     <div id="tooltip">
         <div id="tooltip_functional" class="tooltip">Funkcionālas valodas ir valodas, kas izpilda programmu līdzīgi matemātiskai funkcijai, neizmantojot stāvokli un mainīgus datus.</div>
         <div id="tooltip_imperative" class="tooltip">Imperatīvais valodas ir valodas, kas veido programmu kā sarakstu ar soļiem, un pēc katra soļa mainās programmas stāvoklis.</div>
+        <div id="tooltip_compiler" class="tooltip">Kompilātors ir programma, kas pārveido kodu, uzrakstītu programmēšanas valodā, par kodu, kuru var izpildīt dators.</div>
+        <div id="tooltip_pure" class="tooltip">Tīri funkcionāla valoda ir valoda, kurā funkcijas nesatur blakus efektus. Tas nozīmē, ka funkcijas saņem argumentus, apstradā un atgriež rezultātu un nedara neko citu - ne datu attēlošanu vai saglabāšanu failos vai jebkādu citu darbību.</div>
+        <div id="tooltip_oop" class="tooltip">Object Oriented valodas ir valodas, kas izmanto objektus kā valodas pamatelementus. Objekti sastāv no elementiem un metodēm.</div>
+        <div id="tooltip_boilerplate" class="tooltip">Boilerplate ir daļa no koda, kuru gandrīz vienmēr vai vienmēr ir jāliek programmā.</div>
+        <div id="tooltip_type" class="tooltip">Mainīgo vai argumentu tips programmēšanā nosaka, kādi dati var būt izmantoti ar šo mainīgo un kādas operācijas ir atļautas. Piemēram skaitļu tipiem ir atļautas aritmetiskās operācijas.</div>
+        <div id="tooltip_recursive" class="tooltip">Rekursīva funkcija ir funkcija, kas izsauc pati sevi.</div>
+        <div id="tooltip_sugar" class="tooltip">Sintaktiskais atvieglojums, vai sintaktiskais cukurs ir kāda koda aizvietojums, kas padara to lasamāku vai ērtāk izmantojamu.</div>
+        <div id="tooltip_factorial" class="tooltip">Faktoriāls ir funkcija ar argumentu n, kuras rezultāts ir visu skaitļu no 1 līdz n reizinājums, piemēram fact(5) = 1*2*3*4*5 = 120. Tiek peņemta faktoriāla definīcija: ja n ir 0, tad faktoriāls ir 1, citos gadījumos faktoriāls ir n reiz faktoriāls no n-1.</div>
     </div>
     <script type="text/javascript" src="index.js"></script>
 </body>

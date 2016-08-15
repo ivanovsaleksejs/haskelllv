@@ -33,7 +33,7 @@ table {
 }
 
 .header {
-    height: 6em;
+    height: 5em;
 }
 .nav {
     float: right;
@@ -65,7 +65,7 @@ h1 {
 .content .tutorial .wrapper {
     position: absolute;
     width: 200%;
-
+    margin: 4em 0;
 }
 .content .tryit {
     width: 35%;
@@ -75,7 +75,7 @@ h1 {
     margin: 1em 0 0;
 }
 .content p, .content u {
-    font-size: 1.3em;
+    font-size: 1.1em;
     margin: 1em 0 0;
 }
 .content u {
@@ -86,7 +86,7 @@ h1 {
     background: #ededed none repeat scroll 0 0;
     border: 1px solid #ababab;
     font-family: monospace;
-    margin: 1em 0 0;
+    margin: .9em 0 0;
     padding: .4em;
 }
 .content ol {
@@ -171,8 +171,8 @@ h1 {
     background: #fff none repeat scroll 0 0;
     cursor: pointer;
     font-size: 5em;
-    height: 100%;
-    line-height: 5em;
+    height: 1em;
+    line-height: 1em;
     opacity: 0.1;
     position: absolute;
     text-align: center;
