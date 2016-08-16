@@ -35,6 +35,10 @@ table {
 .header {
     height: 5em;
 }
+#logo {
+    padding: .4em 4em;
+    width: 6em;
+}
 .nav {
     float: right;
     padding: 2em;
