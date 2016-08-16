@@ -80,7 +80,8 @@ h1 {
 }
 .content u {
     font-size: 1em;
-    text-decoration: underline;    
+    text-decoration: underline;
+    cursor: pointer;
 }
 .content pre, .tryit {
     background: #ededed none repeat scroll 0 0;
@@ -183,7 +184,7 @@ h1 {
     right: 0;
 }
 .slide-button:hover {
-    opacity: .8; 
+    opacity: .8;
     -webkit-animation-name: fadeIn;
     -webkit-animation-duration: .5s;
     animation-name: fadeIn;
