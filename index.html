@@ -24,7 +24,7 @@
             <div class="wrapper">
                 <div class="slide">
                     <h2>Par šo apmācību</h2>
-                    <p class="intro">Šī ampācība ir domāta cilvēkiem, kas vēlas apgūt Haskell programmēšanas valodu. Apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju.</p>
+                    <p class="intro">Šī apmācība ir domāta cilvēkiem, kas vēlas apgūt Haskell programmēšanas valodu. Apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju.</p>
                     <h2>Kas ir Haskell</h2>
                     <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir <u id="pure" class="def">tīri funkcionāla</u>, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvu</u> kodu. Tai ir ļoti attīstīta <u id="type" class="def">tipu</u> sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
                 </div>
@@ -211,13 +211,13 @@ foldl f z (x:xs) = foldl f (f z x) xs</pre>
                     <h2>Prefix un infix pieraksti</h2>
                     <p>Visbiežāk ir sastopams prefix pieraksts funkcijām - kad funkcijas nosaukums ir pirms argumentiem. Funkcijām ar 2 argumentiem pastāv iespēja izmantot infix pierakstu. Lai izmantotu infix pierakstu funkcijai, kuras nosaukums sastāv no burtiem, mēs varam izmantot backquote simbolus. Izveidosim funkciju, kas aprēķina procentus no skaitļa:</p>
                     <pre>percent a b = a / b * 100
-                    
+
 main = do
     print (percent 20 160)
     print (20 `percent` 160)</pre>
                     <p>Savukārt, ja funkcijas nosaukums sastāv no simboliem (operatori), tad backquotes izmantot ar infix pierakstu nevajag, bet ar prefix pierakstu vajag izmantot iekavas:</p>
                     <pre>a % b = a / b * 100
-                   
+
 main = do
     print (20 % 160)
     print ((%) 20 160)</pre>
@@ -237,6 +237,61 @@ main = do
                     <p>Piemēram, mēs gribam uztaisīt funkciju foo a b = a + b. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - foo a b = (+) a b. Tālāk, izdomāsim funkciju (x -> x + a). Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvēnā funkcijā: foo a b = (x -> x + a) b. Un līdzīgi kā iepriekš, ar eta reduction vienkāršosim to funkciju: foo a b = (+a) b</p>
                     <p>Šis process saucās karings (currying, no matemātiķa Haskell Curry uzvārda). To dara Haskell kompilātors katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
                     <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam.</p>
+                </div>
+                <div class="slide">
+                    <h2>Kompozīcijas</h2>
+                    <p>Kompozīcija ir process, ar kura palīdzību divas funkcijas tiek salīmētas vienā. Kompozīciju operātors ir (.), piemēram foo . bar. Piemērs:</p>
+                    <pre>import Data.Char
+
+cap []     = ""
+cap (x:xs) = toUpper x : xs
+
+capWords = map cap . words
+
+processString = unwords . capWords
+
+main = print (processString "hello world")</pre>
+                    <p>Kompozīcijas noder, lai savienotu funkcijas, kas bieži atkārtojas. Kā arī, ar kompozīcijām var uzrakstīt lasāmāku kodu.</p>
+                </div>
+                <div class="slide">
+                    <h2>Aplikācijas</h2>
+                    <p>Aplikācija ir vienkāršs process, kad vienas funkcijas arguments ir citas funkcijas rezultāts. Piemēram, foo(bar 1).</p>
+                    <p>Haskell valodā ir izveidots speciāls operātors aplikācijām, ($). Piemēru augstāk var pierakstīt šādi: foo $ bar 1. Viss, kas no labās puses, tiek padots kā arguments funkcijai no kreisās puses.</p>
+                    <p>Visas iepriekš attēlotās prorammas var vienkāršot, izmantojot aplikācijas operātoru, piemēram:</p>
+                    <pre>a % b = a / b * 100
+
+main = do
+    print $ 20 % 160
+    print $ (%) 20 160</pre>
+                </div>
+                <div class="slide">
+                    <h2>Kompozīcijas un aplikācijas operatori</h2>
+                    <p>Lai saprastu līdz galām, kā darbojās šie operatori, var izpētīt to kodus.</p>
+                    <p>Aplikācijas operators:</p>
+                    <pre>($) :: (a -> b) -> a -> b
+f $ x = f x</pre>
+                    <p>Kompozīcijas operators:</p>
+                    <pre>(.) :: (b -> c) -> (a -> b) -> a -> c
+(f . g) x = f (g x)</pre>
+                </div>
+                <div class="slide">
+                    <h2>Lazy</h2>
+                    <p>Lazy ir programmēšanas princips, kurš atliek komandas izpildi līdz brīdim, kad tas ir vajadzīgs. Izskatīsim piemēru ar bezgalīgo sarakstu:</p>
+                    <pre>main = print $ fst ([1 ..], 0)</pre>
+                    <p>Jūs redzēsiet, ka tas tiešām ģenerē bezgalīgo listi. Tagad ņemsim otro pāra elementu:</p>
+                    <pre>main = print $ snd ([1 ..], 0)</pre>
+                    <p>Tiks izvadīta nulle un programma beigs savu darbu. Saraksts nav sācis ģenerēties, jo tas nav vajadzīgs.</p>
+                </div>
+                <div class="slide">
+                    <h2>Lazy piemēri</h2>
+                    <p>Cits, nedaudz noderīgāks lazy pielietojums:</p>
+                    <pre>main = print $ take 5 [1 ..]</pre>
+                    <p>Mēs atkal izmantojam bezgalīgo listi un pat sākam to ģenerēt. Bet augstākas kārtas funkcija take (paņemt n elementus no listes) kontrolē listes ģenerāciju. Kods saprot, ka vajag ģenerēt tikai 5 elementus, jo vairāki elementi netiks izmantoti programmā.</p>
+                    <p>Vēl viens piemērs:</p>
+                    <pre>mapOdds f = map f [1,3 ..]
+
+main = print $ take 10 $ mapOdds (^2)</pre>
+                    <p>Tiks aprēķināti kvadrāti pirmiem 10 nepāra skaitļiem.</p>
                 </div>
             </div>
         </div>
