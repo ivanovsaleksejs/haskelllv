@@ -198,14 +198,14 @@ foldl f z (x:xs) = foldl f (f z x) xs</pre>
                     <h2>Noderīgas funkcijas</h2>
                     <p>: - pievienot elementu sarakstam. 1 : [2, 3] atgriezīs [1, 2, 3]</p>
                     <p>++ - salīmēt divus sarakstus. [1, 2] ++ [3, 4, 5] atgriezīs [1, 2, 3, 4, 5]</p>
-                    <p>fst, snd - atgiež pāra no 2 elementiem pirmo un otro elementu respektīvi.</p>
+                    <p>fst, snd - atgiež 2 elementu pāra pirmo un otro elementu respektīvi.</p>
                     <p>head, last - atgriež saraksta pirmo vai pēdējo elementu respektīvi. head [1, 2, 3] atgriezīs 1</p>
-                    <p>init, tail - atgriež sarakstu bez pēdēja vai pirma elementa respektīvi. tail [1, 2, 3] atgriezīs [2, 3]</p>
+                    <p>init, tail - atgriež sarakstu bez pēdējā vai pirmā elementa respektīvi. tail [1, 2, 3] atgriezīs [2, 3]</p>
                     <p>filter - filtrēt sarakstu, izmantojot funkciju. filter odd [1..10] atgriezīs [1, 3, 5, 7, 9]</p>
-                    <p>all - pārbaudīt, vai visi elementi atbilst noteikumam. all odd [1, 3, 4, 5, 7] atgriezīs False</p>
-                    <p>any - pārbaudīt, vai kaut viens elements atbilst noteikumam. any odd [2, 4 .. 10] atgriezīs False</p>
+                    <p>all - pārbaudīt, vai visi elementi atbilst nosacījumam. all odd [1, 3, 4, 5, 7] atgriezīs False</p>
+                    <p>any - pārbaudīt, vai kaut viens elements atbilst nosacījumam. any odd [2, 4 .. 10] atgriezīs False</p>
                     <p>elem - pārbaidīt, vai elements ir sarakstā. elem 3 [1 .. 10] atgriezīs True</p>
-                    <p>!! - atgriezt sarakstes n-to elementu. [1 .. 10] !! 5 atgriezīs 4 (1 ir nultais elements)</p>
+                    <p>!! - atgriezt sarakstes n-to elementu. ['a'..'z'] !! 3 atgriezīs 'd' (elementus sāk skaitīt no 0)</p>
                 </div>
                 <div class="slide">
                     <h2>Prefix un infix pieraksti</h2>
@@ -223,9 +223,9 @@ main = do
     print ((%) 20 160)</pre>
                 </div>
                 <div class="slide">
-                    <h2>Anonimas funkcijas</h2>
-                    <p>Anonimas vai lambda funkcijas ir funkcijas, kurām nav nosaukums. Tās bieži tiek izmantotas augstākās kārtas funkcijas (jeb funkcijās, kuras izmanto citas funkcijas kā argumentus)</p>
-                    <p>Haskell valoda uzmanto šādu pierakstu lambda funkcijām: (a -> do_something a). Piemēram, funkcija, kas ieceļ skaitli kvadrātā, izskatīsies šādi: (a -> a^2)</p>
+                    <h2>Anonīmās funkcijas</h2>
+                    <p>Anonīmās vai lambda funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākās kārtas funkcijas (jeb funkcijās, kuras izmanto citas funkcijas kā argumentus)</p>
+                    <p>Haskell valoda izmanto šādu pierakstu lambda funkcijām: (a -> doSomething a). Piemēram, funkcija, kas ceļ skaitli kvadrātā, izskatīsies šādi: (a -> a^2)</p>
                     <p>Izmantot lambda funkcijas var šādi:</p>
                     <pre>map (a -> a^2) [1, 2, 3, 4, 5]</pre>
                     <p>Līdzīgi, kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkaršot (process saucās eta reduction):</p>
@@ -233,7 +233,9 @@ main = do
                 </div>
                 <div class="slide">
                     <h2>Karings</h2>
-                    <p>Karings ir process, kas pārveido funkciju ar vairākiem argumentiem par virkni funkciju, katra no tām ar vienu argumentu. Matemātiskās funkcijas var izmantot tikai vienu argumentu, un tīri funkcionālās valodās funkcijām ir jāatbilst šim noteikumam. Bet, lai atvieglotu programmētāja darbu, tika izveidots mehanisms, kas ļauj veidot funkcijas ar vairākiem argumentiem, nepārkāpjot tīri funkcionālo principu.</p>
+                    <p>Karings ir process, kas pārveido funkciju ar vairākiem argumentiem par virkni funkciju, katra no tām ar vienu argumentu. Matemātiskās funkcijas var izmantot tikai vienu argumentu,
+                        un tīri funkcionālās valodās funkcijām ir jāatbilst šim noteikumam. Bet, lai atvieglotu programmētāja darbu, tika izveidots mehānisms,
+                        kas ļauj veidot funkcijas ar vairākiem argumentiem, nepārkāpjot tīri funkcionālo principu.</p>
                     <p>Piemēram, mēs gribam uztaisīt funkciju foo a b = a + b. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - foo a b = (+) a b. Tālāk, izdomāsim funkciju (x -> x + a). Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvēnā funkcijā: foo a b = (x -> x + a) b. Un līdzīgi kā iepriekš, ar eta reduction vienkāršosim to funkciju: foo a b = (+a) b</p>
                     <p>Šis process saucās karings (currying, no matemātiķa Haskell Curry uzvārda). To dara Haskell kompilātors katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
                     <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam.</p>
@@ -266,7 +268,7 @@ main = do
                 </div>
                 <div class="slide">
                     <h2>Kompozīcijas un aplikācijas operatori</h2>
-                    <p>Lai saprastu līdz galām, kā darbojās šie operatori, var izpētīt to kodus.</p>
+                    <p>Lai saprastu līdz galām, kā darbojās šie operatori, varat izpētīt to kodus.</p>
                     <p>Aplikācijas operators:</p>
                     <pre>($) :: (a -> b) -> a -> b
 f $ x = f x</pre>
@@ -276,7 +278,7 @@ f $ x = f x</pre>
                 </div>
                 <div class="slide">
                     <h2>Lazy</h2>
-                    <p>Lazy ir programmēšanas princips, kurš atliek komandas izpildi līdz brīdim, kad tas ir vajadzīgs. Izskatīsim piemēru ar bezgalīgo sarakstu:</p>
+                    <p><em>Lazy</em> ir programmēšanas princips, kurš atliek funkcijas izpildi līdz brīdim, kad tas ir vajadzīgs. Apskatīsim piemēru ar bezgalīgo sarakstu:</p>
                     <pre>main = print $ fst ([1 ..], 0)</pre>
                     <p>Jūs redzēsiet, ka tas tiešām ģenerē bezgalīgo listi. Tagad ņemsim otro pāra elementu:</p>
                     <pre>main = print $ snd ([1 ..], 0)</pre>
@@ -284,14 +286,14 @@ f $ x = f x</pre>
                 </div>
                 <div class="slide">
                     <h2>Lazy piemēri</h2>
-                    <p>Cits, nedaudz noderīgāks lazy pielietojums:</p>
+                    <p>Cits, nedaudz noderīgāks <em>lazy</em> pielietojums:</p>
                     <pre>main = print $ take 5 [1 ..]</pre>
-                    <p>Mēs atkal izmantojam bezgalīgo listi un pat sākam to ģenerēt. Bet augstākas kārtas funkcija take (paņemt n elementus no listes) kontrolē listes ģenerāciju. Kods saprot, ka vajag ģenerēt tikai 5 elementus, jo vairāki elementi netiks izmantoti programmā.</p>
+                    <p>Mēs atkal izmantojam bezgalīgo listi un pat sākam to ģenerēt. Bet augstākās kārtas funkcija take (paņemt n elementus no listes) kontrolē listes ģenerāciju. Kods saprot, ka vajag ģenerēt tikai 5 elementus, jo vairāki elementi netiks izmantoti programmā.</p>
                     <p>Vēl viens piemērs:</p>
                     <pre>mapOdds f = map f [1,3 ..]
 
 main = print $ take 10 $ mapOdds (^2)</pre>
-                    <p>Tiks aprēķināti kvadrāti pirmiem 10 nepāra skaitļiem.</p>
+                    <p>Tiks aprēķināti kvadrāti pirmajiem 10 nepāra skaitļiem.</p>
                 </div>
             </div>
         </div>
