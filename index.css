@@ -60,7 +60,7 @@ h1 {
     padding: 0 4em;
 }
 .content .tutorial {
-    height: 30em;
+    height: 32em;
     overflow: hidden;
     position: relative;
     width: 60%;
@@ -235,6 +235,8 @@ h1 {
     -webkit-animation-duration: .5s;
     animation-name: hideTooltip;
     animation-duration: 0.5s;
+    z-index: 0;
+    display: none;
 }
 @-webkit-keyframes showTooltip {
     from {opacity: 0}
@@ -258,4 +260,22 @@ h1 {
 #chat_iframe {
     width: 100%;
     height: 30em;
+}
+
+@media screen and (max-width: 1070px) {
+    * {
+        font-size: 28px;
+    }
+    .header .nav {
+        display: none;
+    }
+    .content .tutorial {
+        height: 40em;
+        width: 100%;
+    }
+
+    .content .tryit {
+        width: 0%;
+        display: none;
+    }
 }

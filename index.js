@@ -40,8 +40,8 @@ var nextSlide = function(){
 
 var displayTooltip = function(event) {
     var elem = document.getElementById("tooltip_" + this.id)
-    elem.style.left = event.clientX
-    elem.style.top = event.clientY
+    elem.style.left = event.clientX+2
+    elem.style.top = event.clientY+3
     addClass(elem, "visible")
     removeClass(elem, "hidden")
 }
