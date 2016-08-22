@@ -194,6 +194,9 @@ h1 {
     animation-name: fadeIn;
     animation-duration: .5s;
 }
+.slide-button.disabled {
+    opacity: 0.1 !important;
+}
 @-webkit-keyframes fadeIn {
     from {opacity: .1}
     to {opacity: .8}

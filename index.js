@@ -1,5 +1,7 @@
 var currentSlide = null;
 
+var byId = document.getElementById.bind(document)
+
 var slideNumber = parseInt(location.hash.slice(1)) || 1;
 
 var addClass = function(e, name) {
@@ -7,6 +9,26 @@ var addClass = function(e, name) {
 }
 var removeClass = function(e, name) {
     e.className = e.className.replace(name,"")
+}
+
+var arrows = {
+    prev: null,
+    next: null
+}
+
+var disableArrows = function() {
+    next = currentSlide.nextElementSibling
+    prev = currentSlide.previousElementSibling
+
+    removeClass(arrows.prev, "disabled")
+    removeClass(arrows.next, "disabled")
+
+    if (next === null) {
+        addClass(arrows.next, "disabled")
+    }
+    if (prev === null) {
+        addClass(arrows.prev, "disabled")
+    }
 }
 
 var slideStep = function(dir) {
@@ -27,6 +49,8 @@ var slideStep = function(dir) {
 
         slideNumber += dir ? 1 : -1
         location.hash = slideNumber
+
+        disableArrows()
     }
 }
 
@@ -39,7 +63,7 @@ var nextSlide = function(){
 }
 
 var displayTooltip = function(event) {
-    var elem = document.getElementById("tooltip_" + this.id)
+    var elem = byId("tooltip_" + this.id)
     elem.style.left = event.clientX+2
     elem.style.top = event.clientY+3
     addClass(elem, "visible")
@@ -47,14 +71,16 @@ var displayTooltip = function(event) {
 }
 
 var hideTooltip = function() {
-    var elem = document.getElementById("tooltip_" + this.id)
+    var elem = byId("tooltip_" + this.id)
     addClass(elem, "hidden")
     removeClass(elem, "visible")
 }
 
 window.onload = function() {
-    document.getElementById("prev").addEventListener("click", prevSlide, false)
-    document.getElementById("next").addEventListener("click", nextSlide, false)
+    arrows.prev = byId("prev")
+    arrows.next = byId("next")
+    arrows.prev.addEventListener("click", prevSlide, false)
+    arrows.next.addEventListener("click", nextSlide, false)
 
     var tooltips = document.getElementsByClassName("def")
 
@@ -79,4 +105,5 @@ window.onload = function() {
 
     currentSlide = document.getElementsByClassName("slide active")[0]
 
+    disableArrows()
 }
