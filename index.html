@@ -295,6 +295,44 @@ f $ x = f x</pre>
 main = print $ take 10 $ mapOdds (^2)</pre>
                     <p>Tiks aprēķināti kvadrāti pirmajiem 10 nepāra skaitļiem.</p>
                 </div>
+                <div class="slide">
+                    <h2>Lazy un rekursīvie dati</h2>
+                    <p>Haskell definē datus līdzīgi kā funkcijas:</p>
+                    <pre>ones :: [Integer]
+ones = [1, 1 ..]</pre>
+                    <p>Šis ir bezgalīgs saraksts ar vieniniekiem, kuru pateicoties lazy izpildei mēs varam kontrolēt ar augstākās kārtas funkcijām. Bet šo pašu sarakstu var nodefinēt rekursīvi:</p>
+                    <pre>ones = 1 : ones</pre>
+                    <p>Pateicoties karingam Haskell ļauj izveidot rekursīvus datus, jo šo var uzskatīt par funkciju ar 0 argumentiem (ones tipa aprakstā nav neviens "->" simbols, jeb karinga operators).</p>
+                    <p>Cits piemērs:</p>
+                    <pre>odds = 1 : map (+2) odds</pre>
+                    <p>Šis kods ģenerēs bezgalīgu sarakstu ar nepāra skaitļiem.</p>
+                </div>
+                <div class="slide">
+                    <h2>Savstarpējas rekursijas</h2>
+                    <p>Haskell ļauj izveidot savstarpēji rekursīvas funkcijas vai datus. Piemērs:</p>
+                    <pre>odds, evens :: [Integer]
+odds  = map succ evens
+evens = 0 : map succ odds
+
+main = print $ take 10 odds</pre>
+                    <p>Funkcija succ palielina argumentu par 1.</p>
+                    <p>Šeit mēs redzam, ka abi sarakstu ģeneratori izmanto viens otru. Nulle evens generatoram kalpo kā atskaites punkts.</p>
+                </div>
+                <div class="slide">
+                    <h2>Savstarpējas rekursijas</h2>
+                    <p>Nākamajā piemērā izveidosim bezgalīga pirmskaitļu saraksta ģeneratoru, kas ģenerēšanai izmantos funkciju, bet tā funkcija savukārt izmantos šo ģeneratoru:</p>
+                    <pre>primes = 2 : filter isPrime [3, 5 ..]
+
+isPrime n = all checkRem $ takeWhile checkSquare primes
+    where
+        checkRem    x = n `rem` x /= 0
+        checkSquare x = x ^ 2 <= n
+
+main = do
+    print $ isPrime 37
+    print $ take 10 primes</pre>
+                    <p>Konstrukcija all checkRem pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt takeWhile checkSquare atlasa elementus no saraksta, kuri ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu uz primāritāti). Funkcija rem atrod atlikumu no dalīšanas. Operators /= atgriež True, ja argumenti nav vienādi (!= citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejamie parent funkcijas argumenti.</p>
+                </div>
             </div>
         </div>
         <div class="tryit">
