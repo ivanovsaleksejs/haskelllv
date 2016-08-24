@@ -147,7 +147,7 @@ cap (x:xs) = toUpper x : xs
 
 main = print (cap "hello")</pre>
                     <p>Pirmā rinda pievieno bibliotēku Data.Char, kas satur funkciju toUpper. Nākamā rinda definē funkcijas cap versiju gadījumam, ja tiek padots tukšs saraksts - tajā gadījumā mēs atgriežam tukšu sarakstu.</p>
-                    <p>Nākamajā rindā mēs ar pattern matching pierakstu (x:xs) atdalam pirmo elementu x no pārējas listes xs. Mēs ieceļam to simbolu augšējā reģistrā ar toUpper un tad pievienojam pie pārējā saraksta ar : operātoru.</p>
+                    <p>Nākamajā rindā mēs ar pattern matching pierakstu (x:xs) atdalam pirmo elementu x no pārējas listes xs. Mēs ieceļam to simbolu augšējā reģistrā ar toUpper un tad pievienojam pie pārējā saraksta ar : operatoru.</p>
                 </div>
                 <div class="slide">
                     <h2>Citas pattern matching iespējas</h2>
@@ -198,9 +198,9 @@ foldl f z (x:xs) = foldl f (f z x) xs</pre>
                     <h2>Noderīgas funkcijas</h2>
                     <p>: - pievienot elementu sarakstam. 1 : [2, 3] atgriezīs [1, 2, 3]</p>
                     <p>++ - salīmēt divus sarakstus. [1, 2] ++ [3, 4, 5] atgriezīs [1, 2, 3, 4, 5]</p>
-                    <p>fst, snd - atgiež 2 elementu pāra pirmo un otro elementu respektīvi.</p>
-                    <p>head, last - atgriež saraksta pirmo vai pēdējo elementu respektīvi. head [1, 2, 3] atgriezīs 1</p>
-                    <p>init, tail - atgriež sarakstu bez pēdējā vai pirmā elementa respektīvi. tail [1, 2, 3] atgriezīs [2, 3]</p>
+                    <p>fst, snd - atgiež 2 elementu pāra attiecīgi pirmo un otro elementu.</p>
+                    <p>head, last - atgriež saraksta attiecīgi pirmo vai pēdējo elementu. head [1, 2, 3] atgriezīs 1</p>
+                    <p>init, tail - atgriež sarakstu attiecīgi bez pēdējā vai pirmā elementa. tail [1, 2, 3] atgriezīs [2, 3]</p>
                     <p>filter - filtrēt sarakstu, izmantojot funkciju. filter odd [1..10] atgriezīs [1, 3, 5, 7, 9]</p>
                     <p>all - pārbaudīt, vai visi elementi atbilst nosacījumam. all odd [1, 3, 4, 5, 7] atgriezīs False</p>
                     <p>any - pārbaudīt, vai kaut viens elements atbilst nosacījumam. any odd [2, 4 .. 10] atgriezīs False</p>
@@ -224,25 +224,25 @@ main = do
                 </div>
                 <div class="slide">
                     <h2>Anonīmās funkcijas</h2>
-                    <p>Anonīmās vai lambda funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākās kārtas funkcijas (jeb funkcijās, kuras izmanto citas funkcijas kā argumentus)</p>
-                    <p>Haskell valoda izmanto šādu pierakstu lambda funkcijām: (a -> doSomething a). Piemēram, funkcija, kas ceļ skaitli kvadrātā, izskatīsies šādi: (a -> a^2)</p>
+                    <p>Anonīmās vai lambda funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākas kārtas funkcijās (funkcijās, kuras izmanto citas funkcijas kā argumentus)</p>
+                    <p>Haskell valoda izmanto šādu pierakstu lambda funkcijām: (a -> doSomething a). Piemēram, funkcija, kas kāpina skaitli kvadrātā, izskatīsies šādi: (a -> a^2)</p>
                     <p>Izmantot lambda funkcijas var šādi:</p>
                     <pre>map (a -> a^2) [1, 2, 3, 4, 5]</pre>
-                    <p>Līdzīgi, kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkaršot (process saucās eta reduction):</p>
+                    <p>Līdzīgi kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkāršot (process saucas eta reduction):</p>
                     <pre>map (^2) [1, 2, 3, 4, 5]</pre>
                 </div>
                 <div class="slide">
                     <h2>Karings</h2>
-                    <p>Karings ir process, kas pārveido funkciju ar vairākiem argumentiem par virkni funkciju, katra no tām ar vienu argumentu. Matemātiskās funkcijas var izmantot tikai vienu argumentu,
+                    <p>Karings ir process, kas pārveido funkciju ar vairākiem argumentiem par virkni funkciju ar vienu argumentu. Matemātiskās funkcijas var izmantot tikai vienu argumentu,
                         un tīri funkcionālās valodās funkcijām ir jāatbilst šim noteikumam. Bet, lai atvieglotu programmētāja darbu, tika izveidots mehānisms,
                         kas ļauj veidot funkcijas ar vairākiem argumentiem, nepārkāpjot tīri funkcionālo principu.</p>
-                    <p>Piemēram, mēs gribam uztaisīt funkciju foo a b = a + b. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - foo a b = (+) a b. Tālāk, izdomāsim funkciju (x -> x + a). Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvēnā funkcijā: foo a b = (x -> x + a) b. Un līdzīgi kā iepriekš, ar eta reduction vienkāršosim to funkciju: foo a b = (+a) b</p>
-                    <p>Šis process saucās karings (currying, no matemātiķa Haskell Curry uzvārda). To dara Haskell kompilātors katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
+                    <p>Piemēram, mēs gribam uztaisīt funkciju foo a b = a + b. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - foo a b = (+) a b. Tālāk izdomāsim funkciju (x -> x + a). Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvenajā funkcijā: foo a b = (x -> x + a) b. Un, līdzīgi kā iepriekš, ar eta reduction vienkāršosim to funkciju: foo a b = (+a) b</p>
+                    <p>Šis process saucās karings (currying, no matemātiķa Haskell Curry uzvārda). To dara Haskell kompilators katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
                     <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam.</p>
                 </div>
                 <div class="slide">
                     <h2>Kompozīcijas</h2>
-                    <p>Kompozīcija ir process, ar kura palīdzību divas funkcijas tiek salīmētas vienā. Kompozīciju operātors ir (.), piemēram foo . bar. Piemērs:</p>
+                    <p>Kompozīcija ir process, ar kura palīdzību divas funkcijas tiek salīmētas vienā. Kompozīciju operators ir (.), piemēram, foo . bar. Piemērs:</p>
                     <pre>import Data.Char
 
 cap []     = ""
@@ -253,13 +253,13 @@ capWords = map cap . words
 processString = unwords . capWords
 
 main = print (processString "hello world")</pre>
-                    <p>Kompozīcijas noder, lai savienotu funkcijas, kas bieži atkārtojas. Kā arī, ar kompozīcijām var uzrakstīt lasāmāku kodu.</p>
+                    <p>Kompozīcijas noder, lai savienotu funkcijas, kas bieži atkārtojas. Kā arī ar kompozīcijām var uzrakstīt lasāmāku kodu.</p>
                 </div>
                 <div class="slide">
                     <h2>Aplikācijas</h2>
                     <p>Aplikācija ir vienkāršs process, kad vienas funkcijas arguments ir citas funkcijas rezultāts. Piemēram, foo(bar 1).</p>
-                    <p>Haskell valodā ir izveidots speciāls operātors aplikācijām, ($). Piemēru augstāk var pierakstīt šādi: foo $ bar 1. Viss, kas no labās puses, tiek padots kā arguments funkcijai no kreisās puses.</p>
-                    <p>Visas iepriekš attēlotās prorammas var vienkāršot, izmantojot aplikācijas operātoru, piemēram:</p>
+                    <p>Haskell valodā ir izveidots speciāls operators aplikācijām, ($). Piemēru augstāk var pierakstīt šādi: foo $ bar 1. Viss, kas no labās puses, tiek padots kā arguments funkcijai no kreisās puses.</p>
+                    <p>Visas iepriekš attēlotās programmas var vienkāršot, izmantojot aplikācijas operatoru, piemēram:</p>
                     <pre>a % b = a / b * 100
 
 main = do
@@ -268,7 +268,7 @@ main = do
                 </div>
                 <div class="slide">
                     <h2>Kompozīcijas un aplikācijas operatori</h2>
-                    <p>Lai saprastu līdz galām, kā darbojās šie operatori, varat izpētīt to kodus.</p>
+                    <p>Lai saprastu līdz galam, kā darbojas šie operatori, varat izpētīt to kodus.</p>
                     <p>Aplikācijas operators:</p>
                     <pre>($) :: (a -> b) -> a -> b
 f $ x = f x</pre>
@@ -278,9 +278,9 @@ f $ x = f x</pre>
                 </div>
                 <div class="slide">
                     <h2>Lazy</h2>
-                    <p><em>Lazy</em> ir programmēšanas princips, kurš atliek funkcijas izpildi līdz brīdim, kad tas ir vajadzīgs. Apskatīsim piemēru ar bezgalīgo sarakstu:</p>
+                    <p><em>Lazy</em> ir programmēšanas princips, kas atliek funkcijas izpildi līdz brīdim, kad tas ir vajadzīgs. Apskatīsim piemēru ar bezgalīgu sarakstu:</p>
                     <pre>main = print $ fst ([1 ..], 0)</pre>
-                    <p>Jūs redzēsiet, ka tas tiešām ģenerē bezgalīgo listi. Tagad ņemsim otro pāra elementu:</p>
+                    <p>Jūs redzēsiet, ka tas tiešām ģenerē bezgalīgu sarakstu. Tagad ņemsim otro pāra elementu:</p>
                     <pre>main = print $ snd ([1 ..], 0)</pre>
                     <p>Tiks izvadīta nulle un programma beigs savu darbu. Saraksts nav sācis ģenerēties, jo tas nav vajadzīgs.</p>
                 </div>
@@ -288,7 +288,7 @@ f $ x = f x</pre>
                     <h2>Lazy piemēri</h2>
                     <p>Cits, nedaudz noderīgāks <em>lazy</em> pielietojums:</p>
                     <pre>main = print $ take 5 [1 ..]</pre>
-                    <p>Mēs atkal izmantojam bezgalīgo listi un pat sākam to ģenerēt. Bet augstākās kārtas funkcija take (paņemt n elementus no listes) kontrolē listes ģenerāciju. Kods saprot, ka vajag ģenerēt tikai 5 elementus, jo vairāki elementi netiks izmantoti programmā.</p>
+                    <p>Mēs atkal izmantojam bezgalīgu sarakstu un pat sākam to ģenerēt. Bet augstākas kārtas funkcija take (paņemt n elementus no saraksta) kontrolē saraksta ģenerāciju. Kods saprot, ka vajag ģenerēt tikai 5 elementus, jo vairāk elementi programmā netiks izmantoti.</p>
                     <p>Vēl viens piemērs:</p>
                     <pre>mapOdds f = map f [1,3 ..]
 
@@ -300,9 +300,9 @@ main = print $ take 10 $ mapOdds (^2)</pre>
                     <p>Haskell definē datus līdzīgi kā funkcijas:</p>
                     <pre>ones :: [Integer]
 ones = [1, 1 ..]</pre>
-                    <p>Šis ir bezgalīgs saraksts ar vieniniekiem, kuru pateicoties lazy izpildei mēs varam kontrolēt ar augstākās kārtas funkcijām. Bet šo pašu sarakstu var nodefinēt rekursīvi:</p>
+                    <p>Šis ir bezgalīgs saraksts ar vieniniekiem, kuru, pateicoties lazy izpildei, mēs varam kontrolēt ar augstākas kārtas funkcijām. Bet šo pašu sarakstu var nodefinēt rekursīvi:</p>
                     <pre>ones = 1 : ones</pre>
-                    <p>Pateicoties karingam Haskell ļauj izveidot rekursīvus datus, jo šo var uzskatīt par funkciju ar 0 argumentiem (ones tipa aprakstā nav neviens "->" simbols, jeb karinga operators).</p>
+                    <p>Pateicoties karingam, Haskell ļauj izveidot rekursīvus datus, jo šo var uzskatīt par funkciju ar 0 argumentiem (ones tipa aprakstā nav neviens "->" simbols jeb karinga operators).</p>
                     <p>Cits piemērs:</p>
                     <pre>odds = 1 : map (+2) odds</pre>
                     <p>Šis kods ģenerēs bezgalīgu sarakstu ar nepāra skaitļiem.</p>
@@ -331,7 +331,7 @@ isPrime n = all checkRem $ takeWhile checkSquare primes
 main = do
     print $ isPrime 37
     print $ take 10 primes</pre>
-                    <p>Konstrukcija all checkRem pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt takeWhile checkSquare atlasa elementus no saraksta, kuri ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu uz primāritāti). Funkcija rem atrod atlikumu no dalīšanas. Operators /= atgriež True, ja argumenti nav vienādi (!= citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejamie parent funkcijas argumenti.</p>
+                    <p>Konstrukcija all checkRem pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt takeWhile checkSquare atlasa elementus no saraksta, kuri ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu pirmskaitli). Funkcija rem atrod atlikumu no dalīšanas. Operators /= atgriež True, ja argumenti nav vienādi (!= citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejami parent funkcijas argumenti.</p>
                 </div>
             </div>
         </div>
