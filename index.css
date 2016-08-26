@@ -55,9 +55,84 @@ h1 {
     margin: 0 2em;
 }
 .content {
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     padding: 0 4em;
+    width: 100%;
+}
+
+#trigger_summary {
+    cursor: pointer;
+    font-size: 3em;
+    height: 20em;
+    left: 0;
+    line-height: 10em;
+    position: fixed;
+    text-align: center;
+    top: 1em;
+    width: 1.5em;
+    z-index: 4;
+}
+#summary {
+    -webkit-animation-name: hideSummary;
+    -webkit-animation-duration: .3s;
+    animation-name: hideSummary;
+    animation-duration: .3s;
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #ababab;
+    left: -15em;
+    opacity: 0;
+    padding: .4em;
+    position: fixed;
+    z-index: 3;
+}
+#summary.visible {
+    -webkit-animation-name: showSummary;
+    -webkit-animation-duration: .3s;
+    animation-name: showSummary;
+    animation-duration: .3s;
+    left: 4em;
+    opacity: .95;
+}
+@-webkit-keyframes showSummary {
+    from {left: -15em;}
+    from {opacity: 0;}
+    to {left: 4em;}
+    to {opacity: .95;}
+}
+
+@keyframes showSummary {
+    from {left: -15em;}
+    from {opacity: 0;}
+    to {left: 4em;}
+    to {opacity: .95;}
+}
+@-webkit-keyframes hideSummary {
+    from {left: 4em;}
+    from {opacity: .95;}
+    to {left: -15em;}
+    to {opacity: 0;}
+}
+
+@keyframes hideSummary {
+    from {left: 4em;}
+    from {opacity: .95;}
+    to {left: -15em;}
+    to {opacity: 0;}
+}
+#summary li {
+    font-size: 1.3em;
+    line-height: .9em;
+    margin: .1em;
+    padding: .1em;
+}
+#summary li:hover {
+    background: #ababab none repeat scroll 0 0;
+    cursor: pointer;
+}
+#summary li:hover a {
+    color: #efefef;
 }
 .content .tutorial {
     height: 32em;
@@ -170,17 +245,22 @@ h1 {
     to {left: 0}
 }
 
-.slide-button {
-    animation-duration: 0.5s;
-    animation-name: fadeOut;
+.slide-nav {
     background: #fff none repeat scroll 0 0;
-    cursor: pointer;
     font-size: 5em;
-    height: 1em;
-    line-height: 1em;
-    opacity: 0.1;
+    opacity: .8;
     position: absolute;
     text-align: center;
+}
+.slide-button {
+    -webkit-animation-name: fadeOut;
+    -webkit-animation-duration: .5s;
+    animation-name: fadeOut;
+    animation-duration: .5s;
+    cursor: pointer;
+    height: 1em;
+    line-height: 1em;
+    opacity: .1;
     width: 1em;
     z-index: 2;
 }
@@ -194,8 +274,11 @@ h1 {
     animation-name: fadeIn;
     animation-duration: .5s;
 }
+#slidenum {
+    width: 100%;
+}
 .slide-button.disabled {
-    opacity: 0.1 !important;
+    opacity: .1 !important;
 }
 @-webkit-keyframes fadeIn {
     from {opacity: .1}
@@ -221,7 +304,7 @@ h1 {
     border-radius: 5px;
     left: 2em;
     opacity: 0;
-    padding: 0.6em;
+    padding: .6em;
     position: fixed;
     top: 5em;
     width: 10em;
@@ -237,7 +320,7 @@ h1 {
     -webkit-animation-name: hideTooltip;
     -webkit-animation-duration: .5s;
     animation-name: hideTooltip;
-    animation-duration: 0.5s;
+    animation-duration: .5s;
     z-index: 0;
     display: none;
 }
@@ -281,4 +364,11 @@ h1 {
         width: 0%;
         display: none;
     }
+}
+
+ul.links li {
+    margin: .9em 0;
+}
+ul.links a {
+    text-decoration: underline;
 }

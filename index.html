@@ -10,7 +10,7 @@
         <img src="logo.png" id="logo" />
         <div class="nav">
            <a href="/">Apmācība</a>
-           <a href="https://www.haskell.org/downloads" target="_blank">Lejuplādēt</a>
+           <a href="https://www.haskell.org/downloads" target="_blank">Lejupielādēt</a>
            <a href="/irc.html">IRC</a>
            <a href="/news.html">Ziņas</a>
            <a href="/links.html">Saites uz citiem resursiem</a>
@@ -19,11 +19,29 @@
     <h1>Apmācība</h1>
     <div class="content">
         <div class="tutorial">
-            <div id="prev" class="slide-button"><</div>
-            <div id="next" class="slide-button">></div>
+            <div id="trigger_summary">></div>
+            <div id="summary">
+                <ul>
+                    <li><a href="/#1">Ievads (1-3)</a></li>
+                    <li><a href="/#4">Koda piemēri (4-6)</a></li>
+                    <li><a href="/#7">Kā iesākt (7-9)</a></li>
+                    <li><a href="/#10">Tipi (10-13)</a></li>
+                    <li><a href="/#14">Argumenti (14-16)</a></li>
+                    <li><a href="/#17">Noderīgas funkcijas darbam ar sarakstiem (17)</a></li>
+                    <li><a href="/#18">Map & Fold (18-20)</a></li>
+                    <li><a href="/#21">Prefix un infix pieraksti (21)</a></li>
+                    <li><a href="/#22">Anonimās funkcijas (22)</a></li>
+                    <li><a href="/#23">Karings, kompizīcijas un aplikācijas (23-25)</a></li>
+                    <li><a href="/#26">Lazy (26-30)</a></li>
+                    <li><a href="/#31">List comprehension (31)</a></li>
+                </ul>
+            </div>
+            <div id="prev" class="slide-button slide-nav">&larr;</div>
+            <div id="slidenum" class="slide-nav"></div>
+            <div id="next" class="slide-button slide-nav">&rarr;</div>
             <div class="wrapper">
                 <div class="slide">
-                    <h2>Par šo apmācību</h2>
+                    <h2>Ievads</h2>
                     <p class="intro">Šī apmācība ir domāta cilvēkiem, kas vēlas apgūt Haskell programmēšanas valodu. Apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju.</p>
                     <h2>Kas ir Haskell</h2>
                     <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir <u id="pure" class="def">tīri funkcionāla</u>, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvu</u> kodu. Tai ir ļoti attīstīta <u id="type" class="def">tipu</u> sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
@@ -93,6 +111,15 @@ Linking hello ...</pre>
                     <p>Sakompilēto programmu var palaist ar <pre>./hello</pre></p>
                 </div>
                 <div class="slide">
+                    <h2>Darbs ar interpretatoru</h2>
+                    <p>Kopā ar GHC instalāciju nāk arī interaktīvais interpretators GHCi, kurš ļauj izpildīt Haskell izteiksmes un redzēt rezultātu. Tāpat GHCi ļauj analizēt un labot kļūdas gataviem moduļiem vai programmām.</p>
+                    <p>Lai palaistu interpretatoru, vajag izpildīt komandu "ghci" komandrindā. Jūs redzēsiet rindu "Prelude> ", tajā momentā ghci ir gatavs darbam.</p>
+                    <p>ghci ļauj izpildīt jebkuru Haskell kodu. Piemēram, ierakstot map (^2) [1..5], Jūs uzreiz redzēsiet rezultātu.</p>
+                    <p>Haskell programmētāji izmanto ghci diezgan bieži, tāpēc ir vērts to konfigurēt. Lai to izdarītu ir jāizveido fails $HOME/.ghci. Kā piemērs, var nomainīt prefiksu:</p>
+                    <pre>:set prompt "λ> "</pre>
+                    <p>Palaižot ghci nākamreiz, jūs redzēsiet "λ> " "Prelude> " vietā.</p>
+                </div>
+                <div class="slide">
                     <h2>Tipi</h2>
                     <p>Haskell tipu sistēma ir ļoti advancēta un dara ļoti daudz darba, lai nodrošinātu programmas stabilitāti. Bet sākumā ir nepieciešams saprast, kā Haskell funkcijām tiek aprakstīti tipi. Paņemsim elementāru funkciju ar diviem argumentiem:<pre>add a b = a + b</pre></p>
                     <p>Lai aprakstītu šīs funkcijas tipu, tiek izmantots šāds pieraksts:<pre>add :: Int -> Int -> Int</pre></p>
@@ -159,6 +186,19 @@ second (a, b) = b</pre>
                     <p>Atdalām pāra elementus.</p>
                 </div>
                 <div class="slide">
+                    <h2>Noderīgas funkcijas darbam ar sarakstiem</h2>
+                    <p>: - pievienot elementu sarakstam. 1 : [2, 3] atgriezīs [1, 2, 3]</p>
+                    <p>++ - salīmēt divus sarakstus. [1, 2] ++ [3, 4, 5] atgriezīs [1, 2, 3, 4, 5]</p>
+                    <p>fst, snd - atgiež 2 elementu pāra pirmo un otro elementu respektīvi.</p>
+                    <p>head, last - atgriež saraksta pirmo vai pēdējo elementu respektīvi. head [1, 2, 3] atgriezīs 1</p>
+                    <p>init, tail - atgriež sarakstu bez pēdējā vai pirmā elementa respektīvi. tail [1, 2, 3] atgriezīs [2, 3]</p>
+                    <p>filter - filtrēt sarakstu, izmantojot funkciju. filter odd [1..10] atgriezīs [1, 3, 5, 7, 9]</p>
+                    <p>all - pārbaudīt, vai visi elementi atbilst nosacījumam. all odd [1, 3, 4, 5, 7] atgriezīs False</p>
+                    <p>any - pārbaudīt, vai kaut viens elements atbilst nosacījumam. any odd [2, 4 .. 10] atgriezīs False</p>
+                    <p>elem - pārbaidīt, vai elements ir sarakstā. elem 3 [1 .. 10] atgriezīs True</p>
+                    <p>!! - atgriezt sarakstes n-to elementu. ['a'..'z'] !! 3 atgriezīs 'd' (elementus sāk skaitīt no 0)</p>
+                </div>
+                <div class="slide">
                     <h2>Map & Fold</h2>
                     <p>Sarakstiem ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvenās funkcijas darbam ar sarakstiem: map un fold. Citās valodās fold tiek saukts par reduce, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā liste tiek "salikta" vienā vērtībā.</p>
                     <p>Funkcija map pieņem divus argumentus - funkciju un sarakstu. Map funkcija iziet cauri sarakstam un izpilda padoto funkciju ar katru saraksta elementu. Piemēram, mums ir saraksts un mums vajag atrast kvadrātu no katra elementa:</p>
@@ -195,19 +235,6 @@ foldl f z []     = z
 foldl f z (x:xs) = foldl f (f z x) xs</pre>
                 </div>
                 <div class="slide">
-                    <h2>Noderīgas funkcijas</h2>
-                    <p>: - pievienot elementu sarakstam. 1 : [2, 3] atgriezīs [1, 2, 3]</p>
-                    <p>++ - salīmēt divus sarakstus. [1, 2] ++ [3, 4, 5] atgriezīs [1, 2, 3, 4, 5]</p>
-                    <p>fst, snd - atgiež 2 elementu pāra pirmo un otro elementu respektīvi.</p>
-                    <p>head, last - atgriež saraksta pirmo vai pēdējo elementu respektīvi. head [1, 2, 3] atgriezīs 1</p>
-                    <p>init, tail - atgriež sarakstu bez pēdējā vai pirmā elementa respektīvi. tail [1, 2, 3] atgriezīs [2, 3]</p>
-                    <p>filter - filtrēt sarakstu, izmantojot funkciju. filter odd [1..10] atgriezīs [1, 3, 5, 7, 9]</p>
-                    <p>all - pārbaudīt, vai visi elementi atbilst nosacījumam. all odd [1, 3, 4, 5, 7] atgriezīs False</p>
-                    <p>any - pārbaudīt, vai kaut viens elements atbilst nosacījumam. any odd [2, 4 .. 10] atgriezīs False</p>
-                    <p>elem - pārbaidīt, vai elements ir sarakstā. elem 3 [1 .. 10] atgriezīs True</p>
-                    <p>!! - atgriezt sarakstes n-to elementu. ['a'..'z'] !! 3 atgriezīs 'd' (elementus sāk skaitīt no 0)</p>
-                </div>
-                <div class="slide">
                     <h2>Prefix un infix pieraksti</h2>
                     <p>Visbiežāk ir sastopams prefix pieraksts funkcijām - kad funkcijas nosaukums ir pirms argumentiem. Funkcijām ar 2 argumentiem pastāv iespēja izmantot infix pierakstu. Lai izmantotu infix pierakstu funkcijai, kuras nosaukums sastāv no burtiem, mēs varam izmantot backquote simbolus. Izveidosim funkciju, kas aprēķina procentus no skaitļa:</p>
                     <pre>percent a b = a / b * 100
@@ -237,7 +264,7 @@ main = do
                         un tīri funkcionālās valodās funkcijām ir jāatbilst šim noteikumam. Bet, lai atvieglotu programmētāja darbu, tika izveidots mehānisms,
                         kas ļauj veidot funkcijas ar vairākiem argumentiem, nepārkāpjot tīri funkcionālo principu.</p>
                     <p>Piemēram, mēs gribam uztaisīt funkciju foo a b = a + b. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - foo a b = (+) a b. Tālāk, izdomāsim funkciju (x -> x + a). Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvēnā funkcijā: foo a b = (x -> x + a) b. Un līdzīgi kā iepriekš, ar eta reduction vienkāršosim to funkciju: foo a b = (+a) b</p>
-                    <p>Šis process saucās karings (currying, no matemātiķa Haskell Curry uzvārda). To dara Haskell kompilātors katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
+                    <p>Šis process saucās karings (currying, no matemātiķa <a href="" target="_blank">Haskell Curry</a> uzvārda). To dara Haskell kompilātors katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
                     <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam.</p>
                 </div>
                 <div class="slide">
@@ -331,7 +358,17 @@ isPrime n = all checkRem $ takeWhile checkSquare primes
 main = do
     print $ isPrime 37
     print $ take 10 primes</pre>
-                    <p>Konstrukcija all checkRem pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt takeWhile checkSquare atlasa elementus no saraksta, kuri ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu uz primāritāti). Funkcija rem atrod atlikumu no dalīšanas. Operators /= atgriež True, ja argumenti nav vienādi (!= citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejamie parent funkcijas argumenti.</p>
+                    <p>Konstrukcija all checkRem pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt takeWhile checkSquare atlasa elementus no saraksta, kamēr tie ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu uz primāritāti). Funkcija rem atrod atlikumu no dalīšanas. Operators /= atgriež True, ja argumenti nav vienādi (!= citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejamie parent funkcijas argumenti.</p>
+                </div>
+                <div class="slide">
+                    <h2>List comprehension</h2>
+                    <p>List comprehension (LC) ir mehanisms, kas ļauj ģenerēt sarakstus izmantojot kādu citu sarakstu, funkciju un noteikumus. Vienkāršs piemērs:</p>
+                    <pre>odds = [ x | x <- [1, 3 ..]]</pre>
+                    <p>Šajā sarakstā būs visi nepāra skaitļi. LC ļauj izpildīt arī funkciju uz katra elementa, kā arī var būt definēti lokālie mainīgie, piemēram:</p>
+                    <pre>list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2]</pre>
+                    <p>Šis saraksts saturēs kvadrātus skaitļiem no 1 līdz 20, reizinātiem ar 2.</p>
+                    <p>LC var arī saturēt pārbaudes funkciju. Izmainīsim pēdējo piemēru, ņēmot tikai skaitļus, kuri dalās ar 3:</p>
+                    <pre>list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2, x `rem` 3 == 0]</pre>
                 </div>
             </div>
         </div>

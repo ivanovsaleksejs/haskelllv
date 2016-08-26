@@ -1,8 +1,16 @@
 var currentSlide = null;
+var slides = null;
+
+var summary = null;
+var summaryTrigger = null;
 
 var byId = document.getElementById.bind(document)
 
 var slideNumber = parseInt(location.hash.slice(1)) || 1;
+
+var hasClass = function(e, name) {
+    return e.className.indexOf(name) != -1
+}
 
 var addClass = function(e, name) {
     e.className += " " + name
@@ -51,6 +59,8 @@ var slideStep = function(dir) {
         location.hash = slideNumber
 
         disableArrows()
+
+        byId("slidenum").innerText = slideNumber
     }
 }
 
@@ -76,6 +86,57 @@ var hideTooltip = function() {
     removeClass(elem, "visible")
 }
 
+var setActive = function(num = null) {
+    if (num) {
+        slideNumber = num
+    }
+
+    for (var i = 0; i < slides.length; i++) {
+        removeClass(slides[i], "active")
+        removeClass(slides[i], "leftside")
+        removeClass(slides[i], "rightside")
+        if (i+1 < slideNumber) {
+            addClass(slides[i], "rightside")
+        }
+        else if (i+1 > slideNumber) {
+            addClass(slides[i], "leftside")
+        }
+    }
+
+    addClass(slides[slideNumber-1], "active")
+
+    currentSlide = document.getElementsByClassName("slide active")[0]
+
+    byId("slidenum").innerText = slideNumber
+}
+
+var changeSlide = function(e) {
+    var elem = e.target
+    if (elem.tagName == "LI") {
+        elem = elem.firstChild
+    }
+    if (elem.tagName == "A") {
+        slideNumber = parseInt(elem.hash.slice(1))
+        setActive()
+        disableArrows()
+        triggerSummary()
+    }
+}
+
+var triggerSummary = function() {
+    var active = hasClass(summaryTrigger, "active")
+    if (active) {
+        removeClass(summary, "visible")
+        summaryTrigger.innerText = ">"
+        removeClass(summaryTrigger, "active")
+    }
+    else {
+        addClass(summary, "visible")
+        summaryTrigger.innerText = "<"
+        addClass(summaryTrigger, "active")
+    }
+}
+
 window.onload = function() {
     arrows.prev = byId("prev")
     arrows.next = byId("next")
@@ -83,6 +144,8 @@ window.onload = function() {
     arrows.next.addEventListener("click", nextSlide, false)
 
     var tooltips = document.getElementsByClassName("def")
+    summary = byId("summary")
+    summaryTrigger = byId("trigger_summary")
 
     for (var i = 0; i < tooltips.length; i++) {
         var e = tooltips[i]
@@ -90,20 +153,13 @@ window.onload = function() {
         e.addEventListener("mouseout", hideTooltip)
     }
 
-    var slides = document.getElementsByClassName("slide")
+    slides = document.getElementsByClassName("slide")
 
-    if (slideNumber > 1) {
-        for (var i = 0; i < slideNumber - 2; i++) {
-            addClass(slides[i], "rightside")
-        }
-    }
-    if (typeof slides[slideNumber] !== "undefined") {
-        addClass(slides[i], "leftside")
-    }
-
-    addClass(slides[slideNumber-1], "active")
-
-    currentSlide = document.getElementsByClassName("slide active")[0]
+    setActive()
 
     disableArrows()
+
+    summaryTrigger.addEventListener("click", triggerSummary, false)
+
+    summary.addEventListener("click", changeSlide)
 }
