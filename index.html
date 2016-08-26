@@ -30,7 +30,7 @@
                     <li><a href="/#17">Noderīgas funkcijas darbam ar sarakstiem (17)</a></li>
                     <li><a href="/#18">Map & Fold (18-20)</a></li>
                     <li><a href="/#21">Prefix un infix pieraksti (21)</a></li>
-                    <li><a href="/#22">Anonimās funkcijas (22)</a></li>
+                    <li><a href="/#22">Anonīmās funkcijas (22)</a></li>
                     <li><a href="/#23">Karings, kompizīcijas un aplikācijas (23-25)</a></li>
                     <li><a href="/#26">Lazy (26-30)</a></li>
                     <li><a href="/#31">List comprehension (31)</a></li>
@@ -251,12 +251,13 @@ main = do
                 </div>
                 <div class="slide">
                     <h2>Anonīmās funkcijas</h2>
-                    <p>Anonīmās vai lambda funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākas kārtas funkcijās (funkcijās, kuras izmanto citas funkcijas kā argumentus)</p>
-                    <p>Haskell valoda izmanto šādu pierakstu lambda funkcijām: (a -> doSomething a). Piemēram, funkcija, kas kāpina skaitli kvadrātā, izskatīsies šādi: (a -> a^2)</p>
-                    <p>Izmantot lambda funkcijas var šādi:</p>
-                    <pre>map (a -> a^2) [1, 2, 3, 4, 5]</pre>
+                    <p>Anonīmās vai lambda funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākas kārtas funkcijās (funkcijās, kuras izmanto citas funkcijas kā argumentus). Haskell valoda izmanto šādu pierakstu lambda funkcijām: (\a -> doSomething a). Simbols "\" pirms argumenta simbolizē grieķu simbolu lambda. Pati lambda funkciju sintakse ir mantota no lambda calculus.</p>
+                    <p>Piemēram, funkcija, kas kāpina skaitli kvadrātā, izskatīsies šādi: (\a -> a^2)</p>
+                    <p>Šis piemērs parāda, kā izmantot lambda funkcijas ar augstākās pakāpes funkciju map:</p>
+                    <pre>map (\a -> a^2) [1, 2, 3, 4, 5]</pre>
                     <p>Līdzīgi kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkāršot (process saucas eta reduction):</p>
                     <pre>map (^2) [1, 2, 3, 4, 5]</pre>
+                    <p>Funkcijas ar vairakiem argumentiem veidojas līdzīgi: (\a b -> a + b)</p>
                 </div>
                 <div class="slide">
                     <h2>Karings</h2>
