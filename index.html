@@ -34,7 +34,8 @@
                     <li><a href="/#23">Karings, kompizīcijas un aplikācijas (23-25)</a></li>
                     <li><a href="/#27">Lazy (27-31)</a></li>
                     <li><a href="/#32">List comprehension (32)</a></li>
-                    <li><a href="/#33">Tipu klases (33-36)</a></li>
+                    <li><a href="/#33">Tipu klases (33-38)</a></li>
+                    <li><a href="/#39">Tipu konstruktori (39-44)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -50,16 +51,16 @@
                 <div class="slide">
                     <h2>Mīti par Haskell</h2>
                     <p>Haskell ir viena no populārākajām funkcionālajām valodām. Ir diezgan daudz cilvēku, kas māk rakstīt kodu ar Haskell (diemžēl, Latvijā tādu cilvēku joprojām ir maz). Bet vēl vairāk ir cilvēku, kas par Haskell ir dzirdējuši visādus mītus un turpina tos izplatīt. Šeit es apkopošu tos mītus un paskaidrošu, kāpēc tie ir tikai mīti.</p>
-                    <h2>Lai apgūtu Haskell, ir vajadzīgas augstākās matemātikas zināšanas</h2>
+                    <h3>Lai apgūtu Haskell, ir vajadzīgas augstākās matemātikas zināšanas</h3>
                     <p>Haskell izmanto dažus kategoriju teorijas principus un ir mantojis terminus no tās. Bet kategoriju teoriju nav jāzina, lai varētu apgūt Haskell. Otrādi - ja cilvēks ir apgūvis Haskell, var teikt, ka viņš ir apguvis kategoriju teorijas pamatus.</p>
-                    <h2>Haskell ir grūta valoda</h2>
+                    <h3>Haskell ir grūta valoda</h3>
                     <p>Haskell ir diezgan vienkārša valoda. Tajā ir ļoti maz elementu, mazāk nekā <u id="oop" class="def">OOP</u> valodās. Sākumā ir grūti pierast pie valodas lakoniskuma, pie dažu <u id="boilerplate" class="def">boilerplate</u> elementu neesamības. Bet pie tā pierod pāris dienu laikā.</p>
                 </div>
                 <div class="slide">
                     <h2>Mīti par Haskell</h2>
-                    <h2>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h2>
+                    <h3>Ar Haskell ir grūti uzrakstīt lietojamu kodu</h3>
                     <p>Cilvēkiem, kuri nāk no OOP pasaules, ir grūti pierast pie tā, ka Haskellā nepastāv mainīgie un stāvoklis. Kad cilvēks sakrāj pieredzi un iemācās pareizi strukturēt kodu, viņš saprot, kāpēc stāvoklis ir tas, kas veicina kļūdas programmas izpildes laikā. Savukārt stāvoklis Haskell programmās ir iegūstams ar speciāliem datu tipiem.</p>
-                    <h2>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h2>
+                    <h3>Haskell zināšanas ir bezjēdzīgas, jo nevar atrast darbu</h3>
                     <p>Haskell nav izplatīts Latvijā, bet mūsdienās programmētājiem attālums nav šķērslis, un par Haskell darbiem ārzemnieki ir gatavi maksāt diezgan lielu naudu. Kā arī, Haskell apgūšana maina programmētāja domāšanu un atver pavisam citādāku skatu uz programmēšanu.</p>
                 </div>
                 <div class="slide">
@@ -413,6 +414,121 @@ map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
                     <p>Iepriekš izmantotās funkcijas (+2) tips ir Num a => a -> a. Num klase apvieno tipus, ar kuriem var veikt aritmetiskās operācijas.</p>
                     <p>Saraksta [1, 2, 3, 4, 5] tips ir Num t => [t]. Savukārt, saraksta [1 .. 5] tips ir (Enum t, Num t) => [t]. Tas nozīmē, ka tipam <em>t</em> ir jāimplementē gan Num, Gan Enum tipu klases. Enum apvieno visus tipus, kuru vērtības ir sakārtotas, un tās var izmantot ģeneratoros, piemēram [1 .. 10] vai ['a' .. 'z']. Tagad mēs saprotam, ka funkcija succ patiesībā atgriež nākamo vērtību tipam, kas implementē Enum - succ 'a' atgriež 'b'.</p>
                     <p>Haskell ļauj veidot savus tipus, tipu klases, kā arī tipu klases var mantot īpašības no citām tipu klasēm.</p>
+                </div>
+                <div class="slide">
+                    <h2>Tipu klašu veidošana</h2>
+                    <p>Haskell ļauj veidot savas tipu klases. Kā piemēru izskatīsim Eq tipu klases definīciju:<p>
+                    <pre>class  Eq a  where
+    (==), (/=)            :: a -> a -> Bool
+    x /= y                =  not (x == y)</pre>
+                    <p>Šeit mēs redzam, ka ir nodefinēta tipu klase, kurai ir divas iespējamas darbības. Pie tam, darbībai (==) ir aprakstīts tikai tips, bet darbībai (/=) - gan tips, gan kods. Kāpēc tas ir definēts tiešī šādi - jo salīdzināšanas funkcija var atšķirties dažādiem tipiem. Savukārt darbība (/=) vienmēr ir preteja darbībai (==), tāpēc mēs varam uzreiz nodefinēt tās kodu.</p>
+                    <p>Lai aprakstītu kodu darbībai ar konkrētu tipu tiek izmantots atslēgvārds instance:</p>
+                    <pre>instance Eq Integer where 
+    x == y                =  x `integerEq` y
+  
+instance Eq Float where
+    x == y                =  x `floatEq` y</pre>
+                    <p>Var iztēloties, ka piemēram sarakstiem šī funkcija būs krietni sarežģītāka un rekursīva.</p>
+                </div>
+                <div class="slide">
+                    <h2>Tipu klašu īpašību mantošana</h2>
+                    <p>Haskell valodā tipu klases var mantot īpašības no citām tipu klasēm. Piemēram, Ord klase manto visu no Eq klases, un Ord klasei ir aprakstītas papildus īpašības:</p>
+                    <pre>class  (Eq a) => Ord a  where
+    (<), (<=), (>=), (>) :: a -> a -> Bool
+    max, min             :: a -> a -> a</pre>
+                    <p>Klašu darbību tipiem ir tāds pats apraksts, kā jebkurai funkcijai. Tas nozīmē, ka darbībai var aprakstīt ierobežojumus izmantojot klases:</p>
+                    <pre>class Foo a where
+    foo         :: Bar b => a -> b</pre>
+                    <p>Kā var redzēt, ierobežojums ir aprakstīts rezultātam. Savukārt, ierobežojumi argumentiem ir aprakstami ar klašu mantošanu vai ar instancēm.</p>
+                    <p>Klases var mantot īpašības no vairākām klasēm:</p>
+                    <pre>class (Foo a, Bar a) => Baz a where</pre>
+                </div>
+                <div class="slide">
+                    <h2>Tipu veidošana</h2>
+                    <p>Haskell ļauj programmētājam veidot savus tipus, aprakstot iespējamas vērtības:</p>
+                    <pre>data Foo = A | B | C | D</pre>
+                    <p>Šis ir tips, kuram iespējamas vērtības ir A, B, C un D. Šobrīd ar šo tipu nevar neko darīt, jo tas neimplementē nekādu darbību. Pat, ja mēģināt izprintēt jebkādu vērtību, tiek parādīts error "No instance for (Show Foo) arising from a use of `print'". Tas nozīmē, ka šim tipam vajag mantot darbības no tipu klases Show, lai būtu iespēja izvadīt vērtības. Salabosim to:</p>
+                    <pre>data Foo = A | B | C | D 
+    deriving (Show)
+
+main = print A</pre>
+                    <p>Ar derive atslēgvārdu mēs pateicam kompilatoram, ka tips Foo tagad pieder pie Show tipu klases. Šī klase apvieno visus tipus, kurus var izvadīt.</p>
+                </div>
+                <div class="slide">
+                    <h2>Tipu veidošana</h2>
+                    <p>Papētīsim mūsu tipu vēl nedaudz. Mēs redzam, ka B iet pēc A, un mēs gribētu, lai izteiksme succ A atgrieztu B. Sākumā pārbaudīsim succ tipu:</p>
+                    <pre>λ> :t succ
+succ :: Enum a => a -> a</pre>
+                    <p>Redzam, ka succ argumentam ir jābūt no Enum tipu klases. Papildinam mūsu tipu ar to:</p>
+                    <pre>data Foo = A | B | C | D 
+    deriving (Show, Enum)
+
+main = do
+    print $ succ A
+    print [A .. D]</pre>
+                    <p>Kā var saprast no piemēra, ģenerators [A .. D] arī pieprasa, lai tips būtu no Enum klases.</p>
+                </div>
+                <div class="slide">
+                    <h2>Tipu konstruktori</h2>
+                    <p>Haskell ļauj veidot sarežģītākus, augstākās kārtas tipus, kuri sastāv no vairākām vērtībām. Pie tam, to vērtību skaits arī var būt atšķirīgs. Izveidosim tipu, kas apraksta transportlīdzēkļus - velosipēdiem būs parametri nosaukums un riteņu diametrs, savukārt mašīnām - nosaukums, riteņu diametrs un dzinēja tilpums.</p>
+                    <pre>data Vehicle = Bicycle String Integer | Car String Integer Float 
+    deriving (Show)
+
+main = print $ Bicycle "Kross" 26</pre>
+                    <p>Šeit Vehicle ir tipa konstruktors, savukārt Bicycle un Car ir vērtības konstruktori.</p>
+                    <p>Mēs redzam, ka abiem konstruktoriem ir kopējie elementi - nosaukums un riteņu diametrs. Izdalīsim tos atsevišķajā tipā:</p>
+                    <pre>data Transport = Transport String Integer deriving (Show)
+data Vehicle = Bicycle Transport | Car Transport Float 
+    deriving (Show)
+
+main = print $ Car (Transport "Ford" 16) 2.0</pre>
+                </div>
+                <div class="slide">
+                    <h2>Record pieraksts</h2>
+                    <p>Mēs iemācījamies veidot augstākās kārtas tipus, bet pamanījām ļoti nopietnu trūkumu - vērtībām nav nosaukumu, un mēs nevaram saprast, ko konkrēta vērtība nozīmē. Haskell ļauj izmantot Record pierakstu, kas ir pārskatamāks:</p>
+                    <pre>data Vehicle = Bicycle {name :: String, wheelSize :: Integer}
+    | Car {name :: String, wheelSize :: Integer, engine :: Float} 
+    deriving (Show)
+
+main = print $ Car { 
+    name = "Ford",
+    wheelSize = 16,
+    engine = 2.0
+}</pre>
+                </div>
+                <div class="slide">
+                    <h2>Tipu parametri</h2>
+                    <p>Haskell ļauj neprecizēt konkrētus tipus konstruktorā, tajā vietā var izmantot tipu parametrus.</p>
+                    <pre>data Car a b c = Car {name :: a, wheelSize :: b, engine :: c} 
+    deriving (Show)
+
+main = do
+    print $ Car {
+        name = "Ford",
+        wheelSize = 16,
+        engine = 2.0
+    }
+    print $ Car {
+        name = "Ford",
+        wheelSize = "16 inches",
+        engine = "2.0 litres"
+    }</pre>
+                    <p>Lielāka priekšrocība ir tas, ka veidojot finkciju, kas strādā ar šiem tipiem, mēs neesam piesieti pie konkrētiem zemākas kārtas tipiem:</p>
+                </div>
+                <div class="slide">
+                    <h2>Maybe konstruktors</h2>
+                    <p>Viens no populārākiem veidiem, kā tiek izmantoti tipu parametri, ir Maybe tipa konstruktors, kas tiek izmantots gadījumos, kad mainīgais var nepastāvēt:</p>
+                    <pre>data Maybe a = Nothing | Just a</pre>
+                    <p>To var izmantot šādi:</p>
+                    <pre>foo :: Integral a => a -> Maybe a
+foo x = if even x 
+            then Just (x `div` 2) 
+            else Nothing
+
+main = do
+    print $ foo 5
+    print $ foo 6</pre>
+                    <p>Pateicoties tipa parametram tiek panākts tas, ka Maybe var būt jebkāda tipa - Maybe Int, Maybe [Float], Maybe Car utt.</p>
                 </div>
             </div>
         </div>

@@ -149,9 +149,11 @@ h1 {
 .content .tryit {
     width: 35%;
 }
+.content h2, .content h3 {
+    margin: 1em 0 0;
+}
 .content h2 {
     font-size: 1.5em;
-    margin: 1em 0 0;
 }
 .content p, .content u {
     font-size: 1.1em;
