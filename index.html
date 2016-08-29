@@ -34,6 +34,7 @@
                     <li><a href="/#23">Karings, kompizīcijas un aplikācijas (23-25)</a></li>
                     <li><a href="/#27">Lazy (27-31)</a></li>
                     <li><a href="/#32">List comprehension (32)</a></li>
+                    <li><a href="/#33">Tipu klases (33-36)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -371,6 +372,48 @@ main = do
                     <p>LC var arī saturēt pārbaudes funkciju. Izmainīsim pēdējo piemēru, ņēmot tikai skaitļus, kuri dalās ar 3:</p>
                     <pre>list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2, x `rem` 3 == 0]</pre>
                 </div>
+                <div class="slide">
+                    <h2>Tipi un GHCi</h2>
+                    <p>Pirms laika mēs iemācījamies, kā Haskell valodā tiek pierakstīti tipi funkcijām un datiem. Tagad ir laiks iepazīt Haskell tipu sistēmu padziļināti. Pirmkārt ir jāsaprot, ka Haskell valodā tips ir ne tikai funkcijām un datiem, bet jebkurai izteiksmei. Haskell programmētājam ir svarīgi būt spējīgam izprast, uz kādu tipu reducējas izteikums. Sākumā to ir grūti darīt galvā, tāpēc ir svarīgi apgūt GHCi.</p>
+                    <p>Jebkuras izteiksmes tipu var pārbaudīt ar :t komandu. Palaidiet GHCi un uzrakstiet:</p>
+                    <pre>λ> :t succ</pre>
+                    <p>Šeit un turpmāk, komandas un izteikumi, kurus ir jāizpilda GHCi, tiks atzīmētas ar "λ> " prefiksu.</p>
+                    <p>Jūs redzēsiet atbildi succ :: Enum a => a -> a. Tagad, ja izpildīsiet:</p>
+                    <pre>λ> :t succ 1</pre>
+                    <p>atbilde būs succ 1 :: (Enum a, Num a) => a. Mēģināsim analizēt abus rezultātus lai saprastu, kāpēc tie atšķirās.</p>
+                </div>
+                <div class="slide">
+                    <h2>Izteikumu tipi</h2>
+                    <p>Funkcija succ, kā mēs atceramies, palielina argumentu par 1. Tās tips ir</p>
+                    <pre>Enum a => a -> a</pre>
+                    <p>Šajā gadījumā a ir tipu mainīgais. Tipu mainīgie tiek izmantoti, lai atvieglotu tipa pierakstu. Tipu mainīgie ir aprakstīti pirms => zīmes. Mums patreiz ir svarīga konstrukcija pēc => zīmes, tas ir a -> a. Tas nozīmē, ka tiek paņemts arguments ar kaut kādu tipu un tiek atgriezta vērtība ar tādu pašu tipu.</p>
+                    <p>Savukārt, izteikumam succ 1 tips ir</p>
+                    <pre>(Enum a, Num a) => a</pre>
+                    <p>, vai ignorējot visu pirms => zīmes - vienkārši a. Tas ir tāpēc, ka mēs jau padevam argumentu. Šim izteikumam vairs nevajag padot argumentus, jo tam ir noteikts rezultāts ar tipu a. Citiem vārdiem, šis izteikums reducējas uz noteikto rezultātu.</p>
+                    <p>Jūs pamanījāt, ka mēs pagaidām ignorējam Enum un Num prefiksus. Tās ir tipu klases, un pie tām mēs nonāksim drīz. Bet pirms tam mēs izskatīsim vēl vienu piemēru izteikumu tipiem.</p>
+                </div>
+                <div class="slide">
+                    <h2>Vēl nedaudz par izteikumu tipiem</h2>
+                    <p>Izskatīsim piemērus ar funkciju map:</p>
+                    <pre>λ> :t map
+map :: (a -> b) -> [a] -> [b]
+
+λ> :t map (+2)
+map (+2) :: Num b => [b] -> [b]
+
+λ> :t map (+2) [1..5]
+map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
+                    <p>Pirmajā mēs redzam standarta map definīciju, kas der jebkādiem tipiem. Otrajā mēs redzam, ka pazūda (a -> b) no tipa, jo mēs jau padevam funkciju (+2). Tips ir [b] -> [b]. Kāpēc ne [a] -> [b] - tāpēc, ka Haskell saprot, ka (+2) funkcija atgriež tādu pašu tipu, kas bija padots, par ko var pārliecināties, izpildot λ> :t (+2). Savukārt, trešais piemērs jau reducējas uz noteiktu rezultātu, tāpēc tips iz vienkārši [b].</p>
+                    <p>Mēs redzam, ka katrā rindā tipu mainīgājiem parādās jaunās tipu klases. Intuitīvi var saprast, ka tās klases ievieš ierobežojumus uz iespējamiem argumentiem. Jūs varat salīdzināt, kā izmainīsies tipu apraksti, ja (+2) vietā tiktu izmantota funkcija sqrt (aprēķināt kvadrātsakni).</p>
+                </div>
+                <div class="slide">
+                    <h2>Tipu klases</h2>
+                    <p>Tipu klašu koncepts ir līdzīgs OOP konceptam <u class="def" id="interface">interface</u>. Tas apraksta, kādas darbības var veikt ar tipa vērtībām. Piemēram, salīdzināšanas funkcijas (==) tips ir Eq a => a -> a -> Bool. Mēs redzam tipu klasi Eq. Pie tās klases pieder visi tipi, kuru vērtības var salīdzināt. Tā, ka tipu mainīgais ir vienāds abiem argumentiem, mēs varam lasīt šo pierakstu šādi: funkcija (==) saņem divus argumentus vienāda tipa <em>a</em> un atgriež Bool, pie tam tipam <em>a</em> ir jāimplementē tipu klasi Eq.</p>
+                    <p>Funkcija, kas pārbauda, vai viens arguments ir lielāks par otru - (>), kurās tips ir Ord a => a -> a -> Bool. Ord klase apvieno tos tipus, kuru vērtības var būt lielākas vai mazākas par citām tāda paša tipa vērtībām.</p>
+                    <p>Iepriekš izmantotās funkcijas (+2) tips ir Num a => a -> a. Num klase apvieno tipus, ar kuriem var veikt aritmetiskās operācijas.</p>
+                    <p>Saraksta [1, 2, 3, 4, 5] tips ir Num t => [t]. Savukārt, saraksta [1 .. 5] tips ir (Enum t, Num t) => [t]. Tas nozīmē, ka tipam <em>t</em> ir jāimplementē gan Num, Gan Enum tipu klases. Enum apvieno visus tipus, kuru vērtības ir sakārtotas, un tās var izmantot ģeneratoros, piemēram [1 .. 10] vai ['a' .. 'z'].</p>
+                    <p>Haskell ļauj veidot savus tipus, tipu klases, kā arī tipu klases var mantot īpašības no citām tipu klasēm.</p>
+                </div>
             </div>
         </div>
         <div class="tryit">
@@ -388,6 +431,7 @@ main = do
         <div id="tooltip_recursive" class="tooltip">Rekursīva funkcija ir funkcija, kas izsauc pati sevi.</div>
         <div id="tooltip_sugar" class="tooltip">Sintaktiskais atvieglojums jeb sintaktiskais cukurs ir kāda koda aizvietojums, kas padara to lasāmāku vai ērtāk izmantojamu.</div>
         <div id="tooltip_factorial" class="tooltip">Faktoriālis ir funkcija ar argumentu n, kuras rezultāts ir visu skaitļu no 1 līdz n reizinājums, piemēram, fact(5) = 1*2*3*4*5 = 120. Tiek pieņemta faktoriāļa definīcija: ja n ir 0, tad faktoriālis ir 1, citos gadījumos faktoriālis ir n reiz faktoriālis no n-1.</div>
+        <div id="tooltip_interface" class="tooltip">Interface ir kaut kas līdzīgs klašu šablonam. Visās klasēs, kas implementē kādu interfeisu, ir jābūt nodefinetām visām īpašībām un metodēm, kas ir aprakstītas šablonā.</div>
     </div>
     <script type="text/javascript" src="index.js"></script>
 </body>
