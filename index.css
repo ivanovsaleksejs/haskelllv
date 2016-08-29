@@ -65,13 +65,13 @@ h1 {
 #trigger_summary {
     cursor: pointer;
     font-size: 3em;
-    height: 20em;
+    height: 6em;
     left: 0;
-    line-height: 10em;
+    line-height: 5em;
     position: fixed;
     text-align: center;
-    top: 1em;
-    width: 1.5em;
+    top: 4em;
+    width: 1.4em;
     z-index: 4;
 }
 #summary {
@@ -81,7 +81,7 @@ h1 {
     animation-duration: .3s;
     background: #fff none repeat scroll 0 0;
     border: 1px solid #ababab;
-    left: -15em;
+    left: -20em;
     opacity: 0;
     padding: .4em;
     position: fixed;
@@ -96,14 +96,14 @@ h1 {
     opacity: .95;
 }
 @-webkit-keyframes showSummary {
-    from {left: -15em;}
+    from {left: -20em;}
     from {opacity: 0;}
     to {left: 4em;}
     to {opacity: .95;}
 }
 
 @keyframes showSummary {
-    from {left: -15em;}
+    from {left: -20em;}
     from {opacity: 0;}
     to {left: 4em;}
     to {opacity: .95;}
@@ -111,14 +111,14 @@ h1 {
 @-webkit-keyframes hideSummary {
     from {left: 4em;}
     from {opacity: .95;}
-    to {left: -15em;}
+    to {left: -20em;}
     to {opacity: 0;}
 }
 
 @keyframes hideSummary {
     from {left: 4em;}
     from {opacity: .95;}
-    to {left: -15em;}
+    to {left: -20em;}
     to {opacity: 0;}
 }
 #summary li {
