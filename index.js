@@ -86,7 +86,7 @@ var hideTooltip = function() {
     removeClass(elem, "visible")
 }
 
-var setActive = function(num = null) {
+var setActive = function(num) {
     if (num) {
         slideNumber = num
     }
