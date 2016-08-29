@@ -267,7 +267,7 @@ main = do
                         un tīri funkcionālās valodās funkcijām ir jāatbilst šim noteikumam. Bet, lai atvieglotu programmētāja darbu, tika izveidots mehānisms,
                         kas ļauj veidot funkcijas ar vairākiem argumentiem, nepārkāpjot tīri funkcionālo principu.</p>
                     <p>Piemēram, mēs gribam uztaisīt funkciju foo a b = a + b. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - foo a b = (+) a b. Tālāk izdomāsim funkciju (x -> x + a). Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvenajā funkcijā: foo a b = (x -> x + a) b. Un, līdzīgi kā iepriekš, ar eta reduction vienkāršosim to funkciju: foo a b = (+a) b</p>
-                    <p>Šis process saucās karings (currying, no matemātiķa <a href="" target="_blank">Haskell Curry</a> uzvārda). To dara Haskell kompilators katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
+                    <p>Šis process saucās karings (currying, no matemātiķa <a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank" class="link">Haskell Curry</a> uzvārda). To dara Haskell kompilators katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
                     <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam.</p>
                 </div>
                 <div class="slide">

@@ -164,6 +164,10 @@ h1 {
     text-decoration: underline;
     cursor: pointer;
 }
+.content a.link {
+    color: #000;
+    text-decoration: underline;
+}
 .content pre, .tryit {
     background: #ededed none repeat scroll 0 0;
     border: 1px solid #ababab;

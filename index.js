@@ -137,7 +137,16 @@ var triggerSummary = function() {
     }
 }
 
+var closeSummary = function(e) {
+    var elem = e.target
+    if (elem.id !== "trigger_summary" && elem.id !== "summary" && hasClass(summaryTrigger, "active")) {
+        triggerSummary()
+    }
+}
+
 window.onload = function() {
+
+
     arrows.prev = byId("prev")
     arrows.next = byId("next")
     arrows.prev.addEventListener("click", prevSlide, false)
@@ -162,4 +171,6 @@ window.onload = function() {
     summaryTrigger.addEventListener("click", triggerSummary, false)
 
     summary.addEventListener("click", changeSlide)
+
+    document.addEventListener("click", closeSummary)
 }
