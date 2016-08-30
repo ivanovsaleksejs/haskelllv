@@ -560,7 +560,7 @@ Nothing</pre>
                     <p>Cits mums zināms piemērs vērtībai, kas ir iepakota kontekstā, ir saraksti. Tiešām, [Int] ir nekas cits, ka datu konstruktors. Tas varēja izskatīties List Int, bet [Int] cukurs ir ērtāks. Ja mēs atcerēsimies fmap aprakstu:</p>
                     <pre>fmap :: (a -> b) -> f a -> f b</pre>
                     <p>un iztēlosimies, ka f a un f b vietā ir attiecīgi [a] un [b], tad mēs redzēsim, ka fmap tips sarakstiem ne ar ko neatšķirās no map funkcijas apraksta:</p>
-                    <pre>(a -> b) -> [b] -> [b]</pre>
+                    <pre>(a -> b) -> [a] -> [b]</pre>
                     <p>Tāpēc nav nekāds pārsteigums, ka Functor instance sarakstiem izskatās šādi:</p>
                     <pre>instance Functor [] where
     fmap = map</pre>
