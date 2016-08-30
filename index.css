@@ -172,7 +172,7 @@ h1 {
     background: #ededed none repeat scroll 0 0;
     border: 1px solid #ababab;
     font-family: monospace;
-    font-size: 0.8em;
+    font-size: .8em;
     line-height: 1.3em;
     margin: .9em 0 0;
     padding: .4em;
@@ -379,4 +379,14 @@ ul.links li {
 }
 ul.links a {
     text-decoration: underline;
+}
+
+table.description {
+    margin-top: .7em;
+}
+table.description, table.description th, table.description td {
+    border: 1px solid #ababab;
+}
+table.description td, table.description th {
+    padding: .4em;
 }

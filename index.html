@@ -36,6 +36,8 @@
                     <li><a href="/#32">List comprehension (32)</a></li>
                     <li><a href="/#33">Tipu klases (33-38)</a></li>
                     <li><a href="/#39">Tipu konstruktori (39-44)</a></li>
+                    <li><a href="/#45">Funktori (45-47)</a></li>
+                    <li><a href="/#48">Monādes (48-52)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -423,9 +425,9 @@ map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
     x /= y                =  not (x == y)</pre>
                     <p>Šeit mēs redzam, ka ir nodefinēta tipu klase, kurai ir divas iespējamas darbības. Pie tam, darbībai (==) ir aprakstīts tikai tips, bet darbībai (/=) - gan tips, gan kods. Kāpēc tas ir definēts tiešī šādi - jo salīdzināšanas funkcija var atšķirties dažādiem tipiem. Savukārt darbība (/=) vienmēr ir preteja darbībai (==), tāpēc mēs varam uzreiz nodefinēt tās kodu.</p>
                     <p>Lai aprakstītu kodu darbībai ar konkrētu tipu tiek izmantots atslēgvārds instance:</p>
-                    <pre>instance Eq Integer where 
+                    <pre>instance Eq Integer where
     x == y                =  x `integerEq` y
-  
+
 instance Eq Float where
     x == y                =  x `floatEq` y</pre>
                     <p>Var iztēloties, ka piemēram sarakstiem šī funkcija būs krietni sarežģītāka un rekursīva.</p>
@@ -448,7 +450,7 @@ instance Eq Float where
                     <p>Haskell ļauj programmētājam veidot savus tipus, aprakstot iespējamas vērtības:</p>
                     <pre>data Foo = A | B | C | D</pre>
                     <p>Šis ir tips, kuram iespējamas vērtības ir A, B, C un D. Šobrīd ar šo tipu nevar neko darīt, jo tas neimplementē nekādu darbību. Pat, ja mēģināt izprintēt jebkādu vērtību, tiek parādīts error "No instance for (Show Foo) arising from a use of `print'". Tas nozīmē, ka šim tipam vajag mantot darbības no tipu klases Show, lai būtu iespēja izvadīt vērtības. Salabosim to:</p>
-                    <pre>data Foo = A | B | C | D 
+                    <pre>data Foo = A | B | C | D
     deriving (Show)
 
 main = print A</pre>
@@ -460,7 +462,7 @@ main = print A</pre>
                     <pre>λ> :t succ
 succ :: Enum a => a -> a</pre>
                     <p>Redzam, ka succ argumentam ir jābūt no Enum tipu klases. Papildinam mūsu tipu ar to:</p>
-                    <pre>data Foo = A | B | C | D 
+                    <pre>data Foo = A | B | C | D
     deriving (Show, Enum)
 
 main = do
@@ -471,14 +473,14 @@ main = do
                 <div class="slide">
                     <h2>Tipu konstruktori</h2>
                     <p>Haskell ļauj veidot sarežģītākus, augstākās kārtas tipus, kuri sastāv no vairākām vērtībām. Pie tam, to vērtību skaits arī var būt atšķirīgs. Izveidosim tipu, kas apraksta transportlīdzēkļus - velosipēdiem būs parametri nosaukums un riteņu diametrs, savukārt mašīnām - nosaukums, riteņu diametrs un dzinēja tilpums.</p>
-                    <pre>data Vehicle = Bicycle String Integer | Car String Integer Float 
+                    <pre>data Vehicle = Bicycle String Integer | Car String Integer Float
     deriving (Show)
 
 main = print $ Bicycle "Kross" 26</pre>
                     <p>Šeit Vehicle ir tipa konstruktors, savukārt Bicycle un Car ir vērtības konstruktori.</p>
                     <p>Mēs redzam, ka abiem konstruktoriem ir kopējie elementi - nosaukums un riteņu diametrs. Izdalīsim tos atsevišķajā tipā:</p>
                     <pre>data Transport = Transport String Integer deriving (Show)
-data Vehicle = Bicycle Transport | Car Transport Float 
+data Vehicle = Bicycle Transport | Car Transport Float
     deriving (Show)
 
 main = print $ Car (Transport "Ford" 16) 2.0</pre>
@@ -487,10 +489,10 @@ main = print $ Car (Transport "Ford" 16) 2.0</pre>
                     <h2>Record pieraksts</h2>
                     <p>Mēs iemācījamies veidot augstākās kārtas tipus, bet pamanījām ļoti nopietnu trūkumu - vērtībām nav nosaukumu, un mēs nevaram saprast, ko konkrēta vērtība nozīmē. Haskell ļauj izmantot Record pierakstu, kas ir pārskatamāks:</p>
                     <pre>data Vehicle = Bicycle {name :: String, wheelSize :: Integer}
-    | Car {name :: String, wheelSize :: Integer, engine :: Float} 
+    | Car {name :: String, wheelSize :: Integer, engine :: Float}
     deriving (Show)
 
-main = print $ Car { 
+main = print $ Car {
     name = "Ford",
     wheelSize = 16,
     engine = 2.0
@@ -499,7 +501,7 @@ main = print $ Car {
                 <div class="slide">
                     <h2>Tipu parametri</h2>
                     <p>Haskell ļauj neprecizēt konkrētus tipus konstruktorā, tajā vietā var izmantot tipu parametrus.</p>
-                    <pre>data Car a b c = Car {name :: a, wheelSize :: b, engine :: c} 
+                    <pre>data Car a b c = Car {name :: a, wheelSize :: b, engine :: c}
     deriving (Show)
 
 main = do
@@ -513,7 +515,7 @@ main = do
         wheelSize = "16 inches",
         engine = "2.0 litres"
     }</pre>
-                    <p>Lielāka priekšrocība ir tas, ka veidojot finkciju, kas strādā ar šiem tipiem, mēs neesam piesieti pie konkrētiem zemākas kārtas tipiem:</p>
+                    <p>Lielāka priekšrocība ir tas, ka veidojot finkciju, kas strādā ar šiem tipiem, mēs neesam piesieti pie konkrētiem zemākas kārtas tipiem.</p>
                 </div>
                 <div class="slide">
                     <h2>Maybe konstruktors</h2>
@@ -521,14 +523,153 @@ main = do
                     <pre>data Maybe a = Nothing | Just a</pre>
                     <p>To var izmantot šādi:</p>
                     <pre>foo :: Integral a => a -> Maybe a
-foo x = if even x 
-            then Just (x `div` 2) 
+foo x = if even x
+            then Just (x `div` 2)
             else Nothing
 
 main = do
     print $ foo 5
     print $ foo 6</pre>
                     <p>Pateicoties tipa parametram tiek panākts tas, ka Maybe var būt jebkāda tipa - Maybe Int, Maybe [Float], Maybe Car utt.</p>
+                </div>
+                <div class="slide">
+                    <h2>Funktori</h2>
+                    <p>Haskell valodā nopietnu lomu spēlē tipu klase Functor. Tā apvieno visus tipu konstruktorus, kuriem ir implementēta funkcija fmap:</p>
+                    <pre>class Functor f where
+    fmap :: (a -> b) -> f a -> f b</pre>
+                    <p>Pats Functor klases apraksts ir ļoti interesants. Pirmkārt, mēs redzam, ka ja agrāk mēs izmantojam klases parametru kā tipu, tad šeit <em>f</em> tiek izmantots kā tipu konstruktors.</p>
+                    <p>Otrkārt, mēs redzam, ka fmap funkcijai ir divi atribūti. Pirmais ir funkcija, kas pieņem tipu <em>a</em> un atgriež tipu <em>b</em>. Savukārt, otrs arguments, ir tips <em>a</em>, bet ar tipa konstruktoru <em>f</em>, un fmap rezultātam ir tips <em>b</em> ar kontekstu <em>f</em>. Var saprast, ka fmap ir domāta, lai izņemtu vērtību tipa <em>a</em> no <em>f</em>, izpildītu funkciju (a -> b) izmantojot to vērtību, un rezultātu iepakot atpakaļ <em>f</em> kontekstā.</p>
+                    <p>Skaidrs, ka šo saprast var būt grūti, tāpēc turpināsim ar piemēriem.</p>
+                </div>
+                <div class="slide">
+                    <h2>Funktoru piemēri</h2>
+                    <p>Paņemsim mums zināmu konstruktoru Maybe. Ja mums ir tips Maybe Int un vērtība piemēram Just 5, mēs nevaram izdarīt operacijas, kuras parasti ir pieejamas ar tipu Int. Šis kods izsauks kļūdu:</p>
+                    <pre>λ> (+2) $ Just 5</pre>
+                    <p>Bet mēs zinam, ka fmap var atbrīvot vērtību no datu konstruktora konteksta un izpildīt funkciju, kas var strādāt ar šo tipu:</p>
+                    <pre>λ> fmap (+2) $ Just 5
+Just 7
+λ> fmap (+2) $ Nothing
+Nothing</pre>
+                    <p>Lai saprastu, kā tas strādā, var apskatīties Funktor instanci Maybe konstruktoram:</p>
+                    <pre>instance Functor Maybe where
+    fmap func (Just val) = Just (func val)
+    fmap func Nothing = Nothing</pre>
+                </div>
+                <div class="slide">
+                    <h2>Funktoru piemēri</h2>
+                    <p>Cits mums zināms piemērs vērtībai, kas ir iepakota kontekstā, ir saraksti. Tiešām, [Int] ir nekas cits, ka datu konstruktors. Tas varēja izskatīties List Int, bet [Int] cukurs ir ērtāks. Ja mēs atcerēsimies fmap aprakstu:</p>
+                    <pre>fmap :: (a -> b) -> f a -> f b</pre>
+                    <p>un iztēlosimies, ka f a un f b vietā ir attiecīgi [a] un [b], tad mēs redzēsim, ka fmap tips sarakstiem ne ar ko neatšķirās no map funkcijas apraksta:</p>
+                    <pre>(a -> b) -> [b] -> [b]</pre>
+                    <p>Tāpēc nav nekāds pārsteigums, ka Functor instance sarakstiem izskatās šādi:</p>
+                    <pre>instance Functor [] where
+    fmap = map</pre>
+                    <p>par ko ir viegli pārliecināties:</p>
+                    <pre>λ> fmap (+2) [1 .. 5]
+[3,4,5,6,7]</pre>
+                </div>
+                <div class="slide">
+                    <h2>Monādes</h2>
+                    <p>Daudzi ir dzirdējuši par monādēm un ka to konceptu ir grūti izprast. Bet ar esošām zināšanām par tipu sistēmu Haskellā Jums pietiks, lai viegli apgūtu šo konceptu.</p>
+                    <p>Patreiz Jūs jau zināt, ka Functor tipu klase "izpako" vērtību no konteksta, padod to funkcijai bez kontekstiem un rezultātu "iepako" atpakaļ. Tagad izdomāsim, ka mums ir nepieciešama vienkāršāka funkcija - kas pieņem parasta tipa argumentu un iepako to kontekstā. Nosauksim to par return:</p>
+                    <pre>return :: a -> m a</pre>
+                    <p>Šīs funkcijas piemēri:</p>
+                    <pre>λ> return 5 :: Maybe Int
+Just 5
+λ> return 5 :: [Int]
+[5]</pre>
+                    <p>Kā redzat, izteikuma tipu var definēt pēc izteikuma ar :: palīdzību</p>
+                </div>
+                <div class="slide">
+                    <h2>Monādes</h2>
+                    <p>Atgriežoties pie fmap funkcijas - tā izņēm vērtību no konteksta, padod to parastai funkcijai un pēc tam ieliek atpakaļ kontekstā. Bet ja mums ir funkcija, kas pati atgriež vērtību kontekstā? Teiksim, funkcija ar tipu a -> m b, līdzīgi funkcijai return. Un vēl, mēs gribam tai funkcijai padot vērtību kontekstā. Šim gadījumam palīdz funkcija (>>=) vai kā to pieņemts saukt - bind:</p>
+                    <pre>(>>=) :: m a -> (a -> m b) -> m b</pre>
+                    <p>Piemēri:</p>
+                    <pre>λ> (>>=) (Just 5) (\x -> Just (x + 2))
+Just 7
+λ> (>>=) [5] (\x -> [x + 2])
+[7]</pre>
+                    <p>Pievērsiet uzmanību, ka (>>=) var ērti izmantot infix pierakstā:
+                    <pre>λ> Just 5 >>= return  . (+2)
+Just 7</pre>
+                    <p>Patreiz Jūms tas var nebūt acīmredzami, bet (>>=) funkcijai ir milzīgs pielietojums Haskell valodā.</p>
+                </div>
+                <div class="slide">
+                    <h2>Monādes</h2>
+                    <p>Ir tipu klase, kas sevī apvieno abas šīš funkcijas. Tā tipu klase saucās Monad. Tās definīcija iekļauj sevī vēl pāris papildus funkcijas, bet bind un return ir galvēnas.</p>
+                    <p>Izpētīsim Monad klases definīciju:</p>
+                    <pre>infixl 1  >>, >>=
+class  Monad m  where
+    (>>=)            :: m a -> (a -> m b) -> m b
+    (>>)             :: m a -> m b -> m b
+    return           :: a -> m a
+    fail             :: String -> m a
+
+    m >> k           =  m >>= \_ -> k</pre>
+                    <p>(>>) ir (>>=) versija, kas ignorē argumentu - funkcija ir noderīga, lai būvētu virkni neatkarīgo operāciju. Piemēram, <em>do</em> notaciju var pārrakstīt šādi:</p>
+                    <pre>main = print 1 >> print 2</pre>
+                </div>
+                <div class="slide">
+                    <h2>Vēlreiz par funktoriem un monādēm</h2>
+                    <p>Patreiz Jūms visticamāk ir liela putra, un Jūs jaucat funktorus, monādes un tā tālāk. Tāpēc izveidosim tabulas, lai atšķirtu Functor un Monad pamatfunkcijas - fmap, return un (>>=):</p>
+                    <table class="description">
+                        <tr>
+                            <th></th>
+                            <th>Pirmais arguments</th>
+                            <th>Otrais arguments</th>
+                            <th>Rezultāts</th>
+                        </tr>
+                        <tr>
+                            <td>fmap</td>
+                            <td>Funkcija ar tipu a -> b</td>
+                            <td>Vērtība kontekstā: f a</td>
+                            <td>Vērtība kontekstā: f b</td>
+                        </tr>
+                        <tr>
+                            <td>(>>=)</td>
+                            <td>Vērtība kontekstā: m a</td>
+                            <td>Funkcija ar tipu a -> m b</td>
+                            <td>Vērtība kontekstā: m b</td>
+                        </tr>
+                        <tr>
+                            <td>return</td>
+                            <td>Vērtība bez konteksta: a</td>
+                            <td>-</td>
+                            <td>Vērtībā kontekstā: m a</td>
+                        </tr>
+                    </table>
+                    <p>Un vēlreiz funkciju tipi:</p>
+                    <table class="description">
+                        <tr>
+                            <td>fmap</td>
+                            <td>Functor f => (a -> b) -> f a -> f b</td>
+                        <tr>
+                        </tr>
+                            <td>(>>=)</td>
+                            <td>Monad m => m a -> (a -> m b) -> m b</td>
+                        </tr>
+                        <tr>
+                            <td>return</td>
+                            <td>Monad m => a -> m a</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="slide">
+                    <h2>Vēlreiz par funktoriem un monādēm</h2>
+                    <p>Tātad, lai tipu konstruktors (vai konteksts) varētu izmantot fmap, tam ir jābūt definētai Functor instancei. Savukārt, lai konteksts varētu izmantot (>>=) un return, tam ir jābūt definētai Monad instancei.</p>
+                    <p>Mūsu zināmiem konstruktoriem Maybe un [] arī ir sarakstītas Monad instances:</p>
+                    <pre>instance Monad [] where
+    return x = [x]
+
+    xs >>= f = concat (map f xs)
+
+
+instance Monad Maybe where
+    return x  = Just x
+
+    (>>=) m g = case m of
+                   Nothing -> Nothing
+                   Just x  -> g x</pre>
                 </div>
             </div>
         </div>
