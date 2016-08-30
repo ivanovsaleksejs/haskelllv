@@ -38,6 +38,7 @@
                     <li><a href="/#39">Tipu konstruktori (39-44)</a></li>
                     <li><a href="/#45">Funktori (45-47)</a></li>
                     <li><a href="/#48">Monādes (48-52)</a></li>
+                    <li><a href="/#53">IO monāde (53-55)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -69,11 +70,12 @@
                     <h2>Daži koda piemēri</h2>
                     <pre>a = 2 + 3</pre>
                     <p>a saturēs 5.</p>
-                    <pre>
-list = [1,2,3,4,5]
+                    <br />
+                    <pre>list = [1,2,3,4,5]
 
 anotherList = [1..10]</pre>
                     <p>Tiek izveidoti 2 saraksti, viens ar skaitļiem no 1 līdz 5, otrs - no 1 līdz 10.</p>
+                    <br />
                     <pre>toUpper 'a'</pre>
                     <p>Atgriež 'A'.</p>
                 </div>
@@ -93,12 +95,17 @@ cube x = x ^ 3
 
 main = print (cube 4)</pre>
                     <p>Un pat šo programmu var padarīt īsāku. Ja mēs skatāmies uz funkciju cube, tad viss, ko tā dara - kāpina argumentu trešajā pakāpē. Mums šajā situācijā ir vienalga, kāds ir arguments, mums ir svarīgi, ko funkcija dara. Tāpēc pierakstīsim to citādāk:<p>
-                    <pre>cube = (^3)</pre>
+                    <pre>cube = (^3)
+
+main = print (cube 4)</pre>
                     <p>Izmantojot šo pieeju, kods var sanākt ļoti tīrs un daudz lasāmāks.</p>
                 </div>
                 <div class="slide">
                     <h2>Kā iesākt</h2>
-                    <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform. Tas iekļauj sevī GHC <u id="compiler" class="def">kompilātoru</u>, Cabal paku menedžeri un dažas izplatītas pakas.</p>
+                    <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform, piemēram</p>
+                    <pre>sudo apt-get install haskell-platform</pre>
+                    <p>Tas iekļauj sevī GHC <u id="compiler" class="def">kompilātoru</u>, Cabal paku menedžeri un dažas izplatītas pakas.</p>
+                    <p>Programmētāji ar lielāku pieredzi var uzinstalēt tikai ghc.</p>
                     <p>Lai instalētu vajadzīgās pakas, var izmantot komandu <pre>cabal install package_name</pre></p>
                     <p>Ir noderīgi apgūt arī interaktīvo interpretatoru, ghci.</p>
                 </div>
@@ -134,9 +141,10 @@ Linking hello ...</pre>
                 <div class="slide">
                     <h2>Primitīvie tipi</h2>
                     <p>Var nošķirt 5 primitīvus tipus: Int, Integer, Float, Char, Bool.</p>
-                    <p>Int tiek ierobežots ar datora arhitektūras "vārda" izmēru.</p>
-                    <p>Integer ir neierobežoti veselie skaitļi. Float ir skaitļi ar peldošo punktu.</p>
-                    <p>Char ir simbolu tips: viens simbols ir ierobežots ar parastajām pēdiņām - 'a'. </p>
+                    <p>Int ir veselie skaitļi, kuru diapazons tiek ierobežots ar datora arhitektūru. Piemēram, 32 bitu arhitektūrā Int skaitļi ir no -2147483648 līdz 2147483647.</p>
+                    <p>Integer ir neierobežoti veselie skaitļi.</p>
+                    <p>Float ir skaitļi ar peldošo punktu, jeb reālie skaitļi, piemēram 1.23.</p>
+                    <p>Char ir simbolu tips: viens simbols ir ierobežots ar parastajām pēdiņām - 'a'.</p>
                     <p>Bool ir būla mainīgie, kas var būt True vai False.</p>
                 </div>
                 <div class="slide">
@@ -158,7 +166,9 @@ main = print (foo (1, "Jānis Bērziņš", 1987))</pre>
                 </div>
                 <div class="slide">
                     <h2>Argumenti</h2>
-                    <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0 then 1 else n * fact (n - 1)</pre></p>
+                    <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
+            then 1 
+            else n * fact (n - 1)</pre></p>
                     <p>Mēs varam padarīt to nedaudz lasāmāku ar guard simboliem:</p>
                     <pre>fact n
     | n == 0    = 1
@@ -183,7 +193,11 @@ main = print (cap "hello")</pre>
                 <div class="slide">
                     <h2>Citas pattern matching iespējas</h2>
                     <pre>foo n@123 = n
-foo _ = 456</pre>
+foo _ = 456
+
+main = do
+    print (foo 123)
+    print (foo 111)</pre>
                     <p>Pirmā rinda definē funkciju foo gadījumam, ja arguments n ir vienāds ar 123. Otrā rindā pattern "_" tiek izmantots, lai pilnībā ignorētu argumentu.</p>
                     <pre>first  (a, b) = a
 second (a, b) = b</pre>
@@ -670,6 +684,44 @@ instance Monad Maybe where
     (>>=) m g = case m of
                    Nothing -> Nothing
                    Just x  -> g x</pre>
+                   <p>Turpmāk visus konstruktorus, kas implementē Monad klasi, mēs vienkārši sauksim par monādēm. Tātad, varam teikt, ka Maybe un [] ir monādes.</p>
+                </div>
+                <div class="slide">
+                    <h2>IO Monāde</h2>
+                    <p>Mēs jau zinām, kā izvadīt rindu - ar funkciju print. Tagad, kad mums ir zināšanas par monādēm un tipu klasēm, apskatīsimies funkcijas print tipu:</p>
+                    <pre>λ> :t print
+print :: Show a => a -> IO ()</pre>
+                    <p>Mēs jau zinām, ka Haskell valodā katrai izteiksmei ir savs tips. Mēs redzam, ka funkcijas print rezultāta tips ir IO (). Mēs jau varam saprast, ka tas ir datu konstruktors IO ar vērtību (), kas ir tukšs pāris. Haskell valodā tukšs pāris bieži tiek izmantots, ka tukša vērtība.</p>
+                    <p>IO datu konstruktors ir monāde. Tas nozīmē, ka tam ir implementēta Monad instance un ir sarakstīti kodi funkcijām return un (>>=). Konkrēti IO monādei šos kodus nevar attēlot ar Haskell kodu - tās ir realizētas zemākā līmeņa valodā. Bet lai darbotos ar šo monādi, tas nav nepieciešams - pietiek zināt funkciju nosaukumus.</p>
+                </div>
+                <div class="slide">
+                    <h2>IO darbības</h2>
+                    <p>IO darbības (IO actions) ir nosaukums, ar kuru tiek apzīmētas IO monādes funkcijas. Tās darbības atšķirās no citām ar to, ka tās izpildas uzreiz - tas ir, nestrādā Lazy princips. Izpētīsim vienkāršu programmu, kas izmantos IO darbības un funkciju cap, kuru sarakstījām nesen:</p>
+                    <pre>import Data.Char
+
+cap [] = ""
+cap (x:xs) = toUpper x : xs
+
+main = do
+    putStrLn "Ievadiet rindu"
+    str <- getLine
+    (putStrLn . cap) str</pre>
+                    <p>Konstrukciju str <- getLine var lasīt kā "izpildīt IO darbību getLine un piesaistīt tās rezultātam vārdu str". Pie tam, <- atbrīvo no konteksta, tas ir, str tips ir String, nevis IO String. Tāpēc zemāk mēs varam mierīgi to padot funkcijai cap, kuras argumenta tips ir String.</p>
+                    <p>Tālāk mēs nedaudz paeksperimentēsim ar šo programmu, pielietojot monādiskās funkcijas.</p>
+                </div>
+                <div class="slide">
+                    <h2>IO darbības</h2>
+                    <p>Mūs interesē tipi katram izteikumam do notacijā. putStrLn "Ievadiet rindu" tips ir IO (). getLine tips ir IO String. Ja iztēloties, ka IO () ir m a, bet IO String ir m b, tad mēs redzam, ka abas izteiksmes var izmantot kā argumentus funkcijai (>>), kuras tips ir m a -> m b -> m b. Aizvietosim abas rindas ar:</p>
+                    <pre>str <- putStrLn "Ievadiet rindu" >> getLine</pre>
+                    <p>Izteiksmes putStrLn "Ievadiet rindu" >> getLine tips ir IO String, vai m a. Savukārt funkcijas (putStrLn . cap) tips ir String -> IO (), vai a -> m b. Atceramies funkcijas (>>=) tipu - m a -> (a -> m b) -> m b. Acīmredzami, ka mēs varam apvienot arī šīs rindas:</p>
+                    <pre>putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</pre>
+                    <p>Tā kā mums palika tikai viena rinda, mēs varam atbrīvoties no do notacijas:</p>
+                    <pre>import Data.Char
+
+cap [] = ""
+cap (x:xs) = toUpper x : xs
+
+main = putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</pre>
                 </div>
             </div>
         </div>
