@@ -25,20 +25,21 @@
                     <li><a href="/#1">Ievads (1-3)</a></li>
                     <li><a href="/#4">Koda piemēri (4-6)</a></li>
                     <li><a href="/#7">Kā iesākt (7-9)</a></li>
-                    <li><a href="/#10">Tipi (10-13)</a></li>
-                    <li><a href="/#14">Argumenti (14-16)</a></li>
-                    <li><a href="/#17">Noderīgas funkcijas darbam ar sarakstiem (17)</a></li>
-                    <li><a href="/#18">Map & Fold (18-20)</a></li>
-                    <li><a href="/#21">Prefix un infix pieraksti (21)</a></li>
-                    <li><a href="/#22">Anonīmās funkcijas (22)</a></li>
-                    <li><a href="/#23">Karings, kompizīcijas un aplikācijas (23-25)</a></li>
-                    <li><a href="/#27">Lazy (27-31)</a></li>
-                    <li><a href="/#32">List comprehension (32)</a></li>
-                    <li><a href="/#33">Tipu klases (33-38)</a></li>
-                    <li><a href="/#39">Tipu konstruktori (39-44)</a></li>
-                    <li><a href="/#45">Funktori (45-47)</a></li>
-                    <li><a href="/#48">Monādes (48-52)</a></li>
-                    <li><a href="/#53">IO monāde (53-55)</a></li>
+                    <li><a href="/#10">Tipi (10-14)</a></li>
+                    <li><a href="/#15">Argumenti (15-17)</a></li>
+                    <li><a href="/#18">Noderīgas funkcijas darbam ar sarakstiem (18-19)</a></li>
+                    <li><a href="/#20">Map & Fold (20-23)</a></li>
+                    <li><a href="/#24">Prefix un infix pieraksti (24)</a></li>
+                    <li><a href="/#25">Anonīmās funkcijas (25-26)</a></li>
+                    <li><a href="/#27">Karings, kompizīcijas un aplikācijas (27-31)</a></li>
+                    <li><a href="/#32">Lazy (32-36)</a></li>
+                    <li><a href="/#37">List comprehension (37)</a></li>
+                    <li><a href="/#38">Izteikumu tipi (38-41)</a></li>
+                    <li><a href="/#42">Tipu klases (42-46)</a></li>
+                    <li><a href="/#47">Tipu konstruktori (47-51)</a></li>
+                    <li><a href="/#52">Funktori (52-54)</a></li>
+                    <li><a href="/#55">Monādes (55-59)</a></li>
+                    <li><a href="/#60">IO monāde (60-63)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -47,7 +48,7 @@
             <div class="wrapper">
                 <div class="slide">
                     <h2>Ievads</h2>
-                    <p class="intro">Šī apmācība ir domāta cilvēkiem, kas vēlas apgūt Haskell programmēšanas valodu. Apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju.</p>
+                    <p class="intro">Šī apmācība ir domāta cilvēkiem, kas vēlas apgūt Haskell programmēšanas valodu. Apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju. Savukārt, atbildes uzdevumiem tiks parādītas, uzklikšķinot uz tām.</p>
                     <h2>Kas ir Haskell</h2>
                     <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir <u id="pure" class="def">tīri funkcionāla</u>, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvu</u> kodu. Tai ir ļoti attīstīta <u id="type" class="def">tipu</u> sistēma, kas ļauj izvairīties no daudzām kļūdām. Tai ir diezgan daudz sintakses iespēju, kas ļauj rakstīt lakonisku un saprotamu kodu.</p>
                 </div>
@@ -165,6 +166,18 @@ main = print (foo (1, "Jānis Bērziņš", 1987))</pre>
                     <p>Visbiežāk tiek izmantots pāris no 2 elementiem, un tam ir definētas funkcijas, kas ir pieejamas ar bāzes paku Prelude - fst un snd, kuras atgriež attiecīgi pirmo un otro pāra elementu.</p>
                 </div>
                 <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Šeit būs nelieli uzdevumi, kuru atbildes ir paslēptas zemāk (uzklikšķiniet, lai to redzētu).</p>
+                    <p>Izdomājiet galvā tipu funkcijai foo a b = toUpper a : b.</p>
+                    <pre class="spoiler">Char -> [Char] -> [Char]</pre>
+                    <p>Uzrkastiet funkciju, kas maina vietām pāra elementus.</p>
+                    <pre class="spoiler">foo pair = (snd pair, fst pair)
+vai
+foo (a, b) = (b, a)</pre>
+                    <p>Uzrakstiet funkciju, kas saņem trīs argumentus un saliek tos sarakstā, pretējā secībā.</p>
+                    <pre class="spoiler">foo a b c = [c, b, a]</pre>
+                </div>
+                <div class="slide">
                     <h2>Argumenti</h2>
                     <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
             then 1 
@@ -217,6 +230,16 @@ second (a, b) = b</pre>
                     <p>!! - atgriezt sarakstes n-to elementu. ['a'..'z'] !! 3 atgriezīs 'd' (elementus sāk skaitīt no 0)</p>
                 </div>
                 <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Uzrakstiet rekursīvo funkciju, kas aprēķina n-to Fibonacci skaitli.</p>
+                    <pre class="spoiler">fib 0 = 0
+fib 1 = 1
+fib n = fib (n - 1) + fib (n - 2)</pre>
+                    <p>Uzrakstiet rekursīvo funkciju, kas apgriež rindu otrādi.</p>
+                    <pre class="spoiler">foo [] = []
+foo line = last line : foo (init line)</pre>
+                </div>
+                <div class="slide">
                     <h2>Map & Fold</h2>
                     <p>Sarakstiem ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvenās funkcijas darbam ar sarakstiem: map un fold. Citās valodās fold tiek saukts par reduce, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā liste tiek "salikta" vienā vērtībā.</p>
                     <p>Funkcija map pieņem divus argumentus - funkciju un sarakstu. Map funkcija iziet cauri sarakstam un izpilda padoto funkciju ar katru saraksta elementu. Piemēram, mums ir saraksts un mums vajag atrast kvadrātu no katra elementa:</p>
@@ -253,6 +276,15 @@ foldl f z []     = z
 foldl f z (x:xs) = foldl f (f z x) xs</pre>
                 </div>
                 <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Uzrakstiet funkciju, kas izmanto map un pārverš rindu uz augšējo reģistru.</p>
+                    <pre class="spoiler">foo line = map toUpper line</pre>
+                    <p>Uzrakstiet funkciju, kas izmanto foldl un apgriež rindu otrādi.</p>
+                    <pre class="spoiler">
+foo acc char = char : acc
+bar line = foldl foo "" line</pre>
+                </div>
+                <div class="slide">
                     <h2>Prefix un infix pieraksti</h2>
                     <p>Visbiežāk ir sastopams prefix pieraksts funkcijām - kad funkcijas nosaukums ir pirms argumentiem. Funkcijām ar 2 argumentiem pastāv iespēja izmantot infix pierakstu. Lai izmantotu infix pierakstu funkcijai, kuras nosaukums sastāv no burtiem, mēs varam izmantot backquote simbolus. Izveidosim funkciju, kas aprēķina procentus no skaitļa:</p>
                     <pre>percent a b = a / b * 100
@@ -275,7 +307,14 @@ main = do
                     <pre>map (\a -> a^2) [1, 2, 3, 4, 5]</pre>
                     <p>Līdzīgi kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkāršot (process saucas eta reduction):</p>
                     <pre>map (^2) [1, 2, 3, 4, 5]</pre>
-                    <p>Funkcijas ar vairakiem argumentiem veidojas līdzīgi: (\a b -> a + b)</p>
+                    <p>Lambda funkcijas ar vairakiem argumentiem veidojas līdzīgi: (\a b -> a + b)</p>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Izveidojiet funkciju, kas izmanto foldl un apgriež rindu otrādi, bet šoreiz kā pirmo argumentu foldl izmantojiet lambda funkciju.</p>
+                    <pre class="spoiler">foo line = foldl (\x y -> y : x) "" line</pre>
+                    <p>Izveidojiet funkciju, kas izfiltrē visas patskaņas (a, e, i, o, u) no rindas, izmantojot anonīmo funkciju.</p>
+                    <pre class="spoiler">foo line = filter (\x -> not $ elem x "aeiouAEIOU") line</pre>
                 </div>
                 <div class="slide">
                     <h2>Karings</h2>
@@ -321,6 +360,12 @@ f $ x = f x</pre>
                     <p>Kompozīcijas operators:</p>
                     <pre>(.) :: (b -> c) -> (a -> b) -> a -> c
 (f . g) x = f (g x)</pre>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Izveidojiet funkciju, kas ieceļ kvadrātā katru saraksta elementu, pirms tam izfiltrējot no ta visus nepāra skaitļus (funkcija even ir preteja funkcijai odd). Izveidojiet divas versijas funkcijai - vienu ar aplikācijas operatoru, otru ar kompozīcijas operatoru. Izmantojiet funkcijas map un filter.</p>
+                    <pre class="spoiler">foo list = map (^2) $ filter even list</pre>
+                    <pre class="spoiler">foo = map (^2) . filter even</pre>
                 </div>
                 <div class="slide">
                     <h2>Lazy</h2>
@@ -422,6 +467,15 @@ map (+2) :: Num b => [b] -> [b]
 map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
                     <p>Pirmajā mēs redzam standarta map definīciju, kas der jebkādiem tipiem. Otrajā mēs redzam, ka pazūda (a -> b) no tipa, jo mēs jau padevam funkciju (+2). Tips ir [b] -> [b]. Kāpēc ne [a] -> [b] - tāpēc, ka Haskell saprot, ka (+2) funkcija atgriež tādu pašu tipu, kas bija padots, par ko var pārliecināties, izpildot λ> :t (+2). Savukārt, trešais piemērs jau reducējas uz noteiktu rezultātu, tāpēc tips iz vienkārši [b].</p>
                     <p>Mēs redzam, ka katrā rindā tipu mainīgājiem parādās jaunās tipu klases. Intuitīvi var saprast, ka tās klases ievieš ierobežojumus uz iespējamiem argumentiem. Jūs varat salīdzināt, kā izmainīsies tipu apraksti, ja (+2) vietā tiktu izmantota funkcija sqrt (aprēķināt kvadrātsakni).</p>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Neizmantojot GHCi, pamēģiniet paši uzrakstīt tipu funkcijai</p>
+                    <pre>filter (\x -> not $ elem x "aeiou") . map toUpper</pre>
+                    <pre class="spoiler">[Char] -> [Char]</pre>
+                    <p>Neizmantojot GHCi, pamēģiniet paši uzrakstīt tipu izteiksmei</p>
+                    <pre>[(a, b) | a <- [1..10], let b = a^2]</pre>
+                    <pre class="spoiler">(Enum t, Num t) => [(t, t)]</pre>
                 </div>
                 <div class="slide">
                     <h2>Tipu klases</h2>
@@ -545,6 +599,17 @@ main = do
     print $ foo 5
     print $ foo 6</pre>
                     <p>Pateicoties tipa parametram tiek panākts tas, ka Maybe var būt jebkāda tipa - Maybe Int, Maybe [Float], Maybe Car utt.</p>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Izveidojiet kvadrātsakņes (sqrt) funkciju, kas atgriež Nothing, ja skaitlis ir negatīvs.</p>
+                    <pre class="spoiler">mySqrt n
+    | n >= 0    = Just $ sqrt n
+    | otherwise = Nothing
+
+main = do
+    print $ mySqrt 16
+    print $ mySqrt (-5)</pre>
                 </div>
                 <div class="slide">
                     <h2>Funktori</h2>
@@ -722,6 +787,25 @@ cap [] = ""
 cap (x:xs) = toUpper x : xs
 
 main = putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</pre>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Uzrakstiet programmu, kas ierakstītai rindai apgriež katru vārdu otrādi un aizvieto katru simbolu 'a' ar '4', 's' ar '5' un 'o' ar '0'. Uzrakstiet versiju ar do notaciju, pēc tam pārveidojiet to, izmantojot (>>) un (>>=) funkcijas. Izmantojiet funkcijas words un unwords.</p>
+                    <pre class="spoiler">flipWord = foldl (\x y -> y : x) ""
+
+replaceChar c
+    | c == 'a' = '4'
+    | c == 'o' = '0'
+    | c == 's' = '5'
+    |otherwise = c
+
+processString = unwords . map (map replaceChar . flipWord) . words
+
+main = do
+    putStrLn "Izvadiet rindu"
+    str <- getLine
+    putStrLn $ processString str</pre>
+                    <pre class="spoiler">putStrLn "Izvadiet rindu" >> getLine >>=  putStrLn . processString</pre>
                 </div>
             </div>
         </div>

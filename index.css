@@ -177,6 +177,12 @@ h1 {
     margin: .9em 0 0;
     padding: .4em;
 }
+.content pre.spoiler {
+    background: #311d41;
+}
+.content pre.spoiler.revealed {
+    background: #ededed;
+}
 .content ol {
     margin: 1em 0 0;
 }

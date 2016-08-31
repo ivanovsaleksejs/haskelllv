@@ -144,6 +144,11 @@ var closeSummary = function(e) {
     }
 }
 
+var triggerSpoiler = function(e) {
+    var elem = e.target
+    hasClass(elem, "revealed") ? removeClass(elem, "revealed") : addClass(elem, "revealed")
+}
+
 window.onload = function() {
 
 
@@ -152,14 +157,22 @@ window.onload = function() {
     arrows.prev.addEventListener("click", prevSlide, false)
     arrows.next.addEventListener("click", nextSlide, false)
 
-    var tooltips = document.getElementsByClassName("def")
     summary = byId("summary")
     summaryTrigger = byId("trigger_summary")
+
+    var tooltips = document.getElementsByClassName("def")
 
     for (var i = 0; i < tooltips.length; i++) {
         var e = tooltips[i]
         e.addEventListener("mouseover", displayTooltip)
         e.addEventListener("mouseout", hideTooltip)
+    }
+
+    var spoilers = document.getElementsByClassName("spoiler")
+
+    for (var i = 0; i < spoilers.length; i++) {
+        var e = spoilers[i]
+        e.addEventListener("click", triggerSpoiler)
     }
 
     slides = document.getElementsByClassName("slide")
