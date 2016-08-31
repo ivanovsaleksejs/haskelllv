@@ -25,21 +25,21 @@
                     <li><a href="/#1">Ievads (1-3)</a></li>
                     <li><a href="/#4">Koda piemēri (4-6)</a></li>
                     <li><a href="/#7">Kā iesākt (7-9)</a></li>
-                    <li><a href="/#10">Tipi (10-14)</a></li>
-                    <li><a href="/#15">Argumenti (15-17)</a></li>
-                    <li><a href="/#18">Noderīgas funkcijas darbam ar sarakstiem (18-19)</a></li>
-                    <li><a href="/#20">Map & Fold (20-23)</a></li>
-                    <li><a href="/#24">Prefix un infix pieraksti (24)</a></li>
-                    <li><a href="/#25">Anonīmās funkcijas (25-26)</a></li>
-                    <li><a href="/#27">Karings, kompizīcijas un aplikācijas (27-31)</a></li>
-                    <li><a href="/#32">Lazy (32-36)</a></li>
-                    <li><a href="/#37">List comprehension (37)</a></li>
-                    <li><a href="/#38">Izteikumu tipi (38-41)</a></li>
-                    <li><a href="/#42">Tipu klases (42-46)</a></li>
-                    <li><a href="/#47">Tipu konstruktori (47-51)</a></li>
-                    <li><a href="/#52">Funktori (52-54)</a></li>
-                    <li><a href="/#55">Monādes (55-59)</a></li>
-                    <li><a href="/#60">IO monāde (60-63)</a></li>
+                    <li><a href="/#11">Tipi (11-15)</a></li>
+                    <li><a href="/#16">Argumenti (16-18)</a></li>
+                    <li><a href="/#19">Noderīgas funkcijas darbam ar sarakstiem (19-20)</a></li>
+                    <li><a href="/#21">Map & Fold (21-24)</a></li>
+                    <li><a href="/#25">Prefix un infix pieraksti (25)</a></li>
+                    <li><a href="/#26">Anonīmās funkcijas (26-27)</a></li>
+                    <li><a href="/#28">Karings, kompizīcijas un aplikācijas (28-32)</a></li>
+                    <li><a href="/#33">Lazy (33-37)</a></li>
+                    <li><a href="/#38">List comprehension (38)</a></li>
+                    <li><a href="/#39">Izteikumu tipi (39-42)</a></li>
+                    <li><a href="/#43">Tipu klases (43-47)</a></li>
+                    <li><a href="/#48">Tipu konstruktori (48-52)</a></li>
+                    <li><a href="/#53">Funktori (53-55)</a></li>
+                    <li><a href="/#56">Monādes (56-60)</a></li>
+                    <li><a href="/#61">IO monāde (61-64)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -130,6 +130,18 @@ Linking hello ...</pre>
                     <p>Haskell programmētāji izmanto ghci diezgan bieži, tāpēc ir vērts to konfigurēt. Lai to izdarītu ir jāizveido fails $HOME/.ghci. Kā piemērs, var nomainīt prefiksu:</p>
                     <pre>:set prompt "λ> "</pre>
                     <p>Palaižot ghci nākamreiz, jūs redzēsiet "λ> " "Prelude> " vietā.</p>
+                </div>
+                <div class="slide">
+                    <h2>Starpība starp kompilatoru un interpretatoru</h2>
+                    <p>Viss Haskell kods, kas tiek padots interpretatoram, tiek uztvērts kā izteikums. Ja Jūs gribēsiet GHCi definēt kādu funkciju, piemēram</p>
+                    <pre>foo a b = a + b</pre>
+                    <p>Jūs redzēsiet kļūdu. Tas skaidrojas ar to, ka visas Haskell funkciju definīcijas ir deklaratīvas, tie nav izteikumi. Atslēgvārds let un konstrukcija let .. in .. ļauj veidot definīcijas izteikumos. Piemēri:</p>
+                    <pre>λ> let foo a b = a + b
+λ> foo 2 3
+5</pre>
+                    <pre>λ> let foo a b = a + b in foo 2 3
+5</pre>
+                    <p>Atšķirība starp abiem piemēriem ir tajā, ka pirmais nodefinē funkciju foo, kas eksistēs, kamēr GHCi ir atvērts. Savukārt otrajā foo eksistēs tikai izteikuma robežās - ja mēģināt pēc tam izsaukt foo 2 3, jūs redzēsiet kļūdu (ja pirms tam neesa nodefinējuši foo ar let).</p>
                 </div>
                 <div class="slide">
                     <h2>Tipi</h2>
