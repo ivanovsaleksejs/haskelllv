@@ -158,6 +158,7 @@ h1 {
 .content p, .content u {
     font-size: 1.1em;
     margin: 1em 0 0;
+    line-height:1.5em;
 }
 .content u {
     font-size: 1em;
