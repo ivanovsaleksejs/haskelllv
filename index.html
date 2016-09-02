@@ -40,6 +40,7 @@
                     <li><a href="/#53">Funktori (53-55)</a></li>
                     <li><a href="/#56">Monādes (56-60)</a></li>
                     <li><a href="/#61">IO monāde (61-64)</a></li>
+                    <li><a href="/#65">Monādiskās funkcijas (65-70)</a></li>
                 </ul>
             </div>
             <div id="prev" class="slide-button slide-nav">&larr;</div>
@@ -192,7 +193,7 @@ foo (a, b) = (b, a)</pre>
                 <div class="slide">
                     <h2>Argumenti</h2>
                     <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
-            then 1 
+            then 1
             else n * fact (n - 1)</pre></p>
                     <p>Mēs varam padarīt to nedaudz lasāmāku ar guard simboliem:</p>
                     <pre>fact n
@@ -818,6 +819,88 @@ main = do
     str <- getLine
     putStrLn $ processString str</pre>
                     <pre class="spoiler">putStrLn "Izvadiet rindu" >> getLine >>=  putStrLn . processString</pre>
+                </div>
+                <div class="slide">
+                    <h2>Monādiskās funkcijas</h2>
+                    <p>Šeit būs sarakstītas noderīgas funkcijas darbībām ar monādēm. Dažas funkcijas nāk noklusējuma pakā (Preludē), dažām ir jāveic atsevišķs Control.Monad imports.</p>
+                    <p><b>(=<<)</b> - pretēja virziena bind funkcija. darbības principu var izprast no funkcijas definīcijas:</p>
+                    <pre>f =<< x  =  x >>= f</pre>
+                    <p><b>join (Control.Monad)</b> - noņem vienu konteksta līmeni, piemēram, m (m a) pārtop par m a. Funkcijas definīcija:</p>
+                    <pre>join x  =  x >>= id</pre>
+                    <p>Nedaudz par id funkciju - tā funkcija atgriež vērtību bez izmaiņām. Var teikt, ka tā funkcija neko nedara. Funkcijas id kods ir id x = x.</p>
+                    <p>Interesants fakts par id funkciju - tā ir vienīga tīra funkcija, kuras tips ir a -> a, bez konteksta. Padomājiet, kāpēc tieši tā, kā arī padomājiet, kāpēc join definīcija ir tieši tāda.</p>
+                    <p>Atgriežoties pie join - tās tips ir Monad m => m (m a) -> m a. Vēlreiz Jūs varat pamanīt, ka ar Haskell funkcijām bieži darbības principu var saprast, izpētot tās tipu.</p>
+                </div>
+                <div class="slide">
+                    <h2>Monādiskās funkcijas</h2>
+                    <p><b>liftM (Control.Monad)</b> - Pārveidot funkciju a -> b par m a -> m b. Piemēram, mēs padodam funkciju sqrt, izteikuma liftM sqrt rezultāts būs jauna funkcija ma -> mb. Kā var noprot, šī jauna funkcija pieņem vērtību kontekstā un atgriež vērtību kontekstā. Piemērs:</p>
+                    <pre>λ> (liftM sqrt) (Just 5)
+Just 2.23606797749979</pre>
+                    <p>Funkcijas liftM definīcija:</p>
+                    <pre>liftM :: Monad m => (a1 -> r) -> m a1 -> m
+liftM f m1 = do
+    x1 <- m1
+    return (f x1)</pre>
+                    <p><b>liftM2 (Control.Monad)</b> - pārveido funkciju tipa a -> b -> c par m a -> m b -> m c:</p>
+                    <pre>liftM2 :: Monad m => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r
+liftM2 f m1 m2 = do
+    x1 <- m1
+    x2 <- m2
+    return (f x1 x2)</pre>
+                </div>
+                <div class="slide">
+                    <h2>Monādiskās funkcijas</h2>
+                    <p>Eksistē arī liftM3, liftM4 un liftM5:</p>
+                    <pre>
+liftM3 :: Monad m =>
+            (a1 -> a2 -> a3 -> r)
+            -> m a1 -> m a2 -> m a3 -> m r
+
+liftM4 :: Monad m =>
+            (a1 -> a2 -> a3 -> a4 -> r)
+            -> m a1 -> m a2 -> m a3 -> m a4 -> m r
+
+liftM5 :: Monad m =>
+            (a1 -> a2 -> a3 -> a4 -> a5 -> r)
+            -> m a1 -> m a2 -> m a3 -> m a4 -> m a5 -> m r</pre>
+                </div>
+                <div class="slide">
+                    <h2>Monādiskās funkcijas</h2>
+                    <p><b>ap (Control.Monad)</b> - noder ja mums ir funkcija monādē, piemēram m (a -> b), un vērtība monādē m a. Rezultāts ir tajā pašā monādē - m b.</p>
+                    <pre>ap :: Monad m => m (a -> b) -> m a -> m b
+ap = liftM2 id</pre>
+                    <p>Piemērs:</p>
+                    <pre>λ> ap (Just (+2)) (Just 3)
+Just 5
+λ> ap [(+2), (^2)] [3,4]
+[5,6,9,16]</pre>
+                    <p>Ap noder kā aizvietojums liftMn funkcijām: liftMn f x1 x2 .. xn = return f `ap` x1 `ap` x2 `ap` .. `ap` xn.</p>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Uzrakstiet funkciju, kas pārveido sarakstu [[1], [2], [3, 4], [5]] par [1, 2, 3, 4, 5], izmantojot monādiskās funkcijas.</p>
+                    <pre class="spoiler">myConcat l = join l</pre>
+                    <p>Izveidojiet map funkcijas analogu, izmantojot monādiskās funkcijas.</p>
+                    <pre class="spoiler">myMap f = liftM f</pre>
+                    <p>Izmantojot monādiskās funkcijas, uzrakstiet funkciju, kas sasumē katru saraksta elementu ar katru otra saraksta elemenu. Piemēram mySum [2, 3] [5, 6] - [7, 8, 8, 9]</p>
+                    <pre class="spoiler">let mySum l1 l2 = liftM2 (+) l1 l2</pre>
+                </div>
+                <div class="slide">
+                    <h2>Uzdevumi</h2>
+                    <p>Uzrakstiet funkcijas liftM4 kodu.</p>
+                    <pre class="spoiler">
+liftM4 f m1 m2 m3 m4 = do
+    x1 <- m1
+    x2 <- m2
+    x3 <- m3
+    x4 <- m4
+    return (f x1 x2 x3 x4)</pre>
+                    <p>Uzdevums, kas neattiecās uz monādiskām funkcijām, bet ir domāts, lai pārbaudītu visu, kas ir iemācīts iepriekš. Izveidojiet programmu, kas saņem rindu ar vairākiem skaitļiem un izvada katra skaitļa ciparu summu, piemēram "1234 5678" -> "10 26". Izmantojiet funkcijas read un show konvertācijai uz un no Integer, un funkciju sum, lai sasumētu visus saraksta skaitļus. Izmantojiet (>>) un (>>=), neizmantojiet do notaciju. Nevienā funkcijā nedrikst būt norādīti argumenti - izmantojiet eta reduction visur, piemēram nevis "foo l = map func l", bet "foo = map func".</p>
+                    <pre class="spoiler">toInt = read . return
+
+sumDigits = map (show . sum . map toInt) . words
+
+main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigits</pre>
                 </div>
             </div>
         </div>
