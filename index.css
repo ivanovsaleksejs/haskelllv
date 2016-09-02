@@ -189,7 +189,10 @@ h1 {
 .content ol p {
     margin: 0 0 1em;
 }
-
+.content .grey {
+    background: #cbcbcb;
+    padding: 0 0.1em;
+}
 .content .tutorial .slide {
     left: 100%;
     position: absolute;
