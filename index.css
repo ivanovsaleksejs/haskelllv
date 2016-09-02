@@ -157,7 +157,8 @@ h1 {
 }
 .content p, .content u {
     font-size: 1.1em;
-    margin: 1em 0 0;
+    margin: .5em 0 0;
+    line-height:1.5em;
 }
 .content u {
     font-size: 1em;
@@ -174,8 +175,8 @@ h1 {
     font-family: monospace;
     font-size: .8em;
     line-height: 1.3em;
-    margin: .9em 0 0;
-    padding: .4em;
+    margin: .5em 0 0;
+    padding: .2em .3em;
 }
 .content pre.spoiler {
     background: #311d41;
