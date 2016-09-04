@@ -9,14 +9,13 @@
     <div class="header">
         <img src="logo.png" id="logo" />
         <div class="nav">
-           <a href="/">Apmācība</a>
+           <a href="/" class="active">Apmācība</a>
            <a href="https://www.haskell.org/downloads" target="_blank">Lejupielādēt</a>
            <a href="/irc.html">IRC</a>
            <a href="/news.html">Ziņas</a>
            <a href="/links.html">Saites uz citiem resursiem</a>
         </div>
     </div>
-    <h1>Apmācība</h1>
     <div class="content">
         <div class="tutorial">
             <div id="trigger_summary">></div>
@@ -906,17 +905,22 @@ main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigi
                 <div class="slide">
                     <h2>Kopsavilkums</h2>
                     <p>Ap šo laiku mēs esam izgājuši cauri galvēniem tematiem, ar ko ir pietiekami, lai apgūtu Haskell pamatus. Apkoposim galvenos jēdzienus, kurus ir jāatceras Haskell programmētājam.</p>
-                    <p>Argumenti tiek pierakstīti pēc funkcijas nosaukuma ar atstarpēm. Argumentus var nerakstīt, ja funkcija tiek saīsināta ar eta reduction.</p>
-                    <p>Haskell valodā nopietna loma ir sarakstiem. Galvenas funkcijas darbam ar sarakstiem ir map un fold.</p>
-                    <p>Haskell funkcijas ir Lazy - tiek izpildītas tikai kad tas tiek prasīts. Tas pats attiecās arī uz rekursīviem datu tipiem.</p>
-                    <p>Tipi ir gan funkcijām, gan datiem, gan izteikumiem. Tipa aprakstā tiek izmantots karing operators ->. Tipa aprakstā var izmantot tipa mainīgus.</p>
+                    <ul class="list">
+                        <li>Argumenti tiek pierakstīti pēc funkcijas nosaukuma ar atstarpēm. Argumentus var nerakstīt, ja funkcija tiek saīsināta ar eta reduction.</li>
+                        <li>Pastāv gan prefix, gan infix pieraksti funkcijām. Ja funkcijas nosaukums ir burtciparu, tad prefix pierakstā nav nekādu delimiteru - <span class="grey">foo a b</span>, bet infix pierakstā ir jāizmanto backquotes simbolus - <span class="grey">a `foo` b</span>. Savukārt, simbolu funkcijas jeb operatori prefix pieraksta tiek ielikti iekavās - <span class="grey">(+) a b</span>, bet infix pierakstā delimiterus izmantot nevajag - <span class="grey">a + b</span></li>
+                        <li>Haskell valodā nopietna loma ir sarakstiem. Galvenas funkcijas darbam ar sarakstiem ir map un fold.</li>
+                        <li>Haskell funkcijas ir Lazy - tiek izpildītas tikai kad tas tiek prasīts. Tas pats attiecās arī uz rekursīviem datu tipiem.</li>
+                        <li>Tipi ir gan funkcijām, gan datiem, gan izteikumiem. Tipa aprakstā tiek izmantots karing operators ->. Tipa aprakstā var izmantot tipa mainīgus.</li>
+                    </ul>
                 </div>
                 <div class="slide">
                     <h2>Kopsavilkums</h2>
-                    <p>Tipu konstruktori vai konteksti veido augstākas kārtas tipus. Tipu konstruktoros var būt mainīgie tipi, piemēram Maybe a.</p>
-                    <p>Tipu klases apvieno konstruktoru grupas un ļauj definēt nepieciešamas funkcijas grupām. Ar instance konstrukcijām tiek definētas funkciju versijas konkrētam konstruktoram.</p>
-                    <p>Functor klase definē fmap funkciju, Monad klase definē bind un return funkcijas. Maybe un [] ir gan funktori, gan monādes. Galvenās funkcijas, kuras ir jāatceras, ir fmap, return un (>>=).</p>
-                    <p>IO darbības nav Lazy un notiek uzreiz. IO klase ir monāde.</p>
+                    <ul class="list">
+                        <li>Tipu konstruktori vai konteksti veido augstākas kārtas tipus. Tipu konstruktoros var būt mainīgie tipi, piemēram Maybe a.</li>
+                        <li>Tipu klases apvieno konstruktoru grupas un ļauj definēt nepieciešamas funkcijas grupām. Ar instance konstrukcijām tiek definētas funkciju versijas konkrētam konstruktoram.</li>
+                        <li>Functor klase definē <span class="grey">fmap</span> funkciju, Monad klase definē <span class="grey">(>>=)</span> un <span class="grey">return</span> funkcijas. Maybe un [] konstruktori ir gan funktori, gan monādes.</li>
+                        <li>IO darbības nav Lazy un notiek uzreiz. IO klase ir monāde.</li>
+                    </ul>
                     <br />
                     <br />
                     <p>Apmācības turpinājumā mēs vairāk fokusēsimies uz Haskell funkcijām, veidosim dažādas programmas, eksperimentēsim ar funkciju kompozīcijām un sarakstu funkcijām.</p>

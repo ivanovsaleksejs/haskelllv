@@ -13,6 +13,12 @@ body {
 ol, ul {
     list-style: outside none none;
 }
+ul.list {
+    list-style: '- ' inside;
+}
+.list > li {
+    margin: .4em 0;
+}
 blockquote, q {
     quotes: none;
 }
@@ -48,6 +54,10 @@ table {
 .nav a {
     font-size: 1.6em;
     margin: 0 .6em;
+    color: #856f96;
+}
+.nav a.active, .nav a:hover {
+    color: #311d41;
 }
 h1 {
     font-size: 2em;
