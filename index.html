@@ -882,6 +882,8 @@ Just 5
                     <pre class="spoiler">myConcat l = join l</pre>
                     <p>Izveidojiet <span class="grey">map</span> funkcijas analogu, izmantojot monādiskās funkcijas.</p>
                     <pre class="spoiler">myMap f = liftM f</pre>
+                    <p>Izveidojiet <span class="grey">fmap</span> funkcijas versiju, izmantojot (>>=) un return.</p>
+                    <pre class="spoiler">myFmap f n = n >>= return . f</pre>
                     <p>Izmantojot monādiskās funkcijas, uzrakstiet funkciju, kas sasumē katru saraksta elementu ar katru otra saraksta elemenu. Piemēram <span class="grey">mySum [2, 3] [5, 6]</span> - <span class="grey">[7, 8, 8, 9]</span></p>
                     <pre class="spoiler">let mySum l1 l2 = liftM2 (+) l1 l2</pre>
                 </div>
