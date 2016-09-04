@@ -327,7 +327,7 @@ main = do
                     <p>Izveidojiet funkciju, kas izmanto <span class="grey">foldl</span> un apgriež rindu otrādi, bet šoreiz kā pirmo argumentu foldl izmantojiet lambda funkciju.</p>
                     <pre class="spoiler">foo line = foldl (\x y -> y : x) "" line</pre>
                     <p>Izveidojiet funkciju, kas izfiltrē visas patskaņas <span class="grey">(a, e, i, o, u)</span> no rindas, izmantojot anonīmo funkciju.</p>
-                    <pre class="spoiler">foo line = filter (\x -> not $ elem x "aeiouAEIOU") line</pre>
+                    <pre class="spoiler">foo line = filter (\x -> not (elem x "aeiouAEIOU")) line</pre>
                 </div>
                 <div class="slide">
                     <h2>Karings</h2>
