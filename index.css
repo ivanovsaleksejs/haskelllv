@@ -52,7 +52,7 @@ table {
 }
 
 .nav a {
-    font-size: 1.6em;
+    font-size: 1.4em;
     margin: 0 .6em;
     color: #856f96;
 }
@@ -143,6 +143,9 @@ h1 {
 }
 #summary li:hover a {
     color: #efefef;
+}
+#summary a.nav_link {
+    font-weight: bold;
 }
 .content .tutorial {
     height: 32em;

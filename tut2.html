@@ -1,0 +1,59 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>haskell.lv</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+</head>
+<body>
+    <div class="header">
+        <img src="logo.png" id="logo" />
+        <div class="nav">
+           <a href="/" class="active">Apmācība</a>
+           <a href="https://www.haskell.org/downloads" target="_blank">Lejupielādēt</a>
+           <a href="/irc.html">IRC</a>
+           <a href="/links.html">Saites uz citiem resursiem</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="part_two">
+            <h2>1. Darbs ar sarakstiem</h2>
+            <p>Pirmajā daļā mēs esam apguvuši galvēnos Haskell konceptus. Tagad mēs veltīsim laiku jaunu funkciju pētīšanai, programmu veidošanai, moduļu apgūšanai un uzdevumu pildīšanai. Un tā, ka sarakstiem Haskell valodā ir nopietna nozīmē, mēs sāksim ar tiem.</p>
+            <br />
+            <p><span class="grey">scan</span> - funkcija, kas dara pilnībā to pašu, ko dara fold, bet atgriež nevis pēdējo akumulātora vērtību, bet visas starpvērtības.</p>
+            <pre>λ> scanl (\a b -> 2*a + b) 1 [2..4]
+[1,4,11,26]</pre>
+            <p>Viens no scan pielietošanas piemēriem ir bezgalīga Fibonacci virknes ģenerācija:</p>
+            <pre>fib = 0 : scanl (+) 1 fib
+            
+main = print $ take 20 fib</pre>
+            <p>Tikpat viegli ir iegūt bezgalīgu sarakstu ar divnieka pakāpēm:</p>
+            <pre>pows2 = scanl (+) 1 pows2
+            
+main = print $ take 20 pows2</pre>
+            <br />
+            <p><span class="grey">length</span> - Atgriež saraksta garumu.</p>
+            <pre>
+λ> length [1..10]
+10</pre>
+            <br />
+            <p><span class="grey">concat</span> - salīmē vairākus sarakstus vienā:</p>
+            <pre>
+λ> concat [[1], [2, 3]]
+[1,2,3]
+λ> concat $ words "abc def qwer"
+"abcdefqwer"</pre> 
+            <p>Funkcijas concat kods:</p>
+            <pre>
+concat :: [[a]] -> [a]
+concat = foldr (++) []</pre>
+            <br />
+            <p><span class="grey">foldr</span> - analogs foldl, ar divām atšķirībām. Pirmkārt, foldr iet cauri sarakstam no otra gala. Otrkārt, funkcija, ko izmanto foldr, pieņem argumentus pretējā secībā - sākumā saraksta elements, tad akumulātors.</p>
+             <pre>
+foldr :: (a -> b -> b) -> b -> [a] -> b
+foldr f z []     = z
+foldr f z (x:xs) = f x (foldr f z xs)</pre>
+        </div>
+    </div>
+</body>
+</html>
