@@ -116,10 +116,15 @@ var changeSlide = function(e) {
         elem = elem.firstChild
     }
     if (elem.tagName == "A") {
-        slideNumber = parseInt(elem.hash.slice(1))
-        setActive()
-        disableArrows()
-        triggerSummary()
+        if (hasClass(elem, "nav_link")) {
+            elem.click()
+        }
+        else {
+            slideNumber = parseInt(elem.hash.slice(1))
+            setActive()
+            disableArrows()
+            triggerSummary()
+        }
     }
 }
 
