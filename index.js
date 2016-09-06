@@ -154,6 +154,18 @@ var triggerSpoiler = function(e) {
     hasClass(elem, "revealed") ? removeClass(elem, "revealed") : addClass(elem, "revealed")
 }
 
+var keyEventParser = function(e) {
+    var elem = e.target;
+
+    if (e.keyCode == '39' || e.keyCode == '108') {
+        // -> RIGHT
+        nextSlide();
+    } else if (e.keyCode == '37' || e.keyCode == '106') {
+        // <- LEFT
+        prevSlide();
+    }
+}
+
 window.onload = function() {
 
 
@@ -191,6 +203,7 @@ window.onload = function() {
     summary.addEventListener("click", changeSlide)
 
     document.addEventListener("click", closeSummary);
+    document.addEventListener("keyup", keyEventParser);
 
     (function(i,s,o,g,r,a,m){
         i['GoogleAnalyticsObject']=r;
