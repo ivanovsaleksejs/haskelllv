@@ -156,8 +156,22 @@ h1 {
     width: 200%;
     margin: 4em 0;
 }
-.content .tryit {
+.content .tryit_wrapper {
     width: 35%;
+}
+.content .tryit {
+    width: 100%;
+    height: 32em;
+}
+.content .tryit .tryit_iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.content .tryit_buttons a {
+    background: #311d41;
+    color: white;
+    padding: 2px 4px;
 }
 .content h2, .content h3 {
     margin: 1em 0 0;

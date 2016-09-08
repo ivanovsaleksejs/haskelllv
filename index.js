@@ -161,6 +161,23 @@ var keyEventParser = function(e) {
     }
 }
 
+var loadTryHaskell = function (e) {
+    var editor = byId('editor');
+
+    if (hasClass(editor, 'loaded')) {
+        return;
+    }
+
+    var iframe = document.createElement("IFRAME");
+    addClass(iframe, 'tryit_iframe');
+
+    iframe.setAttribute("src", "http://tryhaskell.org/");
+    editor.innerText = '';
+    editor.appendChild(iframe);
+
+    addClass(editor, 'loaded');
+}
+
 window.onload = function() {
 
 

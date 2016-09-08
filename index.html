@@ -929,8 +929,13 @@ main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigi
                 </div>
             </div>
         </div>
-        <div class="tryit">
-            Try-it editor, coming soon...
+        <div class="tryit_wrapper">
+            <div class="tryit_buttons">
+                <a href="#" onClick="loadTryHaskell();return false;">Load TryHaskell</a>    
+            </div>
+            <div class="tryit" id="editor">
+                Try-it editor, coming soon...
+            </div>
         </div>
     </div>
     <div id="tooltip">
