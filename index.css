@@ -405,7 +405,7 @@ h1 {
         width: 100%;
     }
 
-    .content .tryit {
+    .content .tryit_wrapper {
         width: 0%;
         display: none;
     }
