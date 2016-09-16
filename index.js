@@ -8,17 +8,6 @@ var byId = document.getElementById.bind(document)
 
 var slideNumber = parseInt(location.hash.slice(1)) || 1;
 
-var hasClass = function(e, name) {
-    return e.className.indexOf(name) != -1
-}
-
-var addClass = function(e, name) {
-    e.className += " " + name
-}
-var removeClass = function(e, name) {
-    e.className = e.className.replace(name,"")
-}
-
 var arrows = {
     prev: null,
     next: null
@@ -149,11 +138,6 @@ var closeSummary = function(e) {
     }
 }
 
-var triggerSpoiler = function(e) {
-    var elem = e.target
-    hasClass(elem, "revealed") ? removeClass(elem, "revealed") : addClass(elem, "revealed")
-}
-
 var keyEventParser = function(e) {
     var elem = e.target;
 
@@ -183,7 +167,7 @@ var loadTryHaskell = function (e) {
     addClass(editor, 'loaded');
 }
 
-window.onload = function() {
+window.addEventListener("load", function() {
 
 
     arrows.prev = byId("prev")
@@ -200,13 +184,6 @@ window.onload = function() {
         var e = tooltips[i]
         e.addEventListener("mouseover", displayTooltip)
         e.addEventListener("mouseout", hideTooltip)
-    }
-
-    var spoilers = document.getElementsByClassName("spoiler")
-
-    for (var i = 0; i < spoilers.length; i++) {
-        var e = spoilers[i]
-        e.addEventListener("click", triggerSpoiler)
     }
 
     slides = document.getElementsByClassName("slide")
@@ -238,4 +215,4 @@ window.onload = function() {
     ga('create', 'UA-83556742-1', 'auto');
     ga('send', 'pageview');
 
-}
+})
