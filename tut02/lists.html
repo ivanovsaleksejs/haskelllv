@@ -18,10 +18,10 @@
     <div class="content">
         <div class="part_two">
             <h2>1. Darbs ar sarakstiem</h2>
-            <p>Pirmajā daļā mēs esam apguvuši galvēnos Haskell konceptus. Tagad mēs veltīsim laiku jauno funkciju pētīšanai, programmu veidošanai, moduļu apgūšanai un uzdevumu pildīšanai. Un tā, ka sarakstiem Haskell valodā ir nopietna nozīmē, mēs sāksim ar tiem.</p>
+            <p>Pirmajā daļā mēs esam apguvuši galvenos Haskell konceptus. Tagad mēs veltīsim laiku jauno funkciju pētīšanai, programmu veidošanai, moduļu apgūšanai un uzdevumu pildīšanai. Un, tā kā sarakstiem Haskell valodā ir nopietna nozīme, mēs sāksim ar tiem.</p>
             <br />
             <br />
-            <p><span class="grey">scan</span> - funkcija, kas dara pilnībā to pašu, ko dara <span class="grey">fold</span>, bet atgriež nevis pēdējo akumulātora vērtību, bet visas starpvērtības.</p>
+            <p><span class="grey">scan</span> - funkcija, kas dara pilnībā to pašu, ko dara <span class="grey">fold</span>, bet atgriež nevis pēdējo akumulatora vērtību, bet visas starpvērtības.</p>
             <pre>λ> scanl (\a b -> 2*a + b) 1 [2..4]
 [1,4,11,26]</pre>
             <p><span class="grey">scanl</span> funkcijas kods:</p>
@@ -29,7 +29,7 @@
     []   -> []
     x:xs -> scanl f (f q x) xs</pre>
             <p>Pievērsiet uzmanību <span class="grey">case .. of</span> konstrukcijai.</p>
-            <p>Viens no scan pielietošanas piemēriem ir bezgalīga Fibonacci virknes ģenerācija:</p>
+            <p>Viens no scan pielietošanas piemēriem ir bezgalīgas Fibonači virknes ģenerācija:</p>
             <pre>fib = 0 : scanl (+) 1 fib
 
 main = print $ take 20 fib</pre>
@@ -40,14 +40,14 @@ main = print $ take 20 pows2</pre>
             <p>Uzdevums: uzrakstiet scanl funkcijas kodu, izmantojot nevis <span class="grey">case .. of</span>, bet pattern matching.</p>
             <pre class="spoiler">myScanl f q []     = q : []
 myScanl f q (x:xs) = q : myScanl f (f q x) xs</pre>
-            <p>Uzdevums: uzģenerējiet bezgalīgo sarakstu ar faktoriāļiem visiem pozitiviem veseliem skaitļiem sākot no 1, izmantojot scanl.</p>
+            <p>Uzdevums: uzģenerējiet bezgalīgu sarakstu ar faktoriāļiem - visiem pozitīviem, veseliem skaitļiem sākot no 1, izmantojot scanl.</p>
             <pre class="spoiler">facts = scanl (*) 1 [2..]
 
 main = print $ take 10 facts</pre>
             <br />
             <br />
             <br />
-            <p><span class="grey">length</span> - Atgriež saraksta garumu.</p>
+            <p><span class="grey">length</span> - atgriež saraksta garumu.</p>
             <pre>
 λ> length [1..10]
 10</pre>
@@ -67,7 +67,7 @@ concat = foldr (++) []</pre>
             <br />
             <br />
             <br />
-            <p><span class="grey">foldr</span> - analogs foldl, ar divām atšķirībām. Pirmkārt, foldr iet cauri sarakstam no otra gala. Otrkārt, funkcija, ko izmanto foldr, pieņem argumentus pretējā secībā - sākumā saraksta elements, tad akumulātors.</p>
+            <p><span class="grey">foldr</span> - analogs foldl ar divām atšķirībām. Pirmkārt, foldr iet cauri sarakstam no otra gala. Otrkārt, funkcija, ko izmanto foldr, pieņem argumentus pretējā secībā - sākumā saraksta elements, tad akumulators.</p>
              <pre>
 foldr :: (a -> b -> b) -> b -> [a] -> b
 foldr f z []     = z
@@ -75,7 +75,7 @@ foldr f z (x:xs) = f x (foldr f z xs)</pre>
             <br />
             <br />
             <br />
-            <p><span class="grey">scanr</span> - analoģiski scanl, satur visas akumulātora vērtības.</p>
+            <p><span class="grey">scanr</span> - analoģiski scanl satur visas akumulātora vērtības.</p>
             <pre>
 scanr :: (a -> b -> b) -> b -> [a] -> [b]
 scanr _ q0 []     = [q0]
@@ -95,7 +95,7 @@ drop n (_:xs)          = drop (n-1) xs</pre>
             <br />
             <br />
             <br />
-            <p><span class="grey">takeWhile</span> - atlasīt elementus no saraksta sākuma kamēr tie atbilst noteikumam. Pēc pirma neatbilstoša var būt atbilstoši elementi, bet tie neiespaidos rezultātam - takeWhile atlasa līdz pirmajam neatbilstošam elementam, tad apstājas.</p>
+            <p><span class="grey">takeWhile</span> - atlasīt elementus no saraksta sākuma, kamēr tie atbilst noteikumam. Pēc pirmā neatbilstošā var būt atbilstoši elementi, bet tie neiespaidos rezultātu - takeWhile atlasa līdz pirmajam neatbilstošajam elementam, tad apstājas.</p>
             <pre>takeWhile :: (a -> Bool) -> [a] -> [a]
 takeWhile _ []                 = []
 takeWhile p (x:xs) | p x       = x : takeWhile p xs
@@ -130,7 +130,7 @@ main = getLine >>= print . trim</pre>
             <br />
             <br />
             <br />
-            <p><span class="grey">nub</span> - funkcija no bibliotēkas <span class="grey">Data.List</span>, izņēmt no saraksta visus dublikātus.</p>
+            <p><span class="grey">nub</span> - funkcija no bibliotēkas <span class="grey">Data.List</span>, izņemt no saraksta visus dublikātus.</p>
             <pre>λ> import Data.List
 λ> nub [1,1,12,1,12,3,4,2,2,3,2,341324,1,412,4,4,21]
 [1,12,3,4,2,341324,412,21]</pre>
@@ -141,11 +141,11 @@ main = getLine >>= print . trim</pre>
             | x `elem` xs = xs
             | otherwise   = xs ++ [x]</pre>
             <br />
-            <p>Ja apskatīties funkcijas <span class="grey">nub</span> kodu, tad mēs redzēsim, ka tas ir ļoti mazs - <span class="grey">nub = nubBy (==)</span>. Skaidrs, ka visu darbu dara funkcija nubBy, kura pie reizes ir arī augstākas kārtas funkcija, jo pirmais tās arguments ir funkcija (==). Izpētīsim funkciju nubBy:</p>
+            <p>Ja apskatās funkcijas <span class="grey">nub</span> kodu, tad mēs redzēsim, ka tas ir ļoti mazs - <span class="grey">nub = nubBy (==)</span>. Skaidrs, ka visu darbu dara funkcija nubBy, kura pie reizes ir arī augstākas kārtas funkcija, jo pirmais tās arguments ir funkcija (==). Izpētīsim funkciju nubBy:</p>
             <pre>nubBy :: (a -> a -> Bool) -> [a] -> [a]
 nubBy eq []     = []
 nubBy eq (x:xs) = x : nubBy eq (filter (\ y -> not (eq x y)) xs)</pre>
-            <p>Sākumā šis kods nav īpaši saprotams. Tāpēc paskaidrosim ar vārdiem: funkcija <span class="grey">nubBy</span> rekursīvi iet cauri sarakstam, pie katra elementa filtrējot atlikušo sarakstu, izmantojot <span class="grey">Bool</span> funkciju. Piemēram, ja <span class="grey">Bool</span> funkcija ir <span class="grey">(==)</span>, tad pie katra elementa funkcija izfiltrē no atlikuša saraksta visus elementus, kas ir vienādi ar patreizejo elementu. Tādejādi beigās no saraksta tiks izfiltrēti visi dublikāti.</p>
+            <p>Sākumā šis kods nav īpaši saprotams. Tāpēc paskaidrosim ar vārdiem: funkcija <span class="grey">nubBy</span> rekursīvi iet cauri sarakstam, pie katra elementa filtrējot atlikušo sarakstu, izmantojot <span class="grey">Bool</span> funkciju. Piemēram, ja <span class="grey">Bool</span> funkcija ir <span class="grey">(==)</span>, tad pie katra elementa funkcija izfiltrē no atlikušā saraksta visus elementus, kas ir vienādi ar patreizejo elementu. Tādejādi beigās no saraksta tiks izfiltrēti visi dublikāti.</p>
             <br />
             <br />
             <a class="link" href="/tut02/eta.html"><h3>>> 2. Eta-conversion</h3></a>
