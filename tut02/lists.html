@@ -42,7 +42,7 @@ main = print $ take 20 pows2</pre>
 myScanl f q (x:xs) = q : myScanl f (f q x) xs</pre>
             <p>Uzdevums: uzģenerējiet bezgalīgo sarakstu ar faktoriāļiem visiem pozitiviem veseliem skaitļiem sākot no 1, izmantojot scanl.</p>
             <pre class="spoiler">facts = scanl (*) 1 [2..]
-            
+
 main = print $ take 10 facts</pre>
             <br />
             <br />
@@ -123,7 +123,7 @@ dropWhile p (x:xs) | p x       = dropWhile p xs
 [5,4,3,2,1]</pre>
             <p>Uzdevums: uzrakstiet programmu, kas pieprasa ievadīt rindu un noņem atstarpes no tās sākuma un beigām. Izdomājiet, kā var realizēt atkārtotas darbības.</p>
             <pre class="spoiler">twice f = f . f
-            
+
 trim = twice (reverse . dropWhile (== ' '))
 
 main = getLine >>= print . trim</pre>
@@ -152,7 +152,7 @@ nubBy eq (x:xs) = x : nubBy eq (filter (\ y -> not (eq x y)) xs)</pre>
             <br />
             <br />
             <br />
-            
+
         </div>
     </div>
     <script type="text/javascript" src="/main.js"></script>
