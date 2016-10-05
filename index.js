@@ -1,65 +1,7 @@
-var currentSlide = null;
-var slides = null;
-
 var summary = null;
 var summaryTrigger = null;
 
 var byId = document.getElementById.bind(document)
-
-var slideNumber = parseInt(location.hash.slice(1)) || 1;
-
-var arrows = {
-    prev: null,
-    next: null
-}
-
-var disableArrows = function() {
-    next = currentSlide.nextElementSibling
-    prev = currentSlide.previousElementSibling
-
-    removeClass(arrows.prev, "disabled")
-    removeClass(arrows.next, "disabled")
-
-    if (next === null) {
-        addClass(arrows.next, "disabled")
-    }
-    if (prev === null) {
-        addClass(arrows.prev, "disabled")
-    }
-}
-
-var slideStep = function(dir) {
-    var next = dir ? currentSlide.nextElementSibling : currentSlide.previousElementSibling
-    if (next != null) {
-        removeClass(currentSlide, "active")
-        removeClass(currentSlide, "left")
-
-        dir && addClass(currentSlide, "rightside")
-        dir || addClass(currentSlide, "leftside")
-
-        currentSlide = next
-
-        dir || removeClass(currentSlide, "rightside")
-        dir && removeClass(currentSlide, "leftside")
-
-        addClass(currentSlide, "active" + (dir ? "" : " left"))
-
-        slideNumber += dir ? 1 : -1
-        location.hash = slideNumber
-
-        disableArrows()
-
-        byId("slidenum").innerText = slideNumber
-    }
-}
-
-var prevSlide = function(){
-    slideStep(false)
-}
-
-var nextSlide = function(){
-    slideStep(true)
-}
 
 var displayTooltip = function(event) {
     var elem = byId("tooltip_" + this.id)
@@ -75,45 +17,16 @@ var hideTooltip = function() {
     removeClass(elem, "visible")
 }
 
-var setActive = function(num) {
-    if (num) {
-        slideNumber = num
-    }
-
-    for (var i = 0; i < slides.length; i++) {
-        removeClass(slides[i], "active")
-        removeClass(slides[i], "leftside")
-        removeClass(slides[i], "rightside")
-        if (i+1 < slideNumber) {
-            addClass(slides[i], "rightside")
-        }
-        else if (i+1 > slideNumber) {
-            addClass(slides[i], "leftside")
-        }
-    }
-
-    addClass(slides[slideNumber-1], "active")
-
-    currentSlide = document.getElementsByClassName("slide active")[0]
-
-    byId("slidenum").innerText = slideNumber
-}
-
 var changeSlide = function(e) {
     var elem = e.target
     if (elem.tagName == "LI") {
         elem = elem.firstChild
     }
     if (elem.tagName == "A") {
-        if (hasClass(elem, "nav_link")) {
-            elem.click()
-        }
-        else {
-            slideNumber = parseInt(elem.hash.slice(1))
-            setActive()
-            disableArrows()
+        if (!hasClass(elem, "nav_link")) {
             triggerSummary()
         }
+        elem.click()
     }
 }
 
@@ -121,11 +34,13 @@ var triggerSummary = function() {
     var active = hasClass(summaryTrigger, "active")
     if (active) {
         removeClass(summary, "visible")
+        addClass(summary, "hidden")
         summaryTrigger.innerText = ">"
         removeClass(summaryTrigger, "active")
     }
     else {
         addClass(summary, "visible")
+        removeClass(summary, "hidden")
         summaryTrigger.innerText = "<"
         addClass(summaryTrigger, "active")
     }
@@ -138,42 +53,7 @@ var closeSummary = function(e) {
     }
 }
 
-var keyEventParser = function(e) {
-    var elem = e.target;
-
-    if (e.keyCode == '39' || e.keyCode == '108') {
-        // -> RIGHT
-        nextSlide();
-    } else if (e.keyCode == '37' || e.keyCode == '106') {
-        // <- LEFT
-        prevSlide();
-    }
-}
-
-var loadTryHaskell = function (e) {
-    var editor = byId('editor');
-
-    if (hasClass(editor, 'loaded')) {
-        return;
-    }
-
-    var iframe = document.createElement("IFRAME");
-    addClass(iframe, 'tryit_iframe');
-
-    iframe.setAttribute("src", "http://tryhaskell.org/");
-    editor.innerText = '';
-    editor.appendChild(iframe);
-
-    addClass(editor, 'loaded');
-}
-
 window.addEventListener("load", function() {
-
-
-    arrows.prev = byId("prev")
-    arrows.next = byId("next")
-    arrows.prev.addEventListener("click", prevSlide, false)
-    arrows.next.addEventListener("click", nextSlide, false)
 
     summary = byId("summary")
     summaryTrigger = byId("trigger_summary")
@@ -188,16 +68,11 @@ window.addEventListener("load", function() {
 
     slides = document.getElementsByClassName("slide")
 
-    setActive()
-
-    disableArrows()
-
     summaryTrigger.addEventListener("click", triggerSummary, false)
 
     summary.addEventListener("click", changeSlide)
 
     document.addEventListener("click", closeSummary);
-    document.addEventListener("keyup", keyEventParser);
 
     (function(i,s,o,g,r,a,m){
         i['GoogleAnalyticsObject']=r;

@@ -16,8 +16,8 @@
         </div>
     </div>
     <div class="content">
-        <div class="part_two">
-            <h2>2. Eta-conversion</h2>
+        <div class="tutorial">
+            <h2>3. Eta-conversion</h2>
             <p>Mēs jau vairākas reizes esam izmantojuši procesu, kas saucas eta-reduction. Ir pienācis laiks izpētīt šo procesu.</p>
             <p>Ja mēs redzam vienkāršu situāciju, kur funkcijai tiek padots arguments un ar to tiek izpildītas taisnas darbības, mēs varam pierakstīt funkciju, nerakstot tās argumentus. Piemēram, funkcijas <span class="grey">foo a = (bar . baz) a</span> un <span class="grey">foo = bar . baz</span> ir pilnībā vienādas. Ar vairākiem argumentiem process ir līdzīgs - <span class="grey">foo a b = a + b</span> - atcerēsimies, ka šis ir ekvivalents prefix pierakstam <span class="grey">foo a b = (+) a b</span> un beigās eta-reducējam uz <span class="grey">foo = (+)</span>. Pēdējā piemērā mēs varam izmantot arī daļējo eta-reduction - <span class="grey">foo a b = (+) a b</span> var pierakstīt kā <span class="grey">foo a = (+) a</span>.</p>
             <p>Izmantot eta-reduction funkcijās ar vairākiem argumentiem vajag piesardzīgi, ir svarīga argumentu secība. Piemēram, ja ir funkcija <span class="grey">foo a b = (/) b a</span>, jūs nevarat pateikt, ka <span class="grey">foo = (/)</span>. Šeit var palīdzēt funkcija <span class="grey">flip</span>, kas padod divus argumentus funkcijai pretējā secībā. Funkcijas flip kods ir <span class="grey">flip f x y = f y x</span>. Mūsu gadījumā mēs varam pateikt, ka <span class="grey">foo a b = flip (/) a b</span>, un šo jau var reducēt uz <span class="grey">foo = flip (/)</span>.</p>

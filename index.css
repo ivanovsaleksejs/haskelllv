@@ -67,8 +67,7 @@ h1 {
 .content {
     box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
-    padding: 0 4em;
+    justify-content: center;
     width: 100%;
 }
 
@@ -85,10 +84,6 @@ h1 {
     z-index: 4;
 }
 #summary {
-    -webkit-animation-name: hideSummary;
-    -webkit-animation-duration: .3s;
-    animation-name: hideSummary;
-    animation-duration: .3s;
     background: #fff none repeat scroll 0 0;
     border: 1px solid #ababab;
     left: -20em;
@@ -96,6 +91,12 @@ h1 {
     padding: .4em;
     position: fixed;
     z-index: 3;
+}
+#summary.hidden {
+    -webkit-animation-name: hideSummary;
+    -webkit-animation-duration: .3s;
+    animation-name: hideSummary;
+    animation-duration: .3s;
 }
 #summary.visible {
     -webkit-animation-name: showSummary;
@@ -148,42 +149,27 @@ h1 {
     font-weight: bold;
 }
 .content .tutorial {
-    height: 32em;
     overflow: hidden;
     position: relative;
-    width: 60%;
+    width: 70%;
+    min-width: 62em;
 }
 
 .content .tutorial .wrapper {
-    position: absolute;
-    width: 200%;
     margin: 4em 0;
 }
-.content .tryit_wrapper {
-    width: 35%;
-}
-.content .tryit {
-    width: 100%;
-    height: 32em;
-}
-.content .tryit .tryit_iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-}
-.content .tryit_buttons a {
-    background: #311d41;
-    color: white;
-    padding: 2px 4px;
+.content hr {
+    color: #e3e3e3;
+    margin: 3em 0;
 }
 .content h2, .content h3 {
-    margin: 1em 0 0;
+    margin: 2em 0 0;
 }
 .content h2 {
     font-size: 1.5em;
 }
 .content p, .content u {
-    font-size: 1em;
+    font-size: 1.2em;
     margin: .5em 0 0;
     line-height:1.5em;
 }
@@ -222,126 +208,7 @@ h1 {
     padding: 0 .2em;
 }
 .content .tutorial .slide {
-    left: 100%;
-    position: absolute;
-    width: 50%;
-}
-.content .tutorial .slide.active {
-    -webkit-animation-name: slide;
-    -webkit-animation-duration: .5s;
-    animation-name: slide;
-    animation-duration: .5s;
-    left: 0;
-}
-.content .tutorial .slide.active.left {
-    -webkit-animation-name: slideLeft;
-    -webkit-animation-duration: .5s;
-    animation-name: slideLeft;
-    animation-duration: .5s;
-    left: 0;
-}
-.content .tutorial .slide.rightside {
-    -webkit-animation-name: slideRight;
-    -webkit-animation-duration: .5s;
-    animation-name: slideRight;
-    animation-duration: .5s;
-    left: -100%;
-}
-.content .tutorial .slide.leftside {
-    -webkit-animation-name: slideOut;
-    -webkit-animation-duration: .5s;
-    animation-name: slideOut;
-    animation-duration: .5s;
-    left: -100%;
-}
-@-webkit-keyframes slide {
-    from {left: 100%}
-    to {left: 0}
-}
-@keyframes slide {
-    from {left: 100%}
-    to {left: 0}
-}
-
-@-webkit-keyframes slideOut {
-    from {left: 0}
-    to {left: 100%}
-}
-@keyframes slideOut {
-    from {left: 0}
-    to {left: 100%}
-}
-
-@-webkit-keyframes slideRight {
-    from {left: 0}
-    to {left: -100%}
-}
-@keyframes slideRight {
-    from {left: 0}
-    to {left: -100%}
-}
-
-@-webkit-keyframes slideLeft {
-    from {left: -100%}
-    to {left: 0}
-}
-@keyframes slideLeft {
-    from {left: -100%}
-    to {left: 0}
-}
-
-.slide-nav {
-    background: #fff none repeat scroll 0 0;
-    font-size: 5em;
-    opacity: .8;
-    position: absolute;
-    text-align: center;
-}
-.slide-button {
-    -webkit-animation-name: fadeOut;
-    -webkit-animation-duration: .5s;
-    animation-name: fadeOut;
-    animation-duration: .5s;
-    cursor: pointer;
-    height: 1em;
-    line-height: 1em;
-    opacity: .1;
-    width: 1em;
-    z-index: 2;
-}
-.slide-button#next {
-    right: 0;
-}
-.slide-button:hover {
-    opacity: .8;
-    -webkit-animation-name: fadeIn;
-    -webkit-animation-duration: .5s;
-    animation-name: fadeIn;
-    animation-duration: .5s;
-}
-#slidenum {
-    width: 100%;
-}
-.slide-button.disabled {
-    opacity: .1 !important;
-}
-@-webkit-keyframes fadeIn {
-    from {opacity: .1}
-    to {opacity: .8}
-}
-
-@keyframes fadeIn {
-    from {opacity: .1}
-    to {opacity: .8}
-}
-@-webkit-keyframes fadeOut {
-    from {opacity: .8}
-    to {opacity: .1}
-}
-
-@keyframes fadeOut {
-    from {opacity: .8}
-    to {opacity: .1}
+    text-align: justify;
 }
 .tooltip {
     background: #ededed none repeat scroll 0 0;
