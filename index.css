@@ -157,6 +157,7 @@ h1 {
 
 .content .tutorial .wrapper {
     margin: 4em 0;
+    text-align: justify;
 }
 .content hr {
     color: #e3e3e3;
