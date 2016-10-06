@@ -177,7 +177,8 @@ table {
     cursor: pointer;
 }
 .content a.link {
-    color: #000;
+    color: #311d41;
+    font-size: 1em;
     text-decoration: underline;
 }
 .content pre {

@@ -43,7 +43,7 @@
                 </ul>
             </div>
             <div class="wrapper">
-                <a name="intro" />
+                <a name="intro"></a>
                 <h2>1. Ievads</h2>
                 <p class="intro">Šī apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju. Savukārt, atbildes uzdevumiem tiks parādītas, uzklikšķinot uz tām.</p>
                 <p>Apmacībā sastāv no vairākām daļām. Pirmajā daļā ir saspiests viss teorētiskais minimums, kas ir vajadzīgs pilnvērtīgai programmēšanai izmantojot Haskell valodu. Nākamās daļas vairak veltītas praktiskiem darbiem un dažādu problemu risināšanai.</p>
@@ -78,9 +78,9 @@ main = print (cube 4)</pre>
                 <pre>cube = (^3)
 
 main = print (cube 4)</pre>
-                <p>Izmantojot šo pieeju (kas saucās eta-conversion un smalkāk tiks izpētīta apmācības otrajā daļā), kods var sanākt ļoti tīrs un daudz lasāmāks.</p>
+                <p>Izmantojot šo pieeju (kas saucās <span class="grey">eta-conversion</span> un smalkāk tiks izpētīta apmācības trešajā daļā), kods var sanākt ļoti tīrs un daudz lasāmāks.</p>
                 <hr />
-                <a name="howto" />
+                <a name="howto"></a>
                 <h2>Kā iesākt</h2>
                 <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform, piemēram</p>
                 <pre>sudo apt-get install haskell-platform</pre>
@@ -120,7 +120,7 @@ au FileType haskell nnoremap &lt;F7&gt :w&ltCR&gt:!ghc % && ./%:t:r&ltCR&gt</pre
 5</pre>
                 <p>Atšķirība starp abiem piemēriem ir tajā, ka pirmais nodefinē funkciju foo, kas eksistēs, kamēr GHCi ir atvērts. Savukārt otrajā foo eksistēs tikai izteikuma robežās - ja mēģināt pēc tam izsaukt <span class="grey">foo 2 3</span>, jūs redzēsiet kļūdu (ja pirms tam neesat nodefinējuši foo ar let).</p>
                 <hr />
-                <a name="types" />
+                <a name="types"></a>
                 <h2>Tipi</h2>
                 <p>Haskell tipu sistēma ir ļoti advancēta un dara ļoti daudz darba, lai nodrošinātu programmas stabilitāti. Bet sākumā ir nepieciešams saprast, kā Haskell funkcijām tiek aprakstīti tipi. Paņemsim elementāru funkciju ar diviem argumentiem:<pre>add a b = a + b</pre></p>
                 <p>Lai aprakstītu šīs funkcijas tipu, tiek izmantots šāds pieraksts:<pre>add :: Int -> Int -> Int</pre></p>
@@ -170,7 +170,7 @@ foo (a, b) = (b, a)</pre>
                 <p>Uzrakstiet funkciju, kas saņem trīs argumentus un saliek tos sarakstā, pretējā secībā.</p>
                 <pre class="spoiler">foo a b c = [c, b, a]</pre>
                 <hr />
-                <a name="arguments" />
+                <a name="arguments"></a>
                 <h2>Argumentu pierakstīšanas iespējas</h2>
                 <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais <span class="grey">pattern matching</span>. Tā pamatdoma ir definēt funkcijas versiju noteiktiem argumentiem vai argumentu šablonam. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
         then 1
@@ -220,7 +220,7 @@ main = print (foo [1, 2, 3])</pre>
                 <pre>first  (a, b) = a
 second (a, b) = b</pre>
                 <hr />
-                <a name="useful" />
+                <a name="useful"></a>
                 <h2>Noderīgas funkcijas</h2>
                 <p>Šeit apkoposim funkcijas, kuras ir noderīgas darbam ar sarakstiem vai pāriem.</p>
                 <p><span class="grey">:</span> - pievienot elementu sarakstam. <span class="grey">1 : [2, 3]</span> atgriezīs <span class="grey">[1, 2, 3]</span></p>
@@ -248,7 +248,7 @@ fib n = fib (n - 1) + fib (n - 2)</pre>
 foo line = last line : foo (init line)</pre>
 
                 <hr />
-                <a name="map_fold" />
+                <a name="map_fold"></a>
                 <h2>Map & Fold</h2>
                 <p>Sarakstiem ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvenās funkcijas darbam ar sarakstiem: <span class="grey">map</span> un <span class="grey">fold</span>. Citās valodās fold tiek saukts par <span class="grey">reduce</span>, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā liste tiek "salikta" vienā vērtībā.</p>
                 <h3>Map</h3>
@@ -288,7 +288,7 @@ foldl f z (x:xs) = foldl f (f z x) xs</pre>
 foo acc char = char : acc
 bar line = foldl foo "" line</pre>
                 <hr />
-                <a name="functions" />
+                <a name="functions"></a>
                 <h2>Funkciju definēšanas iespējas</h2>
                 <h3>Prefix un infix pieraksti</h3>
                 <p>Visbiežāk ir sastopams <span class="grey">prefix</span> pieraksts funkcijām - kad funkcijas nosaukums ir pirms argumentiem. Funkcijām ar 2 argumentiem pastāv iespēja izmantot <span class="grey">infix</span> pierakstu. Lai izmantotu <span class="grey">infix</span> pierakstu funkcijai, kuras nosaukums sastāv no burtiem, mēs varam izmantot <span class="grey">backquote</span> simbolus - <span class="grey">``</span>. Izveidosim funkciju, kas aprēķina procentus no skaitļa:</p>
@@ -324,15 +324,15 @@ main = print ((1 &&& 2) 3)</pre>
                 <p>Izveidojiet funkciju, kas izfiltrē visas patskaņas <span class="grey">(a, e, i, o, u)</span> no rindas, izmantojot anonīmo funkciju.</p>
                 <pre class="spoiler">foo line = filter (\x -> not (elem x "aeiouAEIOU")) line</pre>
                 <hr />
-                <a name="curry" />
+                <a name="curry"></a>
                 <h2>Karings, Kompozīcijas un aplikācijas</h2>
                 <h3>Karings</h3>
                 <p>Karings ir process, kas pārveido funkciju ar vairākiem argumentiem par virkni funkciju ar vienu argumentu. Matemātiskās funkcijas var izmantot tikai vienu argumentu,
                     un tīri funkcionālās valodās funkcijām ir jāatbilst šim noteikumam. Bet, lai atvieglotu programmētāja darbu, tika izveidots mehānisms,
                     kas ļauj veidot funkcijas ar vairākiem argumentiem, nepārkāpjot tīri funkcionālo principu.</p>
-                <p>Piemēram, mēs gribam uztaisīt funkciju <span class="grey">foo a b = a + b</span>. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - <span class="grey">foo a b = (+) a b</span>. Tālāk izdomāsim funkciju <span class="grey">(x -> x + a)</span>. Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvenajā funkcijā: <span class="grey">foo a b = (x -> x + a) b</span>. Un, līdzīgi kā iepriekš, ar <span class="grey">eta reduction</span> vienkāršosim to funkciju: <span class="grey">foo a b = (+a) b</span></p>
+                <p>Piemēram, mēs gribam uztaisīt funkciju <span class="grey">foo a b = a + b</span>. Pirmkārt, pierakstīsim šo funkciju prefix pierakstā - <span class="grey">foo a b = (+) a b</span>. Tālāk izdomāsim funkciju <span class="grey">(x -&gt; x + a)</span>. Mēs redzam, ka šo funkciju mēs varam ievietot mūsu galvenajā funkcijā: <span class="grey">foo a b = (x -&gt; x + a) b</span>. Un, līdzīgi kā iepriekš, ar <span class="grey">eta reduction</span> vienkāršosim to funkciju: <span class="grey">foo a b = (+a) b</span></p>
                 <p>Šis process saucās <span class="grey">karings</span> (currying, no matemātiķa <a href="https://en.wikipedia.org/wiki/Haskell_Curry" target="_blank" class="link">Haskell Curry</a> uzvārda). To dara Haskell kompilators katru reizi, kad tiek izveidota funkcija ar vairākiem parametriem.</p>
-                <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam.</p>
+                <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam. Ja mums ir funkcija <span class="grey">foo a b = a + b</span>, mēs varam to izmantot kā <span class="grey">foo 2 3</span>, vai <span class="grey">(foo 2) 3</span>, pieeja, kas saucās <span class="grey">partial application</span>. Šeit <span class="grey">(foo 2)</span> ir eta-reducēts pieraksts lambda funkcijai <span class="grey">(\x -> foo 2 x)</span>. Kā redzat, ar karingu mēs viegli izveidojam jaunu funkciju. Karings ļauj viegli modificēt kodu, veidojot jaunās funkcijas, vai apvienojot esošās, padarot kodu lasamāku un vieglāk modificējamu.</p>
                 <h3>Kompozīcijas</h3>
                 <p>Kompozīcija ir process, ar kura palīdzību divas funkcijas tiek salīmētas vienā. Kompozīciju operators ir <span class="grey">(.)</span>, piemēram, <span class="grey">foo . bar</span>. Piemērs:</p>
                 <pre>import Data.Char
@@ -369,7 +369,7 @@ f $ x = f x</pre>
                 <pre class="spoiler">foo list = map (^2) $ filter even list</pre>
                 <pre class="spoiler">foo = map (^2) . filter even</pre>
                 <hr />
-                <a name="lazy" />
+                <a name="lazy"></a>
                 <h2>Lazy</h2>
                 <p><span class="grey">Lazy</span> ir programmēšanas princips, kas atliek funkcijas izpildi līdz brīdim, kad tas ir vajadzīgs. Apskatīsim piemēru ar pāri, kuras pirmais elements ir bezgalīgais saraksts, bet otrais ir nulle:</p>
                 <pre>main = print $ fst ([1 ..], 0)</pre>
@@ -416,7 +416,8 @@ isPrime n = all checkRem $ takeWhile checkSquare primes
 main = do
     print $ isPrime 37
     print $ take 10 primes</pre>
-                <p>Konstrukcija <span class="grey">all checkRem</span> pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt <span class="grey">takeWhile checkSquare</span> atlasa elementus no saraksta, kamēr tie ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu pirmskaitli). Funkcija <span class="grey">rem</span> atrod atlikumu no dalīšanas. Operators <span class="grey">/=</span> atgriež <span class="grey">True</span>, ja argumenti nav vienādi (<span class="grey">!=</span> citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejami parent funkcijas argumenti.</p>
+                <p>Konstrukcija <span class="grey">all checkRem</span> pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt <span class="grey">takeWhile checkSquare</span> atlasa elementus no saraksta, kamēr tie ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu pirmskaitli).</p>
+                <p>Funkcija <span class="grey">rem</span> atrod atlikumu no dalīšanas. Operators <span class="grey">/=</span> atgriež <span class="grey">True</span>, ja argumenti nav vienādi (<span class="grey">!=</span> citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejami parent funkcijas argumenti.</p>
                 <h3>List comprehension</h3>
                 <p>List comprehension <span class="grey">(LC)</span> ir mehanisms, kas ļauj ģenerēt sarakstus izmantojot kādu citu sarakstu, funkciju un noteikumus. Vienkāršs piemērs:</p>
                 <pre>odds = [ x | x <- [1, 3 ..]]</pre>
@@ -426,7 +427,7 @@ main = do
                 <p><span class="grey">LC</span> var arī saturēt pārbaudes funkciju. Izmainīsim pēdējo piemēru, ņēmot tikai skaitļus, kuri dalās ar 3:</p>
                 <pre>list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2, x `rem` 3 == 0]</pre>
                 <hr />
-                <a name="type_system" />
+                <a name="type_system"></a>
                 <h2>Tipu sistēma</h2>
                 <p>Tipu sistēma Haskell valodā ir laikam svarīgākais un sarežģītākais temats. Pie Haskell tipu sistēmas ir grūti pierast un dažiem ir grūti to saprast. Bet, ja programmētājs ir apguvis to, ir iemācījies lasīt funkcijas tipus, meklēt funkcijas pēc tipa apraksta un kombinēt funkcijas, tas nozīmēs, ka viņš ir spējīgs uzrakstīt jebkuru programmu izmantojot Haskell valodu.</p>
                 <h3>Tipi un GHCi</h3>
@@ -464,7 +465,7 @@ map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
                 <pre>[(a, b) | a <- [1..10], let b = a^2]</pre>
                 <pre class="spoiler">(Enum t, Num t) => [(t, t)]</pre>
                 <hr />
-                <a name="typeclasses" />
+                <a name="typeclasses"></a>
                 <h2>Tipu klases</h2>
                 <p>Tipu klašu koncepts ir līdzīgs <span class="grey">OOP</span> konceptam <u class="def" id="interface">interface</u>. Tas apraksta, kādas darbības var veikt ar tipa vērtībām. Piemēram, salīdzināšanas funkcijas <span class="grey">(==)</span> tips ir <span class="grey">Eq a => a -> a -> Bool</span>. Mēs redzam tipu klasi <span class="grey">Eq</span>. Pie tās klases pieder visi tipi, kuru vērtības var salīdzināt. Tā, ka tipu mainīgais ir vienāds abiem argumentiem, mēs varam lasīt šo pierakstu šādi: funkcija <span class="grey">(==)</span> saņem divus argumentus vienāda tipa <span class="grey">a</span> un atgriež <span class="grey">Bool</span>, pie tam tipam <span class="grey">a</span> ir jāimplementē tipu klasi <span class="grey">Eq</span>.</p>
                 <p>Funkcija, kas pārbauda, vai viens arguments ir lielāks par otru - <span class="grey">(>)</span>, kurās tips ir <span class="grey">Ord a => a -> a -> Bool</span>. Ord klase apvieno tos tipus, kuru vērtības var būt lielākas vai mazākas par citām tāda paša tipa vērtībām.</p>
@@ -496,7 +497,7 @@ instance Eq Float where
                 <p>Klases var mantot īpašības no vairākām klasēm:</p>
                 <pre>class (Foo a, Bar a) => Baz a where</pre>
                 <hr />
-                <a name="own_types" />
+                <a name="own_types"></a>
                 <h2>Tipu veidošana</h2>
                 <p>Haskell ļauj programmētājam veidot savus tipus, aprakstot iespējamas vērtības:</p>
                 <pre>data Foo = A | B | C | D</pre>
@@ -583,7 +584,7 @@ main = do
     print $ mySqrt 16
     print $ mySqrt (-5)</pre>
                 <hr />
-                <a name="functors" />
+                <a name="functors"></a>
                 <h2>Funktori</h2>
                 <p>Haskell valodā nopietnu lomu spēlē tipu klase <span class="grey">Functor</span>. Tā apvieno visus tipu konstruktorus (vai kontekstus), kuriem ir implementēta funkcija <span class="grey">fmap</span>:</p>
                 <pre>class Functor f where
@@ -616,7 +617,7 @@ Nothing</pre>
                 <pre>λ> fmap (+2) [1 .. 5]
 [3,4,5,6,7]</pre>
                 <hr />
-                <a name="monads" />
+                <a name="monads"></a>
                 <h2>Monādes</h2>
                 <p>Daudzi ir dzirdējuši par monādēm un ka to konceptu ir grūti izprast. Bet ar esošām zināšanām par tipu sistēmu Haskellā Jums pietiks, lai viegli apgūtu šo konceptu.</p>
                 <h3>return</h3>
@@ -654,7 +655,7 @@ class  Monad m  where
                 <p><span class="grey">(>>)</span> ir <span class="grey">(>>=)</span> versija, kas ignorē argumentu - funkcija ir noderīga, lai būvētu virkni neatkarīgo operāciju. Piemēram, <span class="grey">do</span> notaciju var pārrakstīt šādi:</p>
                 <pre>main = print 1 >> print 2</pre>
                 <hr />
-                <a name="functors_monads" />
+                <a name="functors_monads"></a>
                 <h2>Vēlreiz par funktoriem un monādēm</h2>
                 <p>Patreiz Jūms visticamāk ir liela putra, un Jūs jaucat funktorus, monādes un tā tālāk. Tāpēc izveidosim tabulas, lai atšķirtu <span class="grey">Functor</span> un <span class="grey">Monad</span> pamatfunkcijas - <span class="grey">fmap</span>, <span class="grey">return</span> un <span class="grey">(>>=)</span>:</p>
                 <table class="description">
@@ -715,7 +716,7 @@ instance Monad Maybe where
                    Just x  -> g x</pre>
                 <p>Turpmāk visus konstruktorus, kas implementē <span class="grey">Monad</span> klasi, mēs vienkārši sauksim par <span class="grey">monādēm</span>. Tātad, varam teikt, ka <span class="grey">Maybe</span> un <span class="grey">[]</span> ir <span class="grey">monādes</span>.</p>
                 <hr />
-                <a name="io" />
+                <a name="io"></a>
                 <h2>IO Monāde</h2>
                 <p>Mēs jau zinām, kā izvadīt rindu - ar funkciju <span class="grey">print</span>. Tagad, kad mums ir zināšanas par monādēm un tipu klasēm, apskatīsimies funkcijas <span class="grey">print</span> tipu:</p>
                 <pre>λ> :t print
@@ -765,7 +766,7 @@ main = do
     putStrLn $ processString str</pre>
                 <pre class="spoiler">putStrLn "Izvadiet rindu" >> getLine >>=  putStrLn . processString</pre>
                 <hr />
-                <a name="monadic_functions" />
+                <a name="monadic_functions"></a>
                 <h2>Monādiskās funkcijas</h2>
                 <p>Šeit būs sarakstītas noderīgas funkcijas darbībām ar monādēm. Dažas funkcijas nāk noklusējuma pakā (Preludē), dažām ir jāveic atsevišķs <span class="grey">Control.Monad</span> imports.</p>
                 <p><b>(=<<)</b> - pretēja virziena bind funkcija. darbības principu var izprast no funkcijas definīcijas:</p>
@@ -846,7 +847,7 @@ sumDigits = map (show . sum . map toInt) . words
 
 main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigits</pre>
                 <hr />
-                <a name="end" />
+                <a name="end"></a>
                 <h2>Kopsavilkums</h2>
                 <p>Ap šo laiku mēs esam izgājuši cauri galvēniem tematiem, ar ko ir pietiekami, lai apgūtu Haskell pamatus. Apkoposim galvenos jēdzienus, kurus ir jāatceras Haskell programmētājam.</p>
                 <ul class="list">
