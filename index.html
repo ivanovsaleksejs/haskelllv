@@ -45,8 +45,8 @@
             <div class="wrapper">
                 <a name="intro" />
                 <h2>1. Ievads</h2>
-                <p class="intro">Šī apmācība ir domāta cilvēkiem, kas vēlas apgūt Haskell programmēšanas valodu. Apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju. Savukārt, atbildes uzdevumiem tiks parādītas, uzklikšķinot uz tām.</p>
-                <p>Šī apmacībā sastāv no vairākām daļām. Pirmajā daļā ir saspiests viss teorētiskais minimums, kas ir vajadzīgs pilnvērtīgai programmēšanai izmantojot Haskell valodu. Nākamās daļas vairak veltītas praktiskiem darbiem un dažādu problemu risināšanai.</p>
+                <p class="intro">Šī apmācība, pirmkārt, ir domāta tiem, kas jau māk programmēt citās valodās. Bet, ja Jums nav pieredzes programmēšanā vai kaut kāds termins nav saprotams, tad Jūs varat uzbraukt ar peli uz pasvītrotajiem terminiem un izlasīt definīciju. Savukārt, atbildes uzdevumiem tiks parādītas, uzklikšķinot uz tām.</p>
+                <p>Apmacībā sastāv no vairākām daļām. Pirmajā daļā ir saspiests viss teorētiskais minimums, kas ir vajadzīgs pilnvērtīgai programmēšanai izmantojot Haskell valodu. Nākamās daļas vairak veltītas praktiskiem darbiem un dažādu problemu risināšanai.</p>
                 <h3>Kas ir Haskell</h3>
                 <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir <u id="pure" class="def">tīri funkcionāla</u>, bet tajā paša laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvu</u> kodu. Tai ir ļoti attīstīta <u id="type" class="def">tipu</u> sistēma, kas ļauj izvairīties no daudzām kļūdām. Ir pat pieņemts uzskatīt, ka ja Haskell programma kompilējas, tad tā gandrīz nesatur kļūdas.</p>
                 <p>Haskell valodai ir diezgan daudz sintakses iespēju (pattern matching, kompozīcijas, eta-conversion), kas ļauj rakstīt lakonisku un saprotamu kodu. Haskell valodā praktiski nav <u id="boilerplate" class="def">boilerplate</u> elementu (atslēgvārdi function vai return, funkciju vai argumentu delimiteri). Haskell valodā ir ļoti maz dažādu elementu, no kuriem sastāv programma, atšķirībā no <u id="oop" class="def">OOP</u> valodām.</p>
@@ -139,6 +139,7 @@ au FileType haskell nnoremap &lt;F7&gt :w&ltCR&gt:!ghc % && ./%:t:r&ltCR&gt</pre
                 <p>Saraksta elementiem ir jābūt viena tipa. Izveidojot sarakstu ar jauktiem tipiem, piemēram, <span class="grey">[1, 'a']</span> izsauks kompilācijas kļūdu.</p>
                 <p>Simbolu saraksts atzīmējas kā saraksts <span class="grey">[Char]</span> vai ar tā sinonīmu, <span class="grey">String</span>. Lai izveidotu String tipa mainīgo, vajag izmantot dubultpēdiņas - <span class="grey">"abcd"</span>. Tas pieraksts ir <u id="sugar" class="def">sintaktiskais atvieglojums</u> simbolu sarakstam - <span class="grey">['a', 'b', 'c', 'd']</span>.</p>
                 <p>Atšķirībā no tādām valodām kā PHP vai JavaScript, Haskell piespiež programmētāju izmantot vajadzīgā veida pēdiņas. Tas nozīmē, ka konstrukcija <span class="grey">'abcd'</span> izsauks kompilācijas kļūdu - Haskell gaida, ka ar <span class="grey">''</span> ir definēts <span class="grey">Char</span> tipa mainīgais, nevis <span class="grey">[Char]</span>. Savukārt konstrukcija <span class="grey">"a"</span> neizsauks kļūdu, bet izveidos <span class="grey">[Char]</span> tipa mainīgo.</p>
+                <p>Haskell valodā visbiežāk tiek izmantota funkcija <span class="grey">:</span> - pievienot elementu pie saraksta sākuma. Piemēram, <span class="grey">1 : [2, 3]</span> atgriež <span class="grey">[1, 2, 3]</span>, <span class="grey">'a' : "bc"</span> atgriež <span class="grey">"abc"</span>.</p>
                 <h3>Pāri</h3>
                 <p>Pāris ir konstrukcija, kas var būt pazīstama Python programmētājiem. Pāris satur divus elementus, kuriem var būt dažādi tipi, piemēram, <span class="grey">(1, "abcd")</span>.</p>
                 <p>Pāris var sastāvēt no vairākiem elementiem, piemēram, <span class="grey">(1, "Jānis Bērziņš", 1987)</span>. Bet funkcijas, kas ir domātas pāriem no diviem elementiem, nestrādās ar pāriem no vairākiem elementiem, piemēram:</p>
@@ -159,9 +160,9 @@ main = print $ bar foo 3 4</pre>
                 <pre>bar :: (Int -> Int) -> Int -> Int -> Int</pre>
                 <p>Šo var izlasīt šādi: pirmais arguments ir funkcija ar tipu (Int -> Int), otrais arguments ir Int, trešais arguments ir Int, rezultāts ir Int.<p>
                 <h3>Uzdevumi</h3>
-                <p>Šeit būs nelieli uzdevumi, kuru atbildes ir paslēptas zemāk (uzklikšķiniet, lai to redzētu).</p>
+                <p>Šeit būs nelieli uzdevumi, kuru atbildes ir paslēptas zemāk (uzklikšķiniet uz tumšiem laukiem, lai redzētu atbildes).</p>
                 <p>Izdomājiet galvā tipu funkcijai <span class="grey">foo a b = toUpper a : b</span>.</p>
-                <pre class="spoiler">Char -> [Char] -> [Char]</pre>
+                <pre class="spoiler">foo :: Char -> [Char] -> [Char]</pre>
                 <p>Uzrkastiet funkciju, kas maina vietām pāra elementus.</p>
                 <pre class="spoiler">foo pair = (snd pair, fst pair)
 vai
@@ -171,17 +172,24 @@ foo (a, b) = (b, a)</pre>
                 <hr />
                 <a name="arguments" />
                 <h2>Argumentu pierakstīšanas iespējas</h2>
-                <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais pattern mattching. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
+                <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais <span class="grey">pattern matching</span>. Tā pamatdoma ir definēt funkcijas versiju noteiktiem argumentiem vai argumentu šablonam. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
         then 1
-        else n * fact (n - 1)</pre></p>
+        else n * fact (n - 1)
+
+main = print (fact 5)</pre></p>
                 <p>Mēs varam padarīt to nedaudz lasāmāku ar guard simboliem:</p>
                 <pre>fact n
     | n == 0    = 1
-    | otherwise = n * fact (n - 1)</pre>
-                <p>vai definējot funkciju specifiskai vērtībai:
+    | otherwise = n * fact (n - 1)
+
+main = print (fact 5)</pre>
+                <p>Bet pattern matching ļauj definēt funkcijas versijas noteiktajām vērtībām:</p>
                 <pre>fact 0 = 1
-fact n = n * fact (n - 1)</pre>
-                <h3>Pattern matchihng sarakstiem</h3>
+fact n = n * fact (n - 1)
+
+main = print (fact 5)</pre>
+                <p>Ar šo kodu mēs nodefinējam divas fact funkcijas versijas - viena izpildas kad arguments ir vienāds ar 0, bet otra - visos pārējos gadījumos.</p>
+                <h3>Pattern matching sarakstiem</h3>
                 <p>Haskell atbalsta pattern matching iespējas, kas ir domātas sarakstiem. Piemēram, var definēt funkcijas versiju tukšam sarakstam vai izdalot saraksta elementus.</p>
                 <p>Izveidosim funkciju, kas pārveido vārda pirmo burtu augšējā reģistrā (atceramies, ka rinda ir simbolu saraksts):</p>
                 <pre>import Data.Char
@@ -190,34 +198,47 @@ cap [] = ""
 cap (x:xs) = toUpper x : xs
 
 main = print (cap "hello")</pre>
-                <p>Pirmā rinda pievieno bibliotēku <span class="grey">Data.Char</span>, kas satur funkciju <span class="grey">toUpper</span>. Nākamā rinda definē funkcijas <span class="grey">cap</span> versiju gadījumam, ja tiek padots tukšs saraksts - tajā gadījumā mēs atgriežam tukšu sarakstu.</p>
-                <p>Nākamajā rindā mēs ar pattern matching pierakstu <span class="grey">(x:xs)</span> atdalam pirmo elementu <span class="grey">x</span> no pārējas listes <span class="grey">xs</span>. Mēs ieceļam to simbolu augšējā reģistrā ar <span class="grey">toUpper</span> un tad pievienojam pie pārējā saraksta ar <span class="grey">:</span> operatoru.</p>
+                <p>Pirmā rinda pievieno bibliotēku <span class="grey">Data.Char</span>, kas satur funkciju <span class="grey">toUpper</span>.</p>
+                <p>Nākamajā rindā mēs izmantojam šablonu <span class="grey">[]</span>, kas definē funkcijas <span class="grey">cap</span> versiju gadījumam, ja tiek padots tukšs saraksts - tajā gadījumā mēs atgriežam tukšu sarakstu.</p>
+                <p>Nākamajā rindā mēs ar šablonu <span class="grey">(x:xs)</span> atdalam pirmo elementu <span class="grey">x</span> no pārējas listes <span class="grey">xs</span>. Tas pieraksts nozīmē, ka šajā funkcijas versijā ir pieejami 2 argumenti - x, kas ir pirmais saraksta elements, un xs, kas ir atlikušais saraksts. Mūsu gadījumā x ir rindas pirmais simbols. Mēs ieceļam to simbolu augšējā reģistrā ar <span class="grey">toUpper</span> un tad pievienojam pie pārējā saraksta ar <span class="grey">:</span> operatoru.</p>
+                <p>Šablons <span class="grey">(x:xs)</span> tiek izmantots ļoti bieži. Tāpēc ir jāņem vērā nosacījums: tas pieprasa, lai sarakstā būtu vismaz viens elements. Ar šo šablonu var izdalīt arī vairākus elementus, piemēram, <span class="grey">(x1:x2:x3:xs)</span> - šeit, ja padot sarakstu <span class="grey">[1, 2, 3, 4, 5]</span>, x1 būs 1, x2 būs 2, x3 būs 3, bet xs būs [4, 5]. Ir iespēja veidot funkcijas versiju sarakstam ar vienu elementu - <span class="grey">(x:[])</span>, bet ērtāk dabūt to pašu ar šablonu <span class="grey">[x]</span>.</p>
                 <h3>Citas pattern matching iespējas</h3>
-                <pre>foo n@123 = n
+                <p>Ir iespēja veidot funkciju, kurā ir definēts gan arguments, gan tā šablons. Piemēram:</p>
+                <pre>foo n@123 = n*2
 foo _ = 456
 
 main = do
     print (foo 123)
     print (foo 111)</pre>
-                <p>Pirmā rinda definē funkciju <span class="grey">foo</span> gadījumam, ja arguments <span class="grey">n</span> ir vienāds ar <span class="grey">123</span>. Otrā rindā pattern <span class="grey">_</span> tiek izmantots, lai pilnībā ignorētu argumentu.</p>
+                <p>Pirmā rinda definē funkciju <span class="grey">foo</span> gadījumam, ja arguments <span class="grey">n</span> ir vienāds ar <span class="grey">123</span>. Otrā rindā šablons <span class="grey">_</span> tiek izmantots, lai pilnībā ignorētu argumentu.</p>
+                <p>Cits piemērs ar sarakstiem. Teiksim, mums vajag paņemt sarakstu un tam klāt pielikt vēlreiz to pašu sarakstu, bet bez pirma elementa:</p>
+                <pre>foo list@(x:xs) = list ++ xs
+
+main = print (foo [1, 2, 3])</pre>
+                <p>Rezultāts būs <span class="grey">[1, 2, 3, 2, 3]</span>.</p>
+                <p>Var definēt šablonus pāriem:</p>
                 <pre>first  (a, b) = a
 second (a, b) = b</pre>
-                <p>Atdalām pāra elementus.</p>
                 <hr />
                 <a name="useful" />
                 <h2>Noderīgas funkcijas</h2>
                 <p>Šeit apkoposim funkcijas, kuras ir noderīgas darbam ar sarakstiem vai pāriem.</p>
                 <p><span class="grey">:</span> - pievienot elementu sarakstam. <span class="grey">1 : [2, 3]</span> atgriezīs <span class="grey">[1, 2, 3]</span></p>
                 <p><span class="grey">++</span> - salīmēt divus sarakstus. <span class="grey">[1, 2] ++ [3, 4, 5]</span> atgriezīs <span class="grey">[1, 2, 3, 4, 5]</span></p>
-                <p><span class="grey">fst</span>, <span class="grey">snd</span> - atgiež 2 elementu pāra pirmo un otro elementu respektīvi.</p>
+                <p><span class="grey">fst</span>, <span class="grey">snd</span> - atgiež divu elementu pāra pirmo un otro elementu respektīvi. <span class="grey">fst (1, 2)</span> atgriezis <span class="grey">1</span>.</p>
                 <p><span class="grey">head</span>, <span class="grey">last</span> - atgriež saraksta pirmo vai pēdējo elementu respektīvi. <span class="grey">head [1, 2, 3]</span> atgriezīs <span class="grey">1</span></p>
                 <p><span class="grey">init</span>, <span class="grey">tail</span> - atgriež sarakstu bez pēdējā vai pirmā elementa respektīvi. <span class="grey">tail [1, 2, 3]</span> atgriezīs <span class="grey">[2, 3]</span></p>
                 <p><span class="grey">filter</span> - filtrēt sarakstu, izmantojot funkciju. <span class="grey">filter odd [1..10]</span> atgriezīs <span class="grey">[1, 3, 5, 7, 9]</span></p>
                 <p><span class="grey">all</span> - pārbaudīt, vai visi elementi atbilst nosacījumam. <span class="grey">all odd [1, 3, 4, 5, 7]</span> atgriezīs <span class="grey">False</span></p>
                 <p><span class="grey">any</span> - pārbaudīt, vai kaut viens elements atbilst nosacījumam. <span class="grey">any odd [2, 4 .. 10]</span> atgriezīs <span class="grey">False</span></p>
                 <p><span class="grey">elem</span> - pārbaidīt, vai elements ir sarakstā. <span class="grey">elem 3 [1 .. 10]</span> atgriezīs <span class="grey">True</span></p>
-                <p><span class="grey">!!</span> - atgriezt sarakstes n-to elementu. <span class="grey">['a'..'z'] !! 3</span> atgriezīs <span class="grey">'d'</span> (elementus sāk skaitīt no 0)</p>
+                <p><span class="grey">not</span> - pieņem Boolean tipa argumentu, atgriež <span class="grey">True</span>, ja arguments ir <span class="grey">False</span>, vai <span class="grey">False</span>, ja arguments ir <span class="grey">True</span>.</p>
+                <p><span class="grey">!!</span> - atgriezt saraksta n-to elementu. <span class="grey">['a'..'z'] !! 3</span> atgriezīs <span class="grey">'d'</span> (elementus sāk skaitīt no 0)</p>
                 <h3>Uzdevumi</h3>
+                <p>Uzrakstiet funkcijas first, second un third, kas ir domātas pāriem ar trijiem elementiem.</p>
+                <pre class="spoiler">first  (a, b, c) = a
+second (a, b, c) = b
+third  (a, b, c) = c</pre>
                 <p>Uzrakstiet rekursīvo funkciju, kas aprēķina n-to Fibonacci skaitli.</p>
                 <pre class="spoiler">fib 0 = 0
 fib 1 = 1
@@ -225,6 +246,7 @@ fib n = fib (n - 1) + fib (n - 2)</pre>
                 <p>Uzrakstiet rekursīvo funkciju, kas apgriež rindu otrādi.</p>
                 <pre class="spoiler">foo [] = []
 foo line = last line : foo (init line)</pre>
+
                 <hr />
                 <a name="map_fold" />
                 <h2>Map & Fold</h2>
@@ -281,10 +303,17 @@ main = do
 main = do
     print (20 % 160)
     print ((%) 20 160)</pre>
+                <p>Infix pieraksts ļauj definēt funkcijas ar vairāk ka 2 argumentiem:</p>
+                <pre>(a &&& b) c = [a, b, c]
+
+main = print ((1 &&& 2) 3)</pre>
+                <p>Rezultāts būs <span class="grey">[1, 2, 3]</span>.</p>
                 <h3>Anonīmās funkcijas</h3>
                 <p>Anonīmās vai <span class="grey">lambda</span> funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākas kārtas funkcijās (funkcijās, kuras izmanto citas funkcijas kā argumentus). Haskell valoda izmanto šādu pierakstu lambda funkcijām: <span class="grey">(\a -> doSomething a)</span>. Simbols "\" pirms argumenta simbolizē grieķu simbolu lambda. Pati lambda funkciju sintakse ir mantota no <span class="grey">lambda calculus</span>.</p>
                 <p>Piemēram, funkcija, kas kāpina skaitli kvadrātā, izskatīsies šādi: <span class="grey">(\a -> a^2)</span></p>
-                <p>Šis piemērs parāda, kā izmantot lambda funkcijas ar augstākās pakāpes funkciju map:</p>
+                <p>Lambda funkcijas var izmantot kā argumentus augstākās kārtas funkcijām, vai kā pastāvīgas funkcijas:</p>
+                <pre>main = print ((\a -> a^2) 3)</pre>
+                <p>Nākamais piemērs parāda, kā izmantot lambda funkcijas ar augstākās pakāpes funkciju map:</p>
                 <pre>map (\a -> a^2) [1, 2, 3, 4, 5]</pre>
                 <p>Līdzīgi kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkāršot (process saucas <span class="grey">eta reduction</span>):</p>
                 <pre>map (^2) [1, 2, 3, 4, 5]</pre>

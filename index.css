@@ -37,7 +37,6 @@ table {
     font-size: 16px;
     text-decoration: none;
 }
-
 .header {
     height: 5em;
 }
@@ -59,18 +58,13 @@ table {
 .nav a.active, .nav a:hover {
     color: #311d41;
 }
-h1 {
-    font-size: 2em;
-    font-weight: bold;
-    margin: 0 2em;
-}
+
 .content {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
     width: 100%;
 }
-
 #trigger_summary {
     cursor: pointer;
     font-size: 3em;
@@ -148,13 +142,13 @@ h1 {
 #summary a.nav_link {
     font-weight: bold;
 }
+
 .content .tutorial {
     overflow: hidden;
     position: relative;
     width: 70%;
     min-width: 62em;
 }
-
 .content .tutorial .wrapper {
     margin: 4em 0;
     text-align: justify;
@@ -168,6 +162,9 @@ h1 {
 }
 .content h2 {
     font-size: 1.5em;
+}
+.content h3 {
+    font-size: 1.2em;
 }
 .content p, .content u {
     font-size: 1.2em;
@@ -183,7 +180,7 @@ h1 {
     color: #000;
     text-decoration: underline;
 }
-.content pre, .tryit {
+.content pre {
     background: #ededed none repeat scroll 0 0;
     border: 1px solid #ababab;
     font-family: monospace;
@@ -194,9 +191,11 @@ h1 {
 }
 .content pre.spoiler {
     background: #311d41;
+    cursor: pointer;
 }
 .content pre.spoiler.revealed {
     background: #ededed;
+    cursor: initial;
 }
 .content ol {
     margin: 1em 0 0;
@@ -206,10 +205,8 @@ h1 {
 }
 .content .grey {
     background: #cbcbcb;
+    font-size: 1em;
     padding: 0 .2em;
-}
-.content .tutorial .slide {
-    text-align: justify;
 }
 .tooltip {
     background: #ededed none repeat scroll 0 0;
@@ -255,11 +252,29 @@ h1 {
     from {opacity: .9}
     to {opacity: 0}
 }
+ul.links li {
+    margin: .9em 0;
+}
+ul.links a {
+    text-decoration: underline;
+}
+table.description {
+    margin-top: .7em;
+}
+table.description, table.description th, table.description td {
+    border: 1px solid #ababab;
+}
+table.description td, table.description th {
+    padding: .4em;
+}
+
 
 #chat_iframe {
     width: 100%;
     height: 30em;
 }
+
+
 
 @media screen and (max-width: 1070px) {
     * {
@@ -279,19 +294,4 @@ h1 {
     }
 }
 
-ul.links li {
-    margin: .9em 0;
-}
-ul.links a {
-    text-decoration: underline;
-}
 
-table.description {
-    margin-top: .7em;
-}
-table.description, table.description th, table.description td {
-    border: 1px solid #ababab;
-}
-table.description td, table.description th {
-    padding: .4em;
-}
