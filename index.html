@@ -313,7 +313,7 @@ main = print ((1 &&& 2) 3)</pre>
                 <p>Piemēram, funkcija, kas kāpina skaitli kvadrātā, izskatīsies šādi: <span class="grey">(\a -> a^2)</span></p>
                 <p>Lambda funkcijas var izmantot kā patstāvīgas funkcijas:</p>
                 <pre>main = print ((\a -> a^2) 3)</pre>
-                <p>vai kā argumentus augstākās kārtas funkcijām, piemēram map:</p>
+                <p>vai kā argumentus augstākas kārtas funkcijām, piemēram, map:</p>
                 <pre>map (\a -> a^2) [1, 2, 3, 4, 5]</pre>
                 <p>Līdzīgi kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkāršot (process saucas <span class="grey">eta reduction</span>):</p>
                 <pre>map (^2) [1, 2, 3, 4, 5]</pre>
@@ -589,12 +589,12 @@ main = do
                 <p>Haskell valodā nopietnu lomu spēlē tipu klase <span class="grey">Functor</span>. Tā apvieno visus tipu konstruktorus (vai kontekstus), kuriem ir implementēta funkcija <span class="grey">fmap</span>:</p>
                 <pre>class Functor f where
     fmap :: (a -> b) -> f a -> f b</pre>
-                <p>Pats <span class="grey">Functor</span> klases apraksts ir ļoti interesants. Mēs redzam, ka, ja agrāk mēs izmantojam klases parametru kā <span class="grey">tipu</span>, tad šeit <span class="grey">f</span> tiek izmantots kā <span class="grey">tipu konstruktors</span>. Tas nozīmē, ka kad tiks veidota Functor instance, tai vajadzēs padot nevis tipu, bet tipa konstruktoru, piemēram <span class="grey">Maybe</span>.</p>
+                <p>Pats <span class="grey">Functor</span> klases apraksts ir ļoti interesants. Mēs redzam, ka, ja agrāk mēs izmantojām klases parametru kā <span class="grey">tipu</span>, tad šeit <span class="grey">f</span> tiek izmantots kā <span class="grey">tipu konstruktors</span>. Tas nozīmē, ka tad, kad tiks veidota Functor instance, tai vajadzēs padot nevis tipu, bet tipa konstruktoru, piemēram, <span class="grey">Maybe</span>.</p>
                 <h3>fmap</h3>
                 <p>Mēs redzam, ka <span class="grey">fmap</span> funkcijai ir divi argumenti. Pirmais ir funkcija, kas pieņem tipu <span class="grey">a</span> un atgriež tipu <span class="grey">b</span>. Savukārt, otrs arguments ir tips <span class="grey">a</span>, bet ar tipa konstruktoru <span class="grey">f</span> un <span class="grey">fmap</span> rezultātam ir tips <span class="grey">b</span> ar kontekstu <span class="grey">f</span>. Var saprast, ka <span class="grey">fmap</span> ir domāta, lai izņemtu vērtību tipa <span class="grey">a</span> no <span class="grey">f</span> konteksta, izpildītu funkciju <span class="grey">(a -> b)</span> izmantojot to vērtību, un rezultātu iepakotu atpakaļ <span class="grey">f</span> kontekstā.</p>
                 <p>Skaidrs, ka šo saprast var būt grūti, tāpēc turpināsim ar piemēriem.</p>
                 <h3>Funktoru piemēri</h3>
-                <p>Paņemsim mums zināmu konstruktoru <span class="grey">Maybe</span>. Ja mums ir tips <span class="grey">Maybe Int</span> un vērtība piemēram <span class="grey">Just 5</span>, mēs nevaram izdarīt operacijas, kuras parasti ir pieejamas ar tipu <span class="grey">Int</span>. Piemēram, funkcijas (+2) tips ir Num a => a -> a bez tipu konstruktora. Šis kods izsauks kļūdu:</p>
+                <p>Paņemsim mums zināmu konstruktoru <span class="grey">Maybe</span>. Ja mums ir tips <span class="grey">Maybe Int</span> un vērtība, piemēram, <span class="grey">Just 5</span>, mēs nevaram izdarīt operacijas, kuras parasti ir pieejamas ar tipu <span class="grey">Int</span>. Piemēram, funkcijas (+2) tips ir Num a => a -> a bez tipu konstruktora. Šis kods izsauks kļūdu:</p>
                 <pre>λ> (+2) $ Just 5</pre>
                 <p>Bet mēs zinām, ka <span class="grey">fmap</span> var atbrīvot vērtību no datu konstruktora konteksta un izpildīt funkciju, kas var strādāt ar šo tipu:</p>
                 <pre>λ> fmap (+2) $ Just 5
@@ -645,7 +645,7 @@ Just 7
 Just 7
 λ> (>>=) [4,5] foo
 [6,7]</pre>
-                <p>Haskell pats saprot, kādā kontekstā vajag iepakot vērtību - to var izprast no pirma argumenta. Ja vēlreiz apskatīsimies <span class="grey">(>>=)</span> tipu, mēs redzēsim, ka visur tiek izmantots viens un tāds pats konteksts m. Ja mēs mēģinātu implementēt <span class="grey">(>>=)</span> versiju, kura saņem argumentu vienā kontekstā, piemēram <span class="grey">Maybe</span>, bet atgriež citā, piemēram <span class="grey">[]</span>, tad Haskell parādītu kļūdu, jo <span class="grey">(>>=)</span> tipa apraksts pieprasa, lai konteksts būtu vienāds. Tas ir viens no piemēriem, kā Haskell tipu sistēma kontrolē programmas pareizo darbību.</p>
+                <p>Haskell pats saprot, kādā kontekstā vajag iepakot vērtību - to var izprast no pirmā argumenta. Ja vēlreiz apskatīsimies <span class="grey">(>>=)</span> tipu, mēs redzēsim, ka visur tiek izmantots viens un tas pats konteksts m. Ja mēs mēģinātu implementēt <span class="grey">(>>=)</span> versiju, kura saņem argumentu vienā kontekstā, piemēram, <span class="grey">Maybe</span>, bet atgriež citā, piemēram, <span class="grey">[]</span>, tad Haskell parādītu kļūdu, jo <span class="grey">(>>=)</span> tipa apraksts pieprasa, lai konteksts būtu vienāds. Tas ir viens no piemēriem, kā Haskell tipu sistēma kontrolē programmas pareizu darbību.</p>
                 <p>Pievērsiet uzmanību, ka <span class="grey">(>>=)</span> var ērti izmantot <span class="grey">infix</span> pierakstā:</p>
                 <pre>λ> Just 5 >>= foo
 Just 7</pre>
@@ -713,7 +713,7 @@ class  Monad m  where
                     </tr>
                 </table>
                 <br />
-                <p>Funkciju return saprast ir viegli. Ir vērts iegaumēt galvēnas atšķirības starp <span class="grey">fmap</span> un <span class="grey">(>>=)</span>. Pirmkārt, <span class="grey">fmap</span> pirmais arguments ir funkcija, otrais ir vērtība, savukārt, <span class="grey">(>>=)</span> pirmais arguments ir vērtība, otrais ir funkcija. Otrkārt, <span class="grey">fmap</span> izmantota funkcija atgriež vērtību bez konteksta (kontekstu veido pati <span class="grey">fmap</span> funkcija), savukārt, <span class="grey">(>>=)</span> izmantota funkcija pati atgriež vērtību kontekstā, un <span class="grey">(>>=)</span> nedara papildus darbību.</p>
+                <p>Funkciju return saprast ir viegli. Ir vērts iegaumēt galvenās atšķirības starp <span class="grey">fmap</span> un <span class="grey">(>>=)</span>. Pirmkārt, <span class="grey">fmap</span> pirmais arguments ir funkcija, otrais ir vērtība, savukārt <span class="grey">(>>=)</span> pirmais arguments ir vērtība, otrais ir funkcija. Otrkārt, <span class="grey">fmap</span> izmantotā funkcija atgriež vērtību bez konteksta (kontekstu veido pati <span class="grey">fmap</span> funkcija), savukārt <span class="grey">(>>=)</span> izmantotā funkcija pati atgriež vērtību kontekstā un <span class="grey">(>>=)</span> nedara papildus darbību.</p>
                 <p>Tātad, lai tipu konstruktors (vai konteksts) varētu izmantot <span class="grey">fmap</span>, tam ir jābūt definētai <span class="grey">Functor</span> instancei. Savukārt, lai konteksts varētu izmantot <span class="grey">(>>=)</span> un <span class="grey">return</span>, tam ir jābūt definētai <span class="grey">Monad</span> instancei.</p>
                 <p>Mūsu zināmiem konstruktoriem <span class="grey">Maybe</span> un <span class="grey">[]</span> arī ir sarakstītas <span class="grey">Monad</span> instances:</p>
                 <pre>instance Monad [] where
