@@ -808,11 +808,11 @@ Nothing
                 <p>Interesants fakts par <span class="grey">id</span> funkciju - tā ir vienīgā tīra funkcija, kuras tips ir <span class="grey">a -> a</span>, bez konteksta. Padomājiet, kāpēc tieši tā, kā arī padomājiet, kāpēc <span class="grey">join</span> definīcija ir tieši tāda.</p>
                 <p>Atgriežoties pie join - tās tips ir <span class="grey">Monad m => m (m a) -> m a</span>. Vēlreiz Jūs varat pamanīt, ka ar Haskell funkcijām bieži darbības principu var saprast, izpētot tās tipu.</p>
                 <br />
-                <p><b>liftM (Control.Monad)</b> - Pārveidot funkciju <span class="grey">a -> b</span> par <span class="grey">m a -> m b</span>. Piemēram, mēs padodam funkciju <span class="grey">sqrt</span>, izteikuma <span class="grey">liftM sqrt</span> rezultāts būs jauna funkcija <span class="grey">ma -> mb</span>. Kā var noprast, šī jaunā funkcija pieņem vērtību kontekstā un atgriež vērtību kontekstā. Piemērs:</p>
+                <p><b>liftM (Control.Monad)</b> - Pārveidot funkciju <span class="grey">a -> b</span> par <span class="grey">m a -> m b</span>. Piemēram, mēs padodam funkciju <span class="grey">sqrt</span>, izteikuma <span class="grey">liftM sqrt</span> rezultāts būs jauna funkcija ar tipu <span class="grey">m a -> m b</span>. Kā var noprast, šī jaunā funkcija pieņem vērtību kontekstā un atgriež vērtību kontekstā. Piemērs:</p>
                 <pre>λ> (liftM sqrt) (Just 5)
 Just 2.23606797749979</pre>
                 <p>Funkcijas <span class="grey">liftM</span> definīcija:</p>
-                <pre>liftM :: Monad m => (a1 -> r) -> m a1 -> m
+                <pre>liftM :: Monad m => (a1 -> r) -> m a1 -> m r
 liftM f m1 = do
     x1 <- m1
     return (f x1)</pre>
