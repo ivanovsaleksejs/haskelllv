@@ -285,14 +285,9 @@ table.description td, table.description th {
         display: none;
     }
     .content .tutorial {
-        height: 42em;
-        width: 100%;
+        min-width: 0em;
     }
 
-    .content .tryit_wrapper {
-        width: 0%;
-        display: none;
-    }
 }
 
 

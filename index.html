@@ -429,22 +429,25 @@ main = do
                 <hr />
                 <a name="type_system"></a>
                 <h2>Tipu sistēma</h2>
-                <p>Tipu sistēma Haskell valodā ir laikam svarīgākais un sarežģītākais temats. Pie Haskell tipu sistēmas ir grūti pierast un dažiem ir grūti to saprast. Bet, ja programmētājs ir apguvis to, ir iemācījies lasīt funkcijas tipus, meklēt funkcijas pēc tipa apraksta un kombinēt funkcijas, tas nozīmēs, ka viņš ir spējīgs uzrakstīt jebkuru programmu, izmantojot Haskell valodu.</p>
-                <h3>Tipi un GHCi</h3>
-                <p>Pirms laika mēs iemācījamies, kā Haskell valodā tiek pierakstīti tipi funkcijām un datiem. Tagad ir laiks iepazīt Haskell tipu sistēmu padziļināti. Pirmkārt, ir jāsaprot, ka Haskell valodā tips ir ne tikai funkcijām un datiem, bet jebkurai izteiksmei. Haskell programmētājam ir svarīgi būt spējīgam izprast, uz kādu tipu reducējas izteikums. Sākumā to ir grūti darīt galvā, tāpēc ir svarīgi apgūt GHCi.</p>
-                <p>Jebkuras izteiksmes tipu var pārbaudīt ar <span class="grey">:t</span> komandu. Palaidiet GHCi un uzrakstiet:</p>
-                <pre>λ> :t succ</pre>
-                <p>Šeit un turpmāk, komandas un izteikumi, kurus ir jāizpilda GHCi, tiks atzīmētas ar <span class="grey">λ> </span> prefiksu.</p>
-                <p>Jūs redzēsiet atbildi <span class="grey">succ :: Enum a => a -> a</span>. Tagad, ja izpildīsiet:</p>
-                <pre>λ> :t succ 1</pre>
-                <p>atbilde būs <span class="grey">succ 1 :: (Enum a, Num a) => a</span>. Mēģināsim analizēt abus rezultātus, lai saprastu, kāpēc tie atšķirās.</p>
-                <p>Funkcija <span class="grey">succ</span>, kā mēs atceramies, palielina argumentu par 1. Tās tips ir</p>
-                <pre>Enum a => a -> a</pre>
-                <p>Šajā gadījumā <span class="grey">a</span> ir tipu mainīgais. Tipu mainīgie tiek izmantoti, lai atvieglotu tipa pierakstu. Tipu mainīgie ir aprakstīti pirms <span class="grey">=></span> zīmes. Mums patreiz ir svarīga konstrukcija pēc <span class="grey">=></span> zīmes, tas ir <span class="grey">a -> a</span>. Tas nozīmē, ka tiek paņemts arguments ar kaut kādu tipu un tiek atgriezta vērtība ar tādu pašu tipu.</p>
-                <p>Savukārt izteikumam <span class="grey">succ 1</span> tips ir</p>
-                <pre>(Enum a, Num a) => a</pre>
-                <p>, vai ignorējot visu pirms <span class="grey">=></span> zīmes - vienkārši <span class="grey">a</span>. Tas ir tāpēc, ka mēs jau padevām argumentu. Šim izteikumam vairs nevajag padot argumentus, jo tam ir noteikts rezultāts ar tipu <span class="grey">a</span>. Citiem vārdiem, šis izteikums reducējas uz noteikto vērtību.</p>
-                <p>Jūs pamanījāt, ka mēs pagaidām ignorējam <span class="grey">Enum</span> un <span class="grey">Num</span> prefiksus. Tās ir tipu klases, un pie tām mēs nonāksim drīz. Bet pirms tam mēs izskatīsim vēl vienu piemēru izteikumu tipiem.</p>
+                <p>Tipu sistēma Haskell valodā ir laikam svarīgākais un sarežģītākais temats. Pie Haskell tipu sistēmas ir grūti pierast un dažiem ir grūti to saprast. Bet, ja programmētājs ir apguvis to, ir iemācījies lasīt funkcijas tipus, meklēt funkcijas pēc tipa apraksta un kombinēt funkcijas, tas nozīmēs, ka viņš ir spējīgs uzrakstīt jebkuru programmu, izmantojot Haskell valodu. <b>Ir ļoti svarīgi apgūt Haskell tipu sistēmas pamatus, pirms apgūt tādas lietas, kā monādes vai funktori</b>. Tāpēc šo sadaļu nav vēlams izlaist un ir jāapgūst visu materiālu.</p>
+                <h3>Izteiksmju tipi</h3>
+                <p>Pirms laika mēs iemācījamies, kā Haskell valodā tiek pierakstīti tipi funkcijām un datiem. Piemēram, funkcijai <span class="grey">foo</span>, kas saņem divus argumentus ar tipu <span class="grey">Int</span> un atgriež rezultātu ar tipu <span class="grey">Int</span>, apraksts būs sekojošs: <span class="grey">foo :: Int -> Int -> Int</span>. Šeit <span class="grey">-></span> var saukt par <span class="grey">karinga operatoru</span>.</p>
+                <p>Ir jāsaprot, ka Haskell valodā tips ir ne tikai funkcijām un datiem, bet jebkurai izteiksmei. Haskell programmētājam ir svarīgi būt spējīgam izprast, uz kādu tipu reducējas izteikums. Sākumā to ir grūti darīt galvā, tāpēc ir svarīgi apgūt GHCi.</p>
+                <p>Jebkuras izteiksmes tipu var pārbaudīt ar <span class="grey">:t</span> komandu. Kā piemēru izskatīsim funkciju, kas sasumē divus argumentus. Palaidiet GHCi un uzrakstiet:</p>
+                <pre>λ> let add a b = a + b
+
+λ> :t add</pre>
+                <p>Šeit un turpmāk, komandas un izteiksmes, kuras ir jāizpilda GHCi, tiks atzīmētas ar <span class="grey">λ> </span> prefiksu.</p>
+                <p>Jūs redzēsiet atbildi <span class="grey">add :: Num a => a -> a -> a</span>. Tagad, ja izpildīsiet:</p>
+                <pre>λ> :t add 1</pre>
+                <p>atbilde būs <span class="grey">add 1 :: Num a => a -> a</span>. Mēģināsim analizēt abus rezultātus, lai saprastu, kāpēc tie atšķirās.</p>
+                <p>Pirmkārt, mēs pagaidām ignorējam visu, kas ir pirms <span class="grey">=></span> zīmes. Šajā gadījumā <span class="grey">a</span> ir tipu mainīgais. Tipu mainīgie tiek izmantoti, lai atvieglotu tipa pierakstu. Tipu mainīgie ir aprakstīti pirms <span class="grey">=></span> zīmes. Piemēram, ja funkcijas tips ir <span class="grey">a -> b -> a</span>, tad šo ir jāsaprot šādi: pirmais arguments ir jebkāda tipa, otrais arguments var būt jebkāda cita tipa, bet rezultāts ir tāda paša tipa, kā pirmais arguments, jo abiem mēs izmantojam vienādu tipu mainīgo a.</p>
+                <p>Mums patreiz ir svarīga konstrukcija pēc <span class="grey">=></span> zīmes, un funkcijai <span class="grey">add</span> bez argumentiem tā ir <span class="grey">a -> a -> a</span>. Tas nozīmē, ka tiek paņemti divi argumenti ar kaut kādu tipu un tiek atgriezta vērtība ar tādu pašu tipu.</p>
+                <p>Savukārt izteikumam <span class="grey">add 1</span> tips ir <span class="grey">add 1 :: Num a => a -> a</span>, vai ignorējot visu pirms <span class="grey">=></span> zīmes - vienkārši <span class="grey">a -> a</span>. Tas ir tāpēc, ka mēs jau padevām vienu argumentu. Šis izteikuma tips mums ļauj saprast, ka mums šim izteikumam vajag padot vēl vienu argumentu, un tad tas atgriezīs rezultātu.</p>
+                <p>Tagad izpildīsim</p>
+                <pre>λ> :t add 1 3</pre>
+                <p>un redzēsim tipu <span class="grey">add 1 3 :: Num a => a</span>, vai ignorējot visu pirms <span class="grey">=></span> zīmes - vienkārši <span class="grey">a</span> Šim izteikumam vairs nevajag padot argumentus, jo tam ir noteikts rezultāts ar tipu <span class="grey">a</span>. Citiem vārdiem, šis izteikums reducējas uz noteikto vērtību, ko var ātri saprast, jo nav neviena karing operatora.</p>
+                <p>Jūs pamanījāt, ka mēs pagaidām ignorējam <span class="grey">Num</span> prefiksu. Tā ir tipu klase, un pie tām mēs nonāksim drīz. Bet pirms tam mēs izskatīsim vēl vienu piemēru izteikumu tipiem.</p>
                 <br />
                 <p>Izskatīsim piemērus ar funkciju <span class="grey">map</span>:</p>
                 <pre>λ> :t map
@@ -455,8 +458,12 @@ map (+2) :: Num b => [b] -> [b]
 
 λ> :t map (+2) [1..5]
 map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
-                <p>Pirmajā mēs redzam standarta <span class="grey">map</span> definīciju, kas der jebkādiem tipiem. Otrajā mēs redzam, ka pazuda <span class="grey">(a -> b)</span> no tipa, jo mēs jau padevām funkciju <span class="grey">(+2)</span>. Tips ir <span class="grey">[b] -> [b]</span>. Kāpēc ne <span class="grey">[a] -> [b]</span> - tāpēc, ka Haskell saprot, ka <span class="grey">(+2)</span> funkcija atgriež tādu pašu tipu, kāds bija padots, par ko var pārliecināties, izpildot <span class="grey">λ> :t (+2)</span>. Savukārt trešais piemērs jau reducējas uz noteiktu rezultātu, tāpēc tips ir vienkārši <span class="grey">[b]</span>.</p>
+                <p>Pirmajā mēs redzam standarta <span class="grey">map</span> definīciju, kas der jebkādiem tipiem. Otrajā mēs redzam, ka pazuda <span class="grey">(a -> b)</span> no tipa, jo mēs jau padevām funkciju <span class="grey">(+2)</span>. Otrās izteiksmes tips ir <span class="grey">[b] -> [b]</span>. Kāpēc ne <span class="grey">[a] -> [b]</span> - tāpēc, ka Haskell saprot, ka funkcija <span class="grey">(+2)</span> atgriež tādu pašu tipu, kāds bija padots, par ko var pārliecināties, izpildot <span class="grey">λ> :t (+2)</span>. Savukārt trešais piemērs jau reducējas uz noteiktu rezultātu, tāpēc tips ir vienkārši <span class="grey">[b]</span>.</p>
                 <p>Mēs redzam, ka katrā rindā tipu mainīgājiem parādās jaunās tipu klases. Intuitīvi var saprast, ka tās klases ievieš ierobežojumus uz iespējamiem argumentiem. Jūs varat salīdzināt, kā izmainīsies tipu apraksti, ja <span class="grey">(+2)</span> vietā tiktu izmantota funkcija <span class="grey">sqrt</span> (aprēķināt kvadrātsakni).</p>
+                <p>Varbūt kādam jau ienāca prātā doma, ka ja Haskell valodā tips ir gan funkcijām, gan izteiksmēm, tad tās divas lietas ir viens un tas pats. Tas nav tālu no patiesības, jo mēs viegli varam izveidot funkciju no jebkuras izteiksmes. Piemēram, mums ir izteiksme <span class="grey">map (+2)</span> un mēs varam viegli izveidot funkciju no tās izteiksmes:</p>
+                <pre>λ> let mapPlus2 = map (+2)
+λ> mapPlus2 [1,2,3]
+[3,4,5]</pre>
                 <h3>Uzdevumi</h3>
                 <p>Neizmantojot GHCi, pamēģiniet paši uzrakstīt tipu funkcijai</p>
                 <pre>filter (\x -> not $ elem x "aeiou") . map toUpper</pre>
