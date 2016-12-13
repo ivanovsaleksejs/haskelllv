@@ -164,10 +164,10 @@ table {
     font-size: 1.5em;
 }
 .content h3 {
-    font-size: 1.2em;
+    font-size: 1.125em;
 }
-.content p, .content u {
-    font-size: 1.2em;
+.content p, .content u, .content ul li {
+    font-size: 1.125em;
     margin: .5em 0 0;
     line-height:1.5em;
 }
