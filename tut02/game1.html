@@ -18,7 +18,11 @@
     <div class="content">
         <div class="tutorial">
             <div class="wrapper">
-                <h2>4.1. Rakstām spēli Haskell valodā</h2>
+                <div class="tutor_nav">
+                    <a class="link prev" href="/tut02/lists.html">3. Eta-conversion</a>
+                    <a class="link next"></a>
+                </div>
+                <h1>4.1. Rakstām spēli Haskell valodā</h1>
                 <p>Līdz šim brīdim mēs daudz laika veltījām teorijai un maz laika praktiskiem darbiem. Tagad mēs šo kļūdu labosim, veidojot strādājošu kodu Haskell valodā. Rasktīsim spēli, jo tas ļaus apgūt darbu ar ievadi un izvadi, pamācīties, kā tiek izmantoti dati, utt.</p>
                 <p>Veidosim ruletes spēli, kurā spēlētājs varēs ievadīt naudas summu, likmes, mainīt likmes summu. Izmantosim random ģeneratoru, lai saģenerētu skaitli, kas izkrīt. Mēģināsim izmantot visas tehnikas, ko esam iemācījušies iepriekš.</p>
                 <p>Pirmā problēma, kuru ir jāatrisina, ir spēles stāvoklis. Tiešām, Haskell valodā dati nevar mainīties, tāpēc ir jāizdomā veids, kā saglabāt, piemēram, cik spēlētājam palika naudas vai kāda ir likmes summa. Ir vairāki veidi, kā to panākt, viens no populārākiem ir <span class="grey">State</span> monādes izmantošana. Bet šo monādi mēs izskatīsim citreiz, pašlaik izmantosim citu metodi. Metode, ko izmantosim, der parastajām programmām un nav ļoti parocīga ar sarežģītākām programmām. Mēs to izskatīsim tikai izglītošanās nolūkos.</p>

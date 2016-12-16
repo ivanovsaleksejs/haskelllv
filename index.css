@@ -143,6 +143,18 @@ table {
     font-weight: bold;
 }
 
+.tutor_nav {
+    display: flex;
+    justify-content: space-between;
+}
+.tutor_nav .link {
+    font-weight: bold;
+    line-height: 2.3em;
+    width: 30%;
+}
+.tutor_nav .link.next {
+    text-align: right;
+}
 .content .tutorial {
     overflow: hidden;
     position: relative;
@@ -156,6 +168,10 @@ table {
 .content hr {
     color: #e3e3e3;
     margin: 3em 0;
+}
+.content h1 {
+    font-size: 1.875em;
+    text-align: center;
 }
 .content h2, .content h3 {
     margin: 2em 0 0;
