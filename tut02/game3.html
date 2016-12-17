@@ -1,0 +1,205 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Haskell.lv - Rakstām spēli, turpinājums</title>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="header">
+        <img src="/logo.png" id="logo" />
+        <div class="nav">
+           <a href="/" class="active">Apmācība</a>
+           <a href="https://www.haskell.org/downloads" target="_blank">Lejupielādēt</a>
+           <a href="/irc.html">IRC</a>
+           <a href="/links.html">Saites uz citiem resursiem</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="tutorial">
+            <div class="wrapper">
+                <div class="tutor_nav">
+                    <a class="link prev" href="/tut02/game2.html">4.2. Rakstām spēli, turpinājums</a>
+                    <a class="link next"></a>
+                </div>
+                <h1>4.3. Sakārtojām spēles kodu</h1>
+                <h2>Moduļu veidošana</h2>
+                <p>Iepriekšajā sadaļā mēs pabeidzām spēles koda rakstīšanu, bet tas palika nesakārtots. Šoreiz mēs iemācīsimies veidot savus moduļus un importēt tos. Ir pieņemts veidot direktorijas moduļiem un likt moduļus tajās. Ir definēti noteikumi moduļu veidošanai: moduļu nosaukumam vajag sākties ar lielo burtu, kā arī, ar lielu burtu vajag sākties arī visām direktirijām.</p>
+                <p>Izveidosim direktoriju Roulette un tajā izveidosim failu Helpers.hs. Tajā ieliksim mūsu palīgfunkcijas:</p>
+                <pre>module Roulette.Helpers where
+
+import Data.Char hiding (isNumber)
+import Data.List
+import Data.Tuple.Utils
+
+-- Helpers
+
+-- Check if all symbols in string are digits
+isNumber n = n /= "" && all isDigit n
+
+-- Check if string is numbers separated by comma
+checkNumbers = all isNumber . splitBy ','
+
+-- Split string by comma and convert to Int
+toNumbers = nub . map (\x -> read x :: Int) . splitBy ','
+
+-- Split string by delimiter
+splitBy delimiter = foldr checkDelimiter [[]]
+    where
+        checkDelimiter c l@(x:xs)
+            | c == delimiter = [] : l
+            | otherwise      = (c:x) : xs
+
+-- Check if number count is within allowed lengths and all numbers are in [0..36]
+checkList l lengths = (length parsedList) `elem` lengths && all (`elem` [0..36]) parsedList
+    where parsedList = toNumbers l
+
+-- Check if argument is index in list of triples
+inList :: Eq a => a -> [(a, b, c)] -> Bool
+inList index = any (\ x -> index == fst3 x)
+
+-- Find index in list of triples and execute function on that triple
+tripleLookup _ [] _ def = def
+tripleLookup index (l:ls) fn def
+    | fst3 l == index = fn l
+    | otherwise       = tripleLookup index ls fn def</pre>
+                <p>Savukārt, galvēnā failā vajag pievienot rindu:</p>
+                <pre>import Roulette.Helpers</pre>
+                <p>Vēl pārnesīsim funkcijas game, processInput, generateNumber, end, quit un visus datus modulī Roulette.Game:</p>
+                <pre>module Roulette.Game where
+
+import Data.List
+import Data.Tuple.Utils
+
+import System.Random
+
+import Roulette.Helpers
+
+-- Bets
+reds   = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36]
+blacks = [1..36] \\ reds
+
+bets = [
+        ("odd",    [1,3..35],  2),
+        ("even",   [2, 4..36], 2),
+        ("red",    reds,       2),
+        ("black",  blacks,     2),
+        ("1..18",  [1..18],    2),
+        ("19..36", [19..36],   2),
+        ("1..12",  [1..12],    3),
+        ("13..24", [13..24],   3),
+        ("25..36", [25..36],   3)
+    ]
+
+numberBets = [1,3,6]
+
+end s = putStrLn $ "Game ended: " ++ s
+
+quit s = any (`isPrefixOf` s) [":q", "q", "exit"]
+
+game betSize money
+    | money <= 0      = end $ redLine "You lost!"
+    | betSize > money = do
+        putStrLn $ pinkLine $ "Money too low, bet value changed to " ++ (show money) ++ "!"
+        game money money
+    | otherwise       = do
+        putStrLn $ pinkLine $ "Money: " ++ (show money) ++ ". Bet value: " ++ (show betSize)
+        putStrLn "Enter your bet (to change amount of bet enter 'change &lt;number&gt;')"
+        input <- getLine
+        processInput betSize input money
+
+processInput betSize input money
+    | quit input             = end "quit."
+    | change                 = changeValue
+    | simpleBet || numberBet = generateNumber betSize money winners quotient multiplier
+    | otherwise              = wrongInput
+    where
+        change    = isPrefixOf "change" input
+
+        changeValue
+            | validValue = game newValNum money
+            | otherwise  = wrongInput
+            where
+                newVal     = dropWhile (== ' ') $ dropWhile (/= ' ') input
+                newValNum  = read newVal :: Int
+                validValue = isNumber newVal && newValNum >= 1 && newValNum <= money
+
+        wrongInput = do
+            putStrLn $ redLine "Wrong input!"
+            game betSize money
+
+        simpleBet = inList input bets
+        numberBet = checkNumbers input && checkList input numberBets
+
+        numbers  = toNumbers input
+        winners
+            | simpleBet = tripleLookup input bets snd3 []
+            | numberBet = numbers
+
+        quotient
+            | simpleBet = tripleLookup input bets thd3 0
+            | otherwise = 36
+
+        multiplier
+            | simpleBet = 1
+            | otherwise = length numbers
+
+generateNumber betSize money winners quotient multiplier = do
+    gen <- fmap (`mod` 37) randomIO
+    putStr $ "Number won: " ++ (show gen) ++ " "
+
+    if gen == 0
+        then putStrLn ""
+        else do
+            if elem gen reds then putStr (redLine "red") else putStr "black"
+            if odd gen then putStrLn " odd" else putStrLn " even"
+
+    if elem gen winners
+        then do
+            let w = (quotient - multiplier) * betSize
+            putStrLn $ greenLine $ "You won " ++ (show w)
+            game betSize $ money + w
+        else do
+            let l = betSize * multiplier
+            putStrLn $ redLine "You lost"
+            game betSize $ money - l</pre>
+                <p>Pievērsiet uzmanību, ka neskatoties uz to, ka abi moduļi atrodas vienā direktorijā, modulis Roulette.Game importē moduli Roulette.Helpers, izmantojot pilno ceļu. Tas ir saistīts ar to, ka par atskaites punktu tiek izmantota direktorija, kurā atrodas galvēnais fails.</p>
+                <p>Mūsu galvēna faila saturs pēc visām izmaiņām izskatīsies šādi:</p>
+                <pre>import Roulette.Helpers
+import Roulette.Game
+
+main = gameStart
+
+-- Main cycle
+gameStart = do
+    putStrLn "Enter amount"
+    m <- getLine
+    if quit m
+        then putStrLn "Bye!"
+        else do
+            if isNumber m
+                then game 1 $ read m
+                else do
+                    putStrLn $ redLine "Wrong input!"
+                    gameStart</pre>
+                <p>Nedaudz par moduļu veidošanas iespējām - Jūs varat definēt funkcijas un datus, kas nav pieejami no ārpuses. Koncepts ir līdzīgs private īpašībām OOP valodās. Lai to īstenotu, mēs pēc moduļa nosaukuma (pirms atslēgvārda where), iekavās sarakstam funkcijas, kuras ir nepieciešams importēt:</p>
+                <pre>module Foo.Mymodule
+(foo, bar)
+where</pre>
+                <p>Dotajā piemērā, funkcijas foo un bar būs pieejamas no ārpuses, bet ja modulī ir kaut kādas citas funkcijas, tas ir pieejamas tikai no iekšienes.</p>
+                <hr />
+                <p>Mēs esam pabeiguši rakstīt mūsu pirmo spēli Haskell valodā. Tagad Jūs varat papētīt šo kodu, paeksperimentēt ar to. Jūs varat novērtēt, ka veidot strādajošo kodu Haskell valodā ir interesanti un nav grūti. Šajā piemērā mēs izskatījām lietotāja ievadu, moduļu veidošanu un kā pareizi veidot funkcijas. Turpinājumā mēs pievērsisim uzmanību tādām lietām, kā stāvoklis (ar State monādi), datubāzes, darbs ar tīklu, paralela un konkurenta izpilde.</p>
+                <br />
+                <br />
+                <!--<a class="link"><h3></h3></a>-->
+                <br />
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="/main.js"></script>
+    <script type="text/javascript" src="/spoiler.js"></script>
+</body>
+</html>
