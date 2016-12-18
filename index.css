@@ -293,15 +293,33 @@ table.description td, table.description th {
 
 
 
-@media screen and (max-width: 1070px) {
+@media screen and (max-width: 980px) {
     * {
-        font-size: 28px;
+        font-size: 20px;
+    }
+    .header {
+        height: 0;
     }
     .header .nav {
         display: none;
     }
+    #logo {
+        width: 4em;
+        padding: 0.4em 1em;
+    }
     .content .tutorial {
+        margin: 0 1em;
         min-width: 0em;
+        width: 100%;
+    }
+    #trigger_summary {
+        display: none;
+    }
+    .content p {
+        margin-top: 0.5em;
+    }
+    .content pre {
+        font-size: 1.5em;
     }
 
 }
