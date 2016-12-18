@@ -20,13 +20,13 @@
         <div class="tutorial">
             <div class="wrapper">
                 <div class="tutor_nav">
-                    <a class="link prev" href="/tut02/game2.html">4.2. Rakstām spēli, turpinājums</a>
+                    <a class="link prev" href="/tut02/game2.html">4.2. Rakstām spēli (turpinājums)</a>
                     <a class="link next"></a>
                 </div>
                 <h1>4.3. Sakārtojām spēles kodu</h1>
                 <h2>Moduļu veidošana</h2>
-                <p>Iepriekšajā sadaļā mēs pabeidzām spēles koda rakstīšanu, bet tas palika nesakārtots. Šoreiz mēs iemācīsimies veidot savus moduļus un importēt tos. Ir pieņemts veidot direktorijas moduļiem un likt moduļus tajās. Ir definēti noteikumi moduļu veidošanai: moduļu nosaukumam vajag sākties ar lielo burtu, kā arī, ar lielu burtu vajag sākties arī visām direktirijām.</p>
-                <p>Izveidosim direktoriju Roulette un tajā izveidosim failu Helpers.hs. Tajā ieliksim mūsu palīgfunkcijas:</p>
+                <p>Iepriekšējā sadaļā mēs pabeidzām spēles koda rakstīšanu, bet tas palika nesakārtots. Šoreiz mēs iemācīsimies veidot savus moduļus un importēt tos. Ir pieņemts veidot direktorijas moduļiem un likt moduļus tajās. Ir definēti noteikumi moduļu veidošanai: moduļu nosaukumam vajag sākties ar lielo burtu, kā arī, ar lielu burtu vajag sākties arī visām mapēm.</p>
+                <p>Izveidosim mapi Roulette un tajā izveidosim failu Helpers.hs. Tajā ieliksim mūsu palīgfunkcijas:</p>
                 <pre>module Roulette.Helpers where
 
 import Data.Char hiding (isNumber)
@@ -64,7 +64,7 @@ tripleLookup _ [] _ def = def
 tripleLookup index (l:ls) fn def
     | fst3 l == index = fn l
     | otherwise       = tripleLookup index ls fn def</pre>
-                <p>Savukārt, galvēnā failā vajag pievienot rindu:</p>
+                <p>Savukārt, galvenā failā vajag pievienot rindu:</p>
                 <pre>import Roulette.Helpers</pre>
                 <p>Vēl pārnesīsim funkcijas game, processInput, generateNumber, end, quit un visus datus modulī Roulette.Game:</p>
                 <pre>module Roulette.Game where
@@ -164,8 +164,8 @@ generateNumber betSize money winners quotient multiplier = do
             let l = betSize * multiplier
             putStrLn $ redLine "You lost"
             game betSize $ money - l</pre>
-                <p>Pievērsiet uzmanību, ka neskatoties uz to, ka abi moduļi atrodas vienā direktorijā, modulis Roulette.Game importē moduli Roulette.Helpers, izmantojot pilno ceļu. Tas ir saistīts ar to, ka par atskaites punktu tiek izmantota direktorija, kurā atrodas galvēnais fails.</p>
-                <p>Mūsu galvēna faila saturs pēc visām izmaiņām izskatīsies šādi:</p>
+                <p>Pievērsiet uzmanību, ka neskatoties uz to, ka abi moduļi atrodas vienā mapē, modulis Roulette.Game importē moduli Roulette.Helpers, izmantojot pilno ceļu. Tas ir saistīts ar to, ka par atskaites punktu tiek izmantota direktorija, kurā atrodas galvenais fails.</p>
+                <p>Mūsu galvenā faila saturs pēc visām izmaiņām izskatīsies šādi:</p>
                 <pre>import Roulette.Helpers
 import Roulette.Game
 
@@ -189,7 +189,7 @@ gameStart = do
 where</pre>
                 <p>Dotajā piemērā, funkcijas foo un bar būs pieejamas no ārpuses, bet ja modulī ir kaut kādas citas funkcijas, tas ir pieejamas tikai no iekšienes.</p>
                 <hr />
-                <p>Mēs esam pabeiguši rakstīt mūsu pirmo spēli Haskell valodā. Tagad Jūs varat papētīt šo kodu, paeksperimentēt ar to. Jūs varat novērtēt, ka veidot strādajošo kodu Haskell valodā ir interesanti un nav grūti. Šajā piemērā mēs izskatījām lietotāja ievadu, moduļu veidošanu un kā pareizi veidot funkcijas. Turpinājumā mēs pievērsisim uzmanību tādām lietām, kā stāvoklis (ar State monādi), datubāzes, darbs ar tīklu, paralela un konkurenta izpilde.</p>
+                <p>Mēs esam pabeiguši rakstīt mūsu pirmo spēli Haskell valodā. Tagad Jūs varat papētīt šo kodu, paeksperimentēt ar to. Jūs varat novērtēt, ka veidot strādājošu kodu Haskell valodā ir interesanti un nav grūti. Šajā piemērā mēs izskatījām lietotāja ievadu, moduļu veidošanu un kā pareizi veidot funkcijas. Turpinājumā mēs pievērsīsim uzmanību tādām lietām, kā stāvoklis (ar State monādi), datubāzes, darbs ar tīklu, paralēla un konkurenta izpilde.</p>
                 <br />
                 <br />
                 <!--<a class="link"><h3></h3></a>-->
