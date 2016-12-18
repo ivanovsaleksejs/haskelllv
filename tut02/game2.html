@@ -43,7 +43,7 @@
                 newVal     = dropWhile (== ' ') $ dropWhile (/= ' ') input
                 newValNum  = read newVal :: Int
                 validValue = isNumber newVal && newValNum >= 1 && newValNum <= money</pre>
-                <p>Konstrukcija <span class="grey">dropWhile (== ' ') $ dropWhile (/= ' ') input</span> paņem rindu, piemēram "change 3", izdzēš visus simbolus līdz atstarpei un tad noņem visas atstarpes. Paliks tikai 3. Pēc tam, mēs pārbaudaām, vai tas, kas palika, ir skaitlis, vai tas skaitlis ir lielāks par nulli un ir mazāk vai vienāds ar naudas summu. Ja viss ir kārtībā, tad mēs izpildām galveno spēles funkciju ar jauno likmes izmēru. Ja ir notikusi kļūda, tad izpildām funkciju wrongInput, kuru aprakstīsim turpat zem where:</p>
+                <p>Konstrukcija <span class="grey">dropWhile (== ' ') $ dropWhile (/= ' ') input</span> paņem rindu, piemēram "change 3", izdzēš visus simbolus līdz atstarpei un tad noņem visas atstarpes. Paliks tikai 3. Pēc tam, mēs pārbaudām, vai tas, kas palika, ir skaitlis, vai tas skaitlis ir lielāks par nulli un ir mazāk vai vienāds ar naudas summu. Ja viss ir kārtībā, tad mēs izpildām galveno spēles funkciju ar jauno likmes izmēru. Ja ir notikusi kļūda, tad izpildām funkciju wrongInput, kuru aprakstīsim turpat zem where:</p>
                 <pre>        wrongInput = do
             putStrLn "Wrong input!"
             game betSize money</pre>
