@@ -156,25 +156,25 @@ nubBy eq (x:xs) = x : nubBy eq (filter (\ y -> not (eq x y)) xs)</pre>
                 <br />
                 <br />
                 <h2>Asociatīvie saraksti</h2>
-                <p>Tiem, kam ir pieredze tādās valodās, kā PHP, Python vai JavaScript, nebus svešs asociatīvo sarakstu koncepts. Asociatīvais saraksts ir saraksts, kurā indeksi ir nevis skaitļi no 0, bet jebkura rinda, vai skaitļi jebkurā secībā, piemēram:</p>
+                <p>Tiem, kam ir pieredze tādās valodās kā PHP, Python vai JavaScript, nebūs svešs asociatīvo sarakstu koncepts. Asociatīvais saraksts ir saraksts, kurā indeksi ir nevis skaitļi no 0, bet jebkāda vērtība vai skaitļi jebkurā secībā, piemēram:</p>
                 <pre>var list = [
     "Monday"  : 123,
     "Tuesday" : 456
 ]</pre>
-                <p>Haskell neļauj par saraksta atslēgām izmantot patvaļīgus datus, bet ir veids, kā realizēt asociatīvus sarakstus, kā arī, ir funkcijas, kas atvieglo darbu ar tiem. Lai izveidotu tādu sarakstu, mēs izmantosim pārus - katrs saraksta elements būs pāris, kur pirmais elements ir indekss, bet otrais ir vērtība:</p>
+                <p>Haskell neļauj par saraksta atslēgām izmantot patvaļīgus datus, bet ir veids, kā realizēt asociatīvus sarakstus, kā arī ir funkcijas, kas atvieglo darbu ar tiem. Lai izveidotu tādu sarakstu, mēs izmantosim pārus - katrs saraksta elements būs pāris, kur pirmais elements ir indekss, bet otrais ir vērtība:</p>
                 <pre>list = [
     ("Monday",  123),
     ("Tuesday", 456)
 ]</pre>
                 <p>Ir izveidotas funkcijas, kas ļauj darboties ar šādiem datu tipiem:</p>
                 <br />
-                <p><span class="grey">zip</span> - paņem divus sarakstus un izveido asociatīvo sarakstu, kurā indeksi ir elementi no pirma saraksta, bet vērtības ir elementi no otra.</p>
+                <p><span class="grey">zip</span> - paņem divus sarakstus un izveido asociatīvo sarakstu, kurā indeksi ir elementi no pirmā saraksta, bet vērtības ir elementi no otra.</p>
                 <pre>zip :: [a] -> [b] -> [(a, b)]
 zip (a:as) (b:bs) = (a,b) : zip as bs
 zip _      _      = []</pre>
                 <pre>λ> zip ["Forty", "Fifty", "Sixty"] [40, 50, 60]
 [("Forty",40),("Fifty",50),("Sixty",60)]</pre>
-                <p>Izpētot <span class="grey">zip</span> kodu, jūs redzēsiet, ka zip paredz gadījumus, kad sarakstiem nav vienāds garums - tādā gadījumā, rezultātā būs tik daudz elementu, cik īsakajā no abiem sarakstiem:</p>
+                <p>Izpētot <span class="grey">zip</span> kodu, jūs redzēsiet, ka zip paredz gadījumus, kad sarakstiem nav vienāds garums - tādā gadījumā rezultātā būs tik daudz elementu, cik īsākajā no abiem sarakstiem:</p>
                 <pre>λ> zip [1,2,3,4] ["I", "II", "III", "IV", "V"]
 [(1,"I"),(2,"II"),(3,"III"),(4,"IV")]
 λ> zip [1,2,3,4] ["I", "II", "III"]
@@ -194,7 +194,7 @@ Nothing</pre>
                 <br />
                 <br />
                 <br />
-                <p>Eksistē funkcija, kurai nosaukums ir līdzīgs <span class="grey">zip</span>, bet ir savādāks pielietojums:</p>
+                <p>Eksistē funkcija, kurai nosaukums ir līdzīgs <span class="grey">zip</span>, bet ir citādāks pielietojums:</p>
                 <p><span class="grey">zipWith</span> - izpilda divu argumentu funkciju uz elementiem no 2 sarakstiem.</p>
                 <pre>zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]
 zipWith f (a:as) (b:bs) = f a b : zipWith f as bs
@@ -203,7 +203,7 @@ zipWith _ _      _      = []</pre>
 [4,10,18]</pre>
                 <p>Nav grūti pamanīt, ka <span class="grey">zip</span> un <span class="grey">zipWith</span> kodi ir līdzīgi. Tāpēc Jūsu uzdevums būs uzrakstīt <span class="grey">zip</span> funkciju, izmantojot <span class="grey">zipWith</span>:</p>
                 <pre class="spoiler">zip = zipWith (,)</pre>
-                <p>Uzdevums: uzrakstiet funkcijas, kas pārbauda vai indekss vai elements ir sarakstā. Izmantojiet kopējo palīgfunkciju abām funkcijām.</p>
+                <p>Uzdevums: uzrakstiet funkcijas, kas pārbauda, vai indekss vai elements ir sarakstā. Izmantojiet kopējo palīgfunkciju abām funkcijām.</p>
                 <pre class="spoiler">exists f i = any ((==i) . f)
 indexExists i = exists fst i
 elemExists  i = exists snd i</pre>
