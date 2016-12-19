@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Haskell.lv - Rakstām spēli, turpinājums</title>
+    <title>Haskell.lv - Sakārtojām spēles kodu</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/index.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
@@ -63,7 +63,11 @@ inList index = any (\ x -> index == fst3 x)
 tripleLookup _ [] _ def = def
 tripleLookup index (l:ls) fn def
     | fst3 l == index = fn l
-    | otherwise       = tripleLookup index ls fn def</pre>
+    | otherwise       = tripleLookup index ls fn def
+
+colorLine color line = "\x1b[" ++ color ++ "m" ++ line ++ "\x1b[0m"
+
+[redLine, greenLine, pinkLine] = map colorLine ["31", "32", "35"]</pre>
                 <p>Savukārt, galvenā failā vajag pievienot rindu:</p>
                 <pre>import Roulette.Helpers</pre>
                 <p>Vēl pārnesīsim funkcijas game, processInput, generateNumber, end, quit un visus datus modulī Roulette.Game:</p>
@@ -109,6 +113,7 @@ game betSize money
         input <- getLine
         processInput betSize input money
 
+
 processInput betSize input money
     | quit input             = end "quit."
     | change                 = changeValue
@@ -144,6 +149,7 @@ processInput betSize input money
         multiplier
             | simpleBet = 1
             | otherwise = length numbers
+
 
 generateNumber betSize money winners quotient multiplier = do
     gen <- fmap (`mod` 37) randomIO
