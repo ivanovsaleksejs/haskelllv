@@ -4,6 +4,7 @@
     <title>Haskell.lv - Eta-reduction</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="stylesheet" href="/highlight/styles/default.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -34,9 +35,9 @@
                 <br />
                 <h2>Eta-conversion trēniņš</h2>
                 <p>Interesants fakts par funkciju <span class="grey">nubBy</span> - ar tās palīdzību var uzrakstīt īsāko zināmo pirmskaitļu ģeneratoru. Šeit ir ģeneratora kods saspiestā versijā, kurā izdzēsti visi neobligātie simboli un atstarpes - rezultātā paša ģeneratora garums ir 23 simboli:</p>
-                <pre>λ> import Data.List
+                <pre><code class="haskell hljs">λ> import Data.List
 λ> nubBy(((>1).).gcd)[2..]
-[2,3,5,7,11,13,17,19,23,29,31,37,41,43...</pre>
+[2,3,5,7,11,13,17,19,23,29,31,37,41,43...</code></pre>
                 <p>Lai saprastu tālāk šo kodu, mums vajag detalizētāk izpētīt funkciju, kas tiek padota kā pirmais arguments funkcijai nubBy, konkrēti <span class="grey">(((>1).).gcd)</span>. Var saprast, ka kods ir saīsināts ar eta reduction palīdzību un ir absolūti nelasāms. Mēģināsim to eta-konvertēt uz lasāmāku formātu, lai mēs varētu redzēt visus argumentus un ko galu galā dara šis kods. Tas būs mūsu eta-conversion treniņš.</p>
                 <p>Mēs varam atvieglot savu uzdevumu, ja saliksim atstarpes - (((>1) . ) . gcd). Tagad mēs redzam, ka augšējā līmenī ir kombinācijas operators, kas kombinē funkciju gcd ar izteiksmi <span class="grey">((>1) . )</span>. Funkcija <span class="grey">gcd</span> - greatest common divisor jeb lielākais kopīgais dalītājs. Šī funkcija pieņem 2 skaitļus un atgriež lielāko skaitli, ar kuru abi skaitļi dalās bez atlikuma. Piemēram, gcd 6 8 = 2, gcd 12 30 = 6. Mums pašlaik svarīgs ir tikai tās funkcijas tips <span class="grey">gcd :: Integral a => a -> a -> a</span>, jo tas mums ļauj saprast, ka <span class="grey">gcd</span> prasa divus argumentus.</p>
                 <p>Ar <span class="grey">gcd</span> mūsu piemēra kombinējas izteiksme <span class="grey">((>1) . )</span>. Atcerēsimies funkcijas <span class="grey">(.)</span> nozīmi - tā sakombinē divas funkcijas. Šeit viena funkcija jau padota, tāpēc mums ir jāpadod vēl vienu funkciju, nosauksim to par g. Sanāk <span class="grey">(\g -> (>1) . g)</span>. Ja mēs apskatīsimies <span class="grey">(.)</span> kodu - <span class="grey">(f . g) x = f (g x)</span> - tad mēs redzam, ka iepriekšējo kodu var aizvietot ar <span class="grey">(\g x -> (>1) (g x))</span>. Process, kas aizvieto izteiksmi ar tās rezultātu, saucās <span class="grey">beta-reduction</span>, piemēram, izteiksme <span class="grey">(\x -> x + 3) 2</span> beta-reducējas uz 5.</p>
@@ -44,9 +45,9 @@
                 <p>Tagad mēs varam atcerēties par karingu. Tas mums ļauj pārnest vienu argumentu no vienas funkcijas uz otru. Jo, ja Jūs pamanījāt, kā argumentu g iekšējā funkcijā mēs izmantojam nevis funkciju <span class="grey">gcd</span>, bet izteiksmi <span class="grey">gcd a</span>. Mēs varam samainīt šo - atdalīsim a no gcd un padosim to kā atsevišķu argumentu: <span class="grey">(\a b -> (\g x y -> (>1) (g x y)) gcd a b)</span>.</p>
                 <p>Vēlreiz papētot kodu, mēs redzam, ka var tikt vaļā no argumenta g, jo tas vienmēr ir gcd, tāpēc nav jēgas to padot funkcijai kā argumentu - <span class="grey">(\a b -> (\x y -> (>1) (gcd x y)) a b)</span>. Šo soli var nosaukt par daļējo <span class="grey">beta-reduction</span>. Un tagad mēs redzam, ka viena funkcija faktiski ir lieks slānis - abas funkcijas saņem divus argumentus un augstākas kārtas funkcija (kura saņem a un b) vienkārši padod tos tālāk. Tiksim no tās vaļā, eta-reducējot - <span class="grey">(\x y -> (>1) (gcd x y))</span>.</p>
                 <p>Padarīsim kodu nedaudz lasāmāku ar infix pierakstu - <span class="grey">(\x y -> gcd x y > 1)</span>. Mēs ieguvām kodu, kas ir pilnībā izgājis procesu eta-abstraction:</p>
-                <pre>nubBy (\x y -> gcd x y > 1) [2..]</pre>
+                <pre><code class="haskell hljs">nubBy (\x y -> gcd x y > 1) [2..]</code></pre>
                 <p>Šādu kodu mēs varam izlasīt bez problēmām. Salīdziniet ar kodu, kas bija sākumā:</p>
-                <pre>nubBy (((>1) . ) . gcd) [2..]</pre>
+                <pre><code class="haskell hljs">nubBy (((>1) . ) . gcd) [2..]</code></pre>
                 <p>Vēlreiz apkoposim visu procesu tabulā:</p>
                 <table class="description">
                     <tr>
@@ -98,6 +99,7 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="/highlight/highlight.pack.js"></script>
     <script type="text/javascript" src="/main.js"></script>
     <script type="text/javascript" src="/spoiler.js"></script>
 </body>
