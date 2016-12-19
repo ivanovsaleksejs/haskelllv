@@ -197,20 +197,24 @@ table {
     font-size: 1em;
     text-decoration: underline;
 }
-.content pre {
+.content pre code {
     background: #ededed none repeat scroll 0 0;
     border: 1px solid #ababab;
-    font-family: monospace;
-    font-size: .8em;
-    line-height: 1.3em;
     margin: .5em 0 0;
     padding: .2em .3em;
 }
-.content pre.spoiler {
+.content pre code, .content pre code * {
+    font-family: monospace;
+    line-height: 1.3em;
+}
+.content pre.spoiler.hidden code {
     background: #311d41;
     cursor: pointer;
 }
-.content pre.spoiler.revealed {
+.content pre.spoiler.hidden code, .content pre.spoiler.hidden code * {
+    color: #311d41;
+}
+.content pre.spoiler.revealed code {
     background: #ededed;
     cursor: initial;
 }

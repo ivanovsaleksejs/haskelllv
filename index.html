@@ -4,6 +4,7 @@
     <title>Haskell.lv - Teorētiskais minimums</title>
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/index.css">
+    <link rel="stylesheet" href="/highlight/styles/default.css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -57,79 +58,78 @@
                 <p>Haskell ir <u id="functional" class="def">funkcionāla</u> valoda, kurai piemīt vairākas īpašības, kas izceļ to citu programmēšanas valodu starpā. Tā ir <u id="pure" class="def">tīri funkcionāla</u>, bet tajā pašā laikā ļauj viegli rakstīt <u id="imperative" class="def">imperatīvu</u> kodu. Tai ir ļoti attīstīta <u id="type" class="def">tipu</u> sistēma, kas ļauj izvairīties no daudzām kļūdām. Ir pat pieņemts uzskatīt, ja Haskell programma kompilējas, tad tā gandrīz nesatur kļūdas.</p>
                 <p>Haskell valodai ir diezgan daudz sintakses iespēju (pattern matching, kompozīcijas, eta-conversion), kas ļauj rakstīt lakonisku un saprotamu kodu. Haskell valodā praktiski nav <u id="boilerplate" class="def">boilerplate</u> elementu (atslēgvārdi function vai return, funkciju vai argumentu delimiteri). Haskell valodā ir ļoti maz dažādu elementu, no kuriem sastāv programma, atšķirībā no <u id="oop" class="def">OOP</u> valodām.</p>
                 <h3>Daži koda piemēri</h3>
-                <pre>a = 2 + 3</pre>
+                <pre><code class="haskell hljs">a = 2 + 3</code></pre>
                 <p>a saturēs 5.</p>
                 <br />
-                <pre>list = [1,2,3,4,5]
+                <pre><code class="haskell hljs">list = [1,2,3,4,5]
 
-anotherList = [1..10]</pre>
+anotherList = [1..10]</code></pre>
                 <p>Tiek izveidoti 2 saraksti, viens ar skaitļiem no 1 līdz 5, otrs - no 1 līdz 10.</p>
                 <br />
-                <pre>toUpper 'a'</pre>
+                <pre><code class="haskell hljs">toUpper 'a'</code></pre>
                 <p>Atgriež 'A'.</p>
                 <h3>Funkcijas</h3>
                 <p>Haskell valodas galvenais elements ir funkcijas. Funkciju definīcija arī ir īsa un lakoniska:</p>
-                <pre>cube x = x ^ 3</pre>
+                <pre><code class="haskell hljs">cube x = x ^ 3</code></pre>
                 <p>Kā var redzēt, Haskell neprasa nekādu funkcijas atslēgvārdu, piemēram, function vai def. Tas tiek panākts ar to, ka funkcijas ir valodas pamatelements.</p>
                 <p>Funkcijas argumenti tiek padoti pēc funkcijas nosaukuma ar atstarpi, piemēram:</p>
-                <pre>triangleArea a h = a * h / 2</pre>
+                <pre><code class="haskell hljs">triangleArea a h = a * h / 2</code></pre>
                 <p>Būtīska starpība ir tajā, ka, atšķirībā no citām valodām, Haskell valodā netiek izmantots return atslēgvārds. Tas skaidrojams ar to, ka Haskell valodā katrai funkcijai ir viena darbība (kas var sastāvēt no vairākām darbībām ķēdē), un tās darbības rezultāts arī ir tas, ko atgriež funkcija. Haskell valodā ir funkcija, kas saucās <span class="grey">return</span>, kas tiks izpētīta vēlāk, bet tā dara pavisam kaut ko citu.</p>
                 <h3>Programmas</h3>
                 <p>Haskell programmas ir ļoti lakoniskas un satur ļoti maz boilerplate:</p>
-                <pre>
-cube x = x ^ 3
+                <pre><code class="haskell hljs">cube x = x ^ 3
 
-main = print (cube 4)</pre>
+main = print (cube 4)</code></pre>
                 <p>Un pat šo programmu var padarīt īsāku. Ja mēs skatāmies uz funkciju cube, tad viss, ko tā dara - kāpina argumentu trešajā pakāpē. Mums šajā situācijā ir vienalga, kāds ir arguments, mums ir svarīgi, ko funkcija dara. Tāpēc pierakstīsim to citādāk:<p>
-                <pre>cube = (^3)
+                <pre><code class="haskell hljs">cube = (^3)
 
-main = print (cube 4)</pre>
+main = print (cube 4)</code></pre>
                 <p>Izmantojot šo pieeju (kas saucās <span class="grey">eta-conversion</span> un smalkāk tiks izpētīta apmācības trešajā daļā), kods var sanākt ļoti tīrs un daudz lasāmāks.</p>
                 <hr />
                 <a name="howto"></a>
                 <h2>Kā iesākt</h2>
                 <p>Iesācējiem ir rekomendēts uzinstalēt haskell-platform, piemēram</p>
-                <pre>sudo apt-get install haskell-platform</pre>
+                <pre><code class="bash hljs">sudo apt-get install haskell-platform</code></pre>
                 <p>Tas iekļauj sevī GHC <u id="compiler" class="def">kompilātoru</u>, Cabal paku menedžeri un dažas izplatītākās pakas.</p>
                 <p>Programmētāji ar lielāku pieredzi var uzinstalēt tikai ghc.</p>
-                <p>Lai instalētu vajadzīgās pakas, var izmantot komandu <pre>cabal install package_name</pre></p>
+                <p>Lai instalētu vajadzīgās pakas, var izmantot komandu <pre><code class="bash hljs">cabal install package_name</code></pre></p>
                 <p>Ir noderīgi apgūt arī interaktīvo interpretatoru, ghci.</p>
                 <h3>Pirmā programma</h3>
                 <p>Izveidojiet failu hello.hs un ierakstiet šo kodu:</p>
-                <pre>main = print "Hello world!"</pre>
+                <pre><code class="haskell hljs">main = print "Hello world!"</code></pre>
                 <p>Sakompilējiet to ar</p>
-                <pre>ghc hello.hs</pre>
+                <pre><code class="bash hljs">ghc hello.hs</code></pre>
                 <p>Jūs redzēsiet paziņojumus:</p>
-                <pre>
+                <pre><code class="bash hljs">
 [1 of 1] Compiling Main             ( hello.hs, hello.o )
-Linking hello ...</pre>
-                <p>Sakompilēto programmu var palaist ar <pre>./hello</pre></p>
+Linking hello ...</code></pre>
+                <p>Sakompilēto programmu var palaist ar <pre><code class="bash hljs">./hello</code></pre></p>
                 <p>Ērtībai ir vērts piesaistīt kādu pogu kombināciju programmas kompilācijai. Piemēram, ja Jūs izmantojat vim redaktoru, var izveidot komandu, kas saglabā, sakompilē un palaiž kodu, piemēram, es izmantoju binding uz pogas F7:</p>
-                <pre>au BufNewFile,BufRead *.hs set filetype=haskell
+                <pre><code class="vim hljs">au BufNewFile,BufRead *.hs set filetype=haskell
 
-au FileType haskell nnoremap &lt;F7&gt :w&ltCR&gt:!ghc % && ./%:t:r&ltCR&gt</pre>
+au FileType haskell nnoremap &lt;F7&gt :w&ltCR&gt:!ghc % && ./%:t:r&ltCR&gt</code></pre>
                 <h3>Darbs ar interpretatoru</h3>
                 <p>Kopā ar GHC instalāciju nāk arī interaktīvais interpretators GHCi, kurš ļauj izpildīt Haskell izteiksmes un redzēt rezultātu. Tāpat GHCi ļauj analizēt un labot kļūdas jau gataviem moduļiem vai programmām.</p>
                 <p>Lai palaistu interpretatoru, vajag izpildīt komandu "ghci" komandrindā. Jūs redzēsiet rindu "Prelude> ", tajā momentā ghci ir gatavs darbam.</p>
                 <p>ghci ļauj izpildīt jebkuru Haskell kodu. Piemēram, ierakstot <span class="grey">map (^2) [1..5]</span>, Jūs uzreiz redzēsiet rezultātu.</p>
                 <p>Haskell programmētāji izmanto ghci diezgan bieži, tāpēc ir vērts to konfigurēt. Lai to izdarītu, ir jāizveido fails $HOME/.ghci. Kā piemērs, var nomainīt prefiksu:</p>
-                <pre>:set prompt "λ> "</pre>
+                <pre><code class="haskell hljs">:set prompt "λ> "</code></pre>
                 <p>Palaižot ghci nākamreiz, jūs redzēsiet "λ> " "Prelude> " vietā.</p>
                 <h3>Starpība starp kompilatoru un interpretatoru</h3>
                 <p>Viss Haskell kods, kas tiek padots interpretatoram, tiek uztverts kā izteikums. Ja Jūs gribēsiet GHCi definēt kādu funkciju, piemēram</p>
-                <pre>foo a b = a + b</pre>
+                <pre><code class="haskell hljs">foo a b = a + b</code></pre>
                 <p>Jūs redzēsiet kļūdu. Tas skaidrojas ar to, ka visas Haskell funkciju definīcijas ir deklaratīvas, tie nav izteikumi. Atslēgvārds <span class="grey">let</span> un konstrukcija <span class="grey">let .. in ..</span> ļauj veidot definīcijas izteikumos. Piemēri:</p>
-                <pre>λ> let foo a b = a + b
+                <pre><code class="haskell hljs">λ> let foo a b = a + b
 λ> foo 2 3
-5</pre>
-                <pre>λ> let foo a b = a + b in foo 2 3
-5</pre>
+5</code></pre>
+                <pre><code class="haskell hljs">λ> let foo a b = a + b in foo 2 3
+5</code></pre>
                 <p>Atšķirība starp abiem piemēriem ir tajā, ka pirmais nodefinē funkciju foo, kas eksistēs, kamēr GHCi ir atvērts. Savukārt otrajā foo eksistēs tikai izteikuma robežās - ja mēģināsiet pēc tam izsaukt <span class="grey">foo 2 3</span>, jūs redzēsiet kļūdu (ja pirms tam neesat nodefinējuši foo ar let).</p>
                 <hr />
                 <a name="types"></a>
                 <h2>Tipi</h2>
-                <p>Haskell tipu sistēma ir ļoti advancēta un dara ļoti daudz darba, lai nodrošinātu programmas stabilitāti. Bet sākumā ir nepieciešams saprast, kā Haskell funkcijām tiek aprakstīti tipi. Paņemsim elementāru funkciju ar diviem argumentiem:<pre>add a b = a + b</pre></p>
-                <p>Lai aprakstītu šīs funkcijas tipu, tiek izmantots šāds pieraksts:<pre>add :: Int -> Int -> Int</pre></p>
+                <p>Haskell tipu sistēma ir ļoti advancēta un dara ļoti daudz darba, lai nodrošinātu programmas stabilitāti. Bet sākumā ir nepieciešams saprast, kā Haskell funkcijām tiek aprakstīti tipi. Paņemsim elementāru funkciju ar diviem argumentiem:<pre><code class="haskell hljs">add a b = a + b</code></pre></p>
+                <p>Lai aprakstītu šīs funkcijas tipu, tiek izmantots šāds pieraksts:<pre><code class="haskell hljs">add :: Int -> Int -> Int</code></pre></p>
                 <p>Šo pierakstu jālasa tā: funkcija add saņem divus argumentus ar tipu Int un atgriež rezultātu ar tipu Int.</p>
                 <p>Sākumā šāds pieraksts liekas neloģisks, jo argumenti ir samesti kopā ar rezultātu. Ar laiku Jūs sapratīsiet, ka pieraksts ir tieši šāds pateicoties procesam, kas saucās karings.</p>
                 <p>Pierakstīt funkcijas tipu lielākoties nav obligāti. Šāda vajadzība parādās diezgan reti. Bet tos ir jāprot lasīt, lai varētu viegli orientēties gatavajās funkcijās.</p>
@@ -149,82 +149,82 @@ au FileType haskell nnoremap &lt;F7&gt :w&ltCR&gt:!ghc % && ./%:t:r&ltCR&gt</pre
                 <h3>Pāri</h3>
                 <p>Pāris ir konstrukcija, kas var būt pazīstama Python programmētājiem. Pāris satur divus elementus, kuriem var būt dažādi tipi, piemēram, <span class="grey">(1, "abcd")</span>.</p>
                 <p>Pāris var sastāvēt no vairākiem elementiem, piemēram, <span class="grey">(1, "Jānis Bērziņš", 1987)</span>. Bet funkcijas, kas ir domātas pāriem no diviem elementiem, nestrādās ar pāriem no vairākiem elementiem, piemēram:</p>
-                <pre>foo (a, b) = a
+                <pre><code class="haskell hljs">foo (a, b) = a
 
-main = print (foo (1, "Jānis Bērziņš", 1987))</pre>
+main = print (foo (1, "Jānis Bērziņš", 1987))</code></pre>
                 <p>Šis kods izsauks kompilācijas kļūdu.</p>
                 <p>Visbiežāk tiek izmantots pāris no 2 elementiem, un tam ir definētas funkcijas, kas ir pieejamas ar bāzes paku Prelude - <span class="grey">fst</span> un <span class="grey">snd</span>, kuras atgriež attiecīgi pirmo un otro pāra elementu.</p>
                 <p>Jūs varat pamanīt, ka pieraksts foo (a, b) ir līdzīgs tam, kā citās valodās, piemēram, JavaScript, tiek aprakstīti argumenti funkcijām. Sākumā tos var jaukt, tāpēc ir svarīgi saprast, ka (a, b) ir viens arguments, kas ir pāris no 2 elementiem.</p>
                 <h3>Funkcijas kā argumenti</h3>
                 <p>Haskell valoda ļauj veidot <span class="grey">augstākas kārtas funkcijas</span>, tās ir funkcijas, kas pieņem citas funkcijas kā argumentus. Piemēram, mums ir funkcija <span class="grey">foo a = a + 2</span>, tās tips var būt <span class="grey">foo :: Int -> Int</span>. Tagad mēs gribam izpildīt šo funkciju uz diviem argumentiem un atgriezt sarakstu ar divām vērtībām. Tātad, mums ir funkcija ar trīs argumentiem - pirmais ir mūsu funkcija foo, bet otrais un trešais ir kaut kādi skaitļi:</p>
-                <pre>foo a = a + 2
+                <pre><code class="haskell hljs">foo a = a + 2
 
 bar f x y = [f x, f y]
 
-main = print $ bar foo 3 4</pre>
+main = print $ bar foo 3 4</code></pre>
                 <p>Rezultāts būs [5, 6], bet mums ir svarīgi, kāds ir tipa pieraksts šai funkcijai. Ja funkcijas arguments ir cita funkcija, tad mēs aprakstām tās funkcijas tipu iekavās. Konkrētajā gadījumā funkcijas bar tips varētu izskatīties šādi:<p>
-                <pre>bar :: (Int -> Int) -> Int -> Int -> Int</pre>
+                <pre><code class="haskell hljs">bar :: (Int -> Int) -> Int -> Int -> Int</code></pre>
                 <p>Šo var izlasīt šādi: pirmais arguments ir funkcija ar tipu (Int -> Int), otrais arguments ir Int, trešais arguments ir Int, rezultāts ir Int.<p>
                 <h3>Uzdevumi</h3>
                 <p>Šeit būs nelieli uzdevumi, kuru atbildes ir paslēptas zemāk (uzklikšķiniet uz tumšiem laukiem, lai redzētu atbildes).</p>
                 <p>Izdomājiet galvā tipu funkcijai <span class="grey">foo a b = toUpper a : b</span>.</p>
-                <pre class="spoiler">foo :: Char -> [Char] -> [Char]</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo :: Char -> [Char] -> [Char]</code></pre>
                 <p>Uzrkastiet funkciju, kas maina vietām pāra elementus.</p>
-                <pre class="spoiler">foo pair = (snd pair, fst pair)
+                <pre class="spoiler hidden"><code class="haskell hljs">foo pair = (snd pair, fst pair)
 vai
-foo (a, b) = (b, a)</pre>
+foo (a, b) = (b, a)</code></pre>
                 <p>Uzrakstiet funkciju, kas saņem trīs argumentus un saliek tos sarakstā pretējā secībā.</p>
-                <pre class="spoiler">foo a b c = [c, b, a]</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo a b c = [c, b, a]</code></pre>
                 <hr />
                 <a name="arguments"></a>
                 <h2>Argumentu pierakstīšanas iespējas</h2>
-                <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais <span class="grey">pattern matching</span>. Tā pamatdoma ir definēt funkcijas versiju noteiktiem argumentiem vai argumentu šablonam. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre>fact n = if n == 0
+                <p>Haskell valodā ir dažas iespējas, kuras var atvieglot funkciju veidošanu. Viena no tām ir tā saucamais <span class="grey">pattern matching</span>. Tā pamatdoma ir definēt funkcijas versiju noteiktiem argumentiem vai argumentu šablonam. Izveidosim <u id="recursive" class="def">rekursīvu</u> <u id="factorial" class="def">faktoriāļa</u> funkciju:<pre><code class="haskell hljs">fact n = if n == 0
         then 1
         else n * fact (n - 1)
 
-main = print (fact 5)</pre></p>
+main = print (fact 5)</code></pre></p>
                 <p>Mēs varam padarīt to nedaudz lasāmāku ar guard simboliem:</p>
-                <pre>fact n
+                <pre><code class="haskell hljs">fact n
     | n == 0    = 1
     | otherwise = n * fact (n - 1)
 
-main = print (fact 5)</pre>
+main = print (fact 5)</code></pre>
                 <p>Bet pattern matching ļauj definēt funkcijas versijas noteiktajām vērtībām:</p>
-                <pre>fact 0 = 1
+                <pre><code class="haskell hljs">fact 0 = 1
 fact n = n * fact (n - 1)
 
-main = print (fact 5)</pre>
+main = print (fact 5)</code></pre>
                 <p>Ar šo kodu mēs nodefinējam divas fact funkcijas versijas - viena izpildas kad arguments ir vienāds ar 0, bet otra - visos pārējos gadījumos.</p>
                 <h3>Pattern matching sarakstiem</h3>
                 <p>Haskell atbalsta pattern matching iespējas, kas ir domātas sarakstiem. Piemēram, var definēt funkcijas versiju tukšam sarakstam vai izdalot saraksta elementus.</p>
                 <p>Izveidosim funkciju, kas pārveido vārda pirmo burtu augšējā reģistrā (atceramies, ka rinda ir simbolu saraksts):</p>
-                <pre>import Data.Char
+                <pre><code class="haskell hljs">import Data.Char
 
 cap [] = ""
 cap (x:xs) = toUpper x : xs
 
-main = print (cap "hello")</pre>
+main = print (cap "hello")</code></pre>
                 <p>Pirmā rinda pievieno bibliotēku <span class="grey">Data.Char</span>, kas satur funkciju <span class="grey">toUpper</span>.</p>
                 <p>Nākamajā rindā mēs izmantojam šablonu <span class="grey">[]</span>, kas definē funkcijas <span class="grey">cap</span> versiju gadījumam, ja tiek padots tukšs saraksts - tajā gadījumā mēs atgriežam tukšu sarakstu.</p>
                 <p>Nākamajā rindā mēs ar šablonu <span class="grey">(x:xs)</span> atdalam pirmo elementu <span class="grey">x</span> no pārējas listes <span class="grey">xs</span>. Tas pieraksts nozīmē, ka šajā funkcijas versijā ir pieejami 2 argumenti - x, kas ir pirmais saraksta elements, un xs, kas ir atlikušais saraksts. Mūsu gadījumā x ir rindas pirmais simbols. Mēs ieceļam to simbolu augšējā reģistrā ar <span class="grey">toUpper</span> un tad pievienojam pie pārējā saraksta ar <span class="grey">:</span> operatoru.</p>
                 <p>Šablons <span class="grey">(x:xs)</span> tiek izmantots ļoti bieži. Tāpēc ir jāņem vērā nosacījums: tas pieprasa, lai sarakstā būtu vismaz viens elements. Ar šo šablonu var izdalīt arī vairākus elementus, piemēram, <span class="grey">(x1:x2:x3:xs)</span> - šeit, ja padot sarakstu <span class="grey">[1, 2, 3, 4, 5]</span>, x1 būs 1, x2 būs 2, x3 būs 3, bet xs būs [4, 5]. Ir iespēja veidot funkcijas versiju sarakstam ar vienu elementu - <span class="grey">(x:[])</span>, bet ērtāk dabūt to pašu ar šablonu <span class="grey">[x]</span>.</p>
                 <h3>Citas pattern matching iespējas</h3>
                 <p>Ir iespēja veidot funkciju, kurā ir definēts gan arguments, gan tā šablons. Piemēram:</p>
-                <pre>foo n@123 = n*2
+                <pre><code class="haskell hljs">foo n@123 = n*2
 foo _ = 456
 
 main = do
     print (foo 123)
-    print (foo 111)</pre>
+    print (foo 111)</code></pre>
                 <p>Pirmā rinda definē funkciju <span class="grey">foo</span> gadījumam, ja arguments <span class="grey">n</span> ir vienāds ar <span class="grey">123</span>. Otrā rindā šablons <span class="grey">_</span> tiek izmantots, lai pilnībā ignorētu argumentu.</p>
                 <p>Cits piemērs ar sarakstiem. Teiksim, mums vajag paņemt sarakstu un tam klāt pielikt vēlreiz to pašu sarakstu, bet bez pirma elementa:</p>
-                <pre>foo list@(x:xs) = list ++ xs
+                <pre><code class="haskell hljs">foo list@(x:xs) = list ++ xs
 
-main = print (foo [1, 2, 3])</pre>
+main = print (foo [1, 2, 3])</code></pre>
                 <p>Rezultāts būs <span class="grey">[1, 2, 3, 2, 3]</span>.</p>
                 <p>Var definēt šablonus pāriem:</p>
-                <pre>first  (a, b) = a
-second (a, b) = b</pre>
+                <pre><code class="haskell hljs">first  (a, b) = a
+second (a, b) = b</code></pre>
                 <hr />
                 <a name="useful"></a>
                 <h2>Noderīgas funkcijas</h2>
@@ -242,16 +242,16 @@ second (a, b) = b</pre>
                 <p><span class="grey">!!</span> - atgriezt saraksta n-to elementu. <span class="grey">['a'..'z'] !! 3</span> atgriezīs <span class="grey">'d'</span> (elementus sāk skaitīt no 0)</p>
                 <h3>Uzdevumi</h3>
                 <p>Uzrakstiet funkcijas first, second un third, kas ir domātas pāriem ar trijiem elementiem.</p>
-                <pre class="spoiler">first  (a, b, c) = a
+                <pre class="spoiler hidden"><code class="haskell hljs">first  (a, b, c) = a
 second (a, b, c) = b
-third  (a, b, c) = c</pre>
+third  (a, b, c) = c</code></pre>
                 <p>Uzrakstiet rekursīvo funkciju, kas aprēķina n-to Fibonacci skaitli.</p>
-                <pre class="spoiler">fib 0 = 0
+                <pre class="spoiler hidden"><code class="haskell hljs">fib 0 = 0
 fib 1 = 1
-fib n = fib (n - 1) + fib (n - 2)</pre>
+fib n = fib (n - 1) + fib (n - 2)</code></pre>
                 <p>Uzrakstiet rekursīvo funkciju, kas apgriež rindu otrādi.</p>
-                <pre class="spoiler">foo [] = []
-foo line = last line : foo (init line)</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo [] = []
+foo line = last line : foo (init line)</code></pre>
 
                 <hr />
                 <a name="map_fold"></a>
@@ -259,17 +259,17 @@ foo line = last line : foo (init line)</pre>
                 <p>Sarakstiem ir ļoti nopietna loma Haskell valodā. Ir vērts izcelt divas galvenās funkcijas darbam ar sarakstiem: <span class="grey">map</span> un <span class="grey">fold</span>. Citās valodās fold tiek saukts par <span class="grey">reduce</span>, bet fold nosaukums ir nedaudz loģiskāks, jo rezultātā saraksts tiek "salikts" vienā vērtībā.</p>
                 <h3>Map</h3>
                 <p>Funkcija map pieņem divus argumentus - funkciju un sarakstu. Map funkcija iziet cauri sarakstam un izpilda padoto funkciju ar katru saraksta elementu. Piemēram, mums ir saraksts un mums vajag atrast kvadrātu no katra elementa:</p>
-                <pre>sqr n = n ^ 2
+                <pre><code class="haskell hljs">sqr n = n ^ 2
 
-main = print (map sqr [1,2,3,4,5])</pre>
+main = print (map sqr [1,2,3,4,5])</code></pre>
                 <p>Rezultātā redzēsim <span class="grey">[1, 4, 9, 16, 25]</span>.</p>
                 <p>Funkcijas map tips ir <span class="grey">map :: (a -> b) -> [a] -> [b]</span>. Šo var izlasīt: pirmais arguments ir tipa <span class="grey">a -> b</span> funkcija, tas ir funkcija, kas pieņem argumentu ar tipu <span class="grey">a</span> un atgriež rezultātu ar tipu <span class="grey">b</span>. Otrais ir saraksts ar tipa <span class="grey">a</span> vērtībām. Rezultāts ir saraksts ar tipa <span class="grey">b</span> vērtībam. <span class="grey">a</span> un <span class="grey">b</span> šajā pierakstā ir simboliski aizvietojumi, kas demonstrē, ka tur var būt jebkādi tipi.</p>
                 <h3>Fold</h3>
                 <p>Funkcija fold ir nedaudz sarežģītāka. Tā uzkrāj rezultātu vienā mainīgajā, ko sauc par akumulatoru. Tā izmanto funkciju ar diviem mainīgajiem. Kā pirmā tai tiek padota akumulatora vērtība, otrais arguments tiek paņemts no saraksta. Rezultāts atjauno akumulatora vērtību.</p>
                 <p>Piemēram, mēs izmantojam akumulatora vērtību <span class="grey">1</span>, sarakstu <span class="grey">[2, 3, 4]</span> un funkciju <span class="grey">foo a b = 2 * a + b</span>. Izmantosim fold versiju, kas sāk no saraksta kreisās puses - <span class="grey">foldl</span>:</p>
-                <pre>foo a b = 2 * a + b
+                <pre><code class="haskell hljs">foo a b = 2 * a + b
 
-main = print (foldl foo 1 [2,3,4])</pre>
+main = print (foldl foo 1 [2,3,4])</code></pre>
                 <p>Ja attēlo, ko dara foldl, sanāk 4 soļi:
                     <ol>
                         <li>1. Funkcija foo saņem argumentus 1 un 2, rezultāts 1 * 2 + 2 = 4 tiek ierakstīts akumulatorā, sarakstā paliek [3, 4]</li>
@@ -280,55 +280,54 @@ main = print (foldl foo 1 [2,3,4])</pre>
                 </p>
                 <h3>Map & Fold kodi</h3>
                 <p>Patreiz jums ir jābūt pietiekami daudz zināšanām, lai paši saprastu, kā darbojas funkcijas map un foldl, izlasot šo funkciju kodu. Pamēģiniet to izdarīt, pirms turpināsiet lasīt:</p>
-                <pre>map :: (a -> b) -> [a] -> [b]
+                <pre><code class="haskell hljs">map :: (a -> b) -> [a] -> [b]
 map _ []     = []
-map f (x:xs) = f x : map f xs</pre>
-                <pre>foldl :: (a -> b -> a) -> a -> [b] -> a
+map f (x:xs) = f x : map f xs</code></pre>
+                <pre><code class="haskell hljs">foldl :: (a -> b -> a) -> a -> [b] -> a
 foldl f z []     = z
-foldl f z (x:xs) = foldl f (f z x) xs</pre>
+foldl f z (x:xs) = foldl f (f z x) xs</code></pre>
                 <h3>Uzdevumi</h3>
                 <p>Uzrakstiet funkciju, kas izmanto map un pārverš rindu uz augšējo reģistru.</p>
-                <pre class="spoiler">foo line = map toUpper line</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo line = map toUpper line</code></pre>
                 <p>Uzrakstiet funkciju, kas izmanto foldl un apgriež rindu otrādi.</p>
-                <pre class="spoiler">
-foo acc char = char : acc
-bar line = foldl foo "" line</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo acc char = char : acc
+bar line = foldl foo "" line</code></pre>
                 <hr />
                 <a name="functions"></a>
                 <h2>Funkciju definēšanas iespējas</h2>
                 <h3>Prefix un infix pieraksti</h3>
                 <p>Visbiežāk ir sastopams <span class="grey">prefix</span> pieraksts funkcijām - kad funkcijas nosaukums ir pirms argumentiem. Funkcijām ar 2 argumentiem pastāv iespēja izmantot <span class="grey">infix</span> pierakstu. Lai izmantotu <span class="grey">infix</span> pierakstu funkcijai, kuras nosaukums sastāv no burtiem, mēs varam izmantot <span class="grey">backquote</span> simbolus - <span class="grey">``</span>. Izveidosim funkciju, kas aprēķina procentus no skaitļa:</p>
-                <pre>percent a b = a / b * 100
+                <pre><code class="haskell hljs">percent a b = a / b * 100
 
 main = do
     print (percent 20 160)
-    print (20 `percent` 160)</pre>
+    print (20 `percent` 160)</code></pre>
                 <p>Savukārt, ja funkcijas nosaukums sastāv no simboliem (tā saucāmas operatoru funkcijas), tad backquotes izmantot ar <span class="grey">infix</span> pierakstu nevajag, bet ar <span class="grey">prefix</span> pierakstu vajag izmantot iekavas:</p>
-                <pre>a % b = a / b * 100
+                <pre><code class="haskell hljs">a % b = a / b * 100
 
 main = do
     print (20 % 160)
-    print ((%) 20 160)</pre>
+    print ((%) 20 160)</code></pre>
                 <p>Infix pieraksts ļauj definēt funkcijas ar vairāk ka 2 argumentiem:</p>
-                <pre>(a &&& b) c = [a, b, c]
+                <pre><code class="haskell hljs">(a &&& b) c = [a, b, c]
 
-main = print ((1 &&& 2) 3)</pre>
+main = print ((1 &&& 2) 3)</code></pre>
                 <p>Rezultāts būs <span class="grey">[1, 2, 3]</span>.</p>
                 <h3>Anonīmās funkcijas</h3>
                 <p>Anonīmās vai <span class="grey">lambda</span> funkcijas ir funkcijas, kurām nav nosaukuma. Tās bieži tiek izmantotas augstākas kārtas funkcijās (funkcijās, kuras izmanto citas funkcijas kā argumentus). Haskell valoda izmanto šādu pierakstu lambda funkcijām: <span class="grey">(\a -> doSomething a)</span>. Simbols "\" pirms argumenta simbolizē grieķu simbolu lambda. Pati lambda funkciju sintakse ir mantota no <span class="grey">lambda calculus</span>.</p>
                 <p>Piemēram, funkcija, kas kāpina skaitli kvadrātā, izskatīsies šādi: <span class="grey">(\a -> a^2)</span></p>
                 <p>Lambda funkcijas var izmantot kā patstāvīgas funkcijas:</p>
-                <pre>main = print ((\a -> a^2) 3)</pre>
+                <pre><code class="haskell hljs">main = print ((\a -> a^2) 3)</code></pre>
                 <p>vai kā argumentus augstākas kārtas funkcijām, piemēram, map:</p>
-                <pre>map (\a -> a^2) [1, 2, 3, 4, 5]</pre>
+                <pre><code class="haskell hljs">map (\a -> a^2) [1, 2, 3, 4, 5]</code></pre>
                 <p>Līdzīgi kā mēs vienkāršojām cube funkciju, lambda funkcijas arī var vienkāršot (process saucas <span class="grey">eta reduction</span>):</p>
-                <pre>map (^2) [1, 2, 3, 4, 5]</pre>
+                <pre><code class="haskell hljs">map (^2) [1, 2, 3, 4, 5]</code></pre>
                 <p>Lambda funkcijas ar vairākiem argumentiem veidojas līdzīgi: <span class="grey">(\a b -> a + b)</span></p>
                 <h3>Uzdevumi</h3>
                 <p>Izveidojiet funkciju, kas izmanto <span class="grey">foldl</span> un apgriež rindu otrādi, bet šoreiz kā pirmo argumentu foldl izmantojiet lambda funkciju.</p>
-                <pre class="spoiler">foo line = foldl (\x y -> y : x) "" line</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo line = foldl (\x y -> y : x) "" line</code></pre>
                 <p>Izveidojiet funkciju, kas izfiltrē visus patskaņus <span class="grey">(a, e, i, o, u)</span> no rindas, izmantojot anonīmo funkciju.</p>
-                <pre class="spoiler">foo line = filter (\x -> not (elem x "aeiouAEIOU")) line</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo line = filter (\x -> not (elem x "aeiouAEIOU")) line</code></pre>
                 <hr />
                 <a name="curry"></a>
                 <h2>Karings, Kompozīcijas un aplikācijas</h2>
@@ -341,7 +340,7 @@ main = print ((1 &&& 2) 3)</pre>
                 <p>Tieši tāpēc Haskell izmanto tādus tipu pierakstus - tie demonstrē, kā funkcijas reducējas līdz vienam mainīgajam. Ja mums ir funkcija <span class="grey">foo a b = a + b</span>, mēs varam to izmantot kā <span class="grey">foo 2 3</span>, vai <span class="grey">(foo 2) 3</span>, pieeja, kas saucās <span class="grey">partial application</span>. Šeit <span class="grey">(foo 2)</span> ir eta-reducēts pieraksts lambda funkcijai <span class="grey">(\x -> foo 2 x)</span>. Kā redzat, ar karingu mēs viegli izveidojam jaunu funkciju. Karings ļauj viegli modificēt kodu, veidojot jaunās funkcijas, vai apvienojot esošās, padarot kodu lasamāku un vieglāk modificējamu.</p>
                 <h3>Kompozīcijas</h3>
                 <p>Kompozīcija ir process, ar kura palīdzību divas funkcijas tiek salīmētas vienā. Kompozīciju operators ir <span class="grey">(.)</span>, piemēram, <span class="grey">foo . bar</span>. Piemērs:</p>
-                <pre>import Data.Char
+                <pre><code class="haskell hljs">import Data.Char
 
 cap []     = ""
 cap (x:xs) = toUpper x : xs
@@ -350,69 +349,69 @@ capWords = map cap . words
 
 processString = unwords . capWords
 
-main = print (processString "hello world")</pre>
+main = print (processString "hello world")</code></pre>
                 <p>Šeit mēs izmantojam kompozīciju divās vietās: funkcija processString apvieno funkcijas unwords un capWords, bet funkcija capWords apvieno izteikumu map cap un funkciju words.</p>
                 <p>Kompozīcijas noder, lai savienotu funkcijas, kas bieži atkārtojas. Kā arī ar kompozīcijām var uzrakstīt lasāmāku kodu.</p>
                 <h3>Aplikācijas</h3>
                 <p>Aplikācija ir vienkāršs process, kad par vienas funkcijas argumentu tiek izmantots citas funkcijas rezultāts. Piemēram, <span class="grey">foo(bar 1)</span>.</p>
                 <p>Haskell valodā ir izveidots speciāls operators aplikācijām, <span class="grey">($)</span>. Piemēru augstāk var pierakstīt šādi: <span class="grey">foo $ bar 1</span>. Viss, kas no labās puses, tiek padots kā arguments funkcijai no kreisās puses.</p>
                 <p>Visas iepriekš attēlotās programmas var vienkāršot, izmantojot aplikācijas operatoru, piemēram:</p>
-                <pre>a % b = a / b * 100
+                <pre><code class="haskell hljs">a % b = a / b * 100
 
 main = do
     print $ 20 % 160
-    print $ (%) 20 160</pre>
+    print $ (%) 20 160</code></pre>
                 <h3>Kompozīcijas un aplikācijas operatori</h3>
                 <p>Lai saprastu līdz galam, kā darbojas šie operatori, varat izpētīt to kodus.</p>
                 <p>Aplikācijas operators:</p>
-                <pre>($) :: (a -> b) -> a -> b
-f $ x = f x</pre>
+                <pre><code class="haskell hljs">($) :: (a -> b) -> a -> b
+f $ x = f x</code></pre>
                 <p>Kompozīcijas operators:</p>
-                <pre>(.) :: (b -> c) -> (a -> b) -> a -> c
-(f . g) x = f (g x)</pre>
+                <pre><code class="haskell hljs">(.) :: (b -> c) -> (a -> b) -> a -> c
+(f . g) x = f (g x)</code></pre>
                 <h3>Uzdevumi</h3>
                 <p>Izveidojiet funkciju, kas ceļ kvadrātā katru saraksta elementu, pirms tam izfiltrējot no tā visus nepāra skaitļus (funkcija <span class="grey">even</span> ir pretēja funkcijai <span class="grey">odd</span>). Izveidojiet divas versijas funkcijai - vienu ar aplikācijas operatoru, otru ar kompozīcijas operatoru. Izmantojiet funkcijas <span class="grey">map</span> un <span class="grey">filter</span>.</p>
-                <pre class="spoiler">foo list = map (^2) $ filter even list</pre>
-                <pre class="spoiler">foo = map (^2) . filter even</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo list = map (^2) $ filter even list</code></pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">foo = map (^2) . filter even</code></pre>
                 <hr />
                 <a name="lazy"></a>
                 <h2>Lazy</h2>
                 <p><span class="grey">Lazy</span> ir programmēšanas princips, kas atliek funkcijas izpildi līdz brīdim, kad tas ir vajadzīgs. Apskatīsim piemēru ar pāri, kura pirmais elements ir bezgalīgs saraksts, bet otrais ir nulle:</p>
-                <pre>main = print $ fst ([1 ..], 0)</pre>
+                <pre><code class="haskell hljs">main = print $ fst ([1 ..], 0)</code></pre>
                 <p>Jūs redzēsiet, ka tas tiešām ģenerē bezgalīgu sarakstu. Tagad ņemsim otro pāra elementu:</p>
-                <pre>main = print $ snd ([1 ..], 0)</pre>
+                <pre><code class="haskell hljs">main = print $ snd ([1 ..], 0)</code></pre>
                 <p>Tiks izvadīta nulle un programma beigs savu darbu. Saraksts nav sācis ģenerēties, jo tas nav vajadzīgs.</p>
                 <h3>Lazy piemēri</h3>
                 <p>Cits, nedaudz noderīgāks <span class="grey">lazy</span> pielietojums:</p>
-                <pre>main = print $ take 5 [1 ..]</pre>
+                <pre><code class="haskell hljs">main = print $ take 5 [1 ..]</code></pre>
                 <p>Mēs atkal izmantojam bezgalīgu sarakstu un pat sākam to ģenerēt. Bet augstākas kārtas funkcija <span class="grey">take</span> (paņemt n elementus no saraksta) kontrolē saraksta ģenerāciju. Kods saprot, ka vajag ģenerēt tikai 5 elementus, jo vairāk elementi programmā netiks izmantoti.</p>
                 <p>Vēl viens piemērs:</p>
-                <pre>mapOdds f = map f [1,3 ..]
+                <pre><code class="haskell hljs">mapOdds f = map f [1,3 ..]
 
-main = print $ take 10 $ mapOdds (^2)</pre>
+main = print $ take 10 $ mapOdds (^2)</code></pre>
                 <p>Tiks aprēķināti kvadrāti pirmajiem 10 nepāra skaitļiem.</p>
                 <h3>Lazy un rekursīvie dati</h3>
                 <p>Haskell definē datus līdzīgi kā funkcijas:</p>
-                <pre>ones :: [Integer]
-ones = [1, 1 ..]</pre>
+                <pre><code class="haskell hljs">ones :: [Integer]
+ones = [1, 1 ..]</code></pre>
                 <p>Šis ir bezgalīgs saraksts ar vieniniekiem, kuru, pateicoties <span class="grey">lazy</span> izpildei, mēs varam kontrolēt ar augstākas kārtas funkcijām. Bet šo pašu sarakstu var nodefinēt rekursīvi:</p>
-                <pre>ones = 1 : ones</pre>
+                <pre><code class="haskell hljs">ones = 1 : ones</code></pre>
                 <p>Pateicoties karingam, Haskell ļauj izveidot rekursīvus datus, jo šo var uzskatīt par funkciju ar 0 argumentiem (ones tipa aprakstā nav neviens <span class="grey">"->"</span> simbols jeb karinga operators).</p>
                 <p>Cits piemērs:</p>
-                <pre>odds = 1 : map (+2) odds</pre>
+                <pre><code class="haskell hljs">odds = 1 : map (+2) odds</code></pre>
                 <p>Šis kods ģenerēs bezgalīgu sarakstu ar nepāra skaitļiem.</p>
                 <h3>Savstarpējas rekursijas</h3>
                 <p>Haskell ļauj izveidot savstarpēji rekursīvas funkcijas vai datus. Piemērs:</p>
-                <pre>odds, evens :: [Integer]
+                <pre><code class="haskell hljs">odds, evens :: [Integer]
 odds  = map succ evens
 evens = 0 : map succ odds
 
-main = print $ take 10 odds</pre>
+main = print $ take 10 odds</code></pre>
                 <p>Funkcija <span class="grey">succ</span> palielina argumentu par 1.</p>
                 <p>Šeit mēs redzam, ka abi sarakstu ģeneratori izmanto viens otru. Nulle evens ģeneratoram kalpo kā atskaites punkts.</p>
                 <br />
                 <p>Nākamajā piemērā izveidosim bezgalīga pirmskaitļu saraksta ģeneratoru, kas ģenerēšanai izmantos funkciju, bet tā funkcija savukārt izmantos šo ģeneratoru:</p>
-                <pre>primes = 2 : filter isPrime [3, 5 ..]
+                <pre><code class="haskell hljs">primes = 2 : filter isPrime [3, 5 ..]
 
 isPrime n = all checkRem $ takeWhile checkSquare primes
     where
@@ -421,17 +420,17 @@ isPrime n = all checkRem $ takeWhile checkSquare primes
 
 main = do
     print $ isPrime 37
-    print $ take 10 primes</pre>
+    print $ take 10 primes</code></pre>
                 <p>Konstrukcija <span class="grey">all checkRem</span> pārbauda, vai visi saraksta elementi nedalās ar skaitli n. Savukārt <span class="grey">takeWhile checkSquare</span> atlasa elementus no saraksta, kamēr tie ir mazāki vai vienādi ar kvadrātsākni no n (kas ir pietiekami, lai pārbaudītu pirmskaitli).</p>
                 <p>Funkcija <span class="grey">rem</span> atrod atlikumu no dalīšanas. Operators <span class="grey">/=</span> atgriež <span class="grey">True</span>, ja argumenti nav vienādi (<span class="grey">!=</span> citās valodās). Ar where var definēt lokālas funkcijas, kurām ir pieejami parent funkcijas argumenti.</p>
                 <h3>List comprehension</h3>
                 <p>List comprehension <span class="grey">(LC)</span> ir mehanisms, kas ļauj ģenerēt sarakstus, izmantojot kādu citu sarakstu, funkciju un noteikumus. Vienkāršs piemērs:</p>
-                <pre>odds = [ x | x <- [1, 3 ..]]</pre>
+                <pre><code class="haskell hljs">odds = [ x | x <- [1, 3 ..]]</code></pre>
                 <p>Šajā sarakstā būs visi nepāra skaitļi. <span class="grey">LC</span> ļauj izpildīt arī funkciju uz katra elementa, kā arī var būt definēti lokālie mainīgie, piemēram:</p>
-                <pre>list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2]</pre>
+                <pre><code class="haskell hljs">list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2]</code></pre>
                 <p>Šis saraksts saturēs kvadrātus skaitļiem no 1 līdz 20, reizinātiem ar 2.</p>
                 <p><span class="grey">LC</span> var arī saturēt pārbaudes funkciju. Izmainīsim pēdējo piemēru, ņēmot tikai skaitļus, kuri dalās ar 3:</p>
-                <pre>list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2, x `rem` 3 == 0]</pre>
+                <pre><code class="haskell hljs">list = [ y ^ 2 | x <- [1 .. 20], let y = x * 2, x `rem` 3 == 0]</code></pre>
                 <hr />
                 <a name="type_system"></a>
                 <h2>Tipu sistēma</h2>
@@ -440,43 +439,43 @@ main = do
                 <p>Pirms laika mēs iemācījāmies, kā Haskell valodā tiek pierakstīti tipi funkcijām un datiem. Piemēram, funkcijai <span class="grey">foo</span>, kas saņem divus argumentus ar tipu <span class="grey">Int</span> un atgriež rezultātu ar tipu <span class="grey">Int</span>, apraksts būs sekojošs: <span class="grey">foo :: Int -> Int -> Int</span>. Šeit <span class="grey">-></span> var saukt par <span class="grey">karinga operatoru</span>.</p>
                 <p>Ir jāsaprot, ka Haskell valodā tips ir ne tikai funkcijām un datiem, bet jebkurai izteiksmei. Haskell programmētājam ir svarīgi būt spējīgam izprast, uz kādu tipu reducējas izteikums. Sākumā to ir grūti darīt galvā, tāpēc ir svarīgi apgūt GHCi.</p>
                 <p>Jebkuras izteiksmes tipu var pārbaudīt ar <span class="grey">:t</span> komandu. Kā piemēru izskatīsim funkciju, kas sasummē divus argumentus. Palaidiet GHCi un uzrakstiet:</p>
-                <pre>λ> let add a b = a + b
+                <pre><code class="haskell hljs">λ> let add a b = a + b
 
-λ> :t add</pre>
+λ> :t add</code></pre>
                 <p>Šeit un turpmāk komandas un izteiksmes, kuras ir jāizpilda GHCi, tiks atzīmētas ar <span class="grey">λ> </span> prefiksu.</p>
                 <p>Jūs redzēsiet atbildi <span class="grey">add :: Num a => a -> a -> a</span>. Tagad, ja izpildīsiet:</p>
-                <pre>λ> :t add 1</pre>
+                <pre><code class="haskell hljs">λ> :t add 1</code></pre>
                 <p>atbilde būs <span class="grey">add 1 :: Num a => a -> a</span>. Mēģināsim analizēt abus rezultātus, lai saprastu, kāpēc tie atšķiras.</p>
                 <p>Pirmkārt, mēs pagaidām ignorējam visu, kas ir pirms <span class="grey">=></span> zīmes. Šajā gadījumā <span class="grey">a</span> ir tipu mainīgais. Tipu mainīgie tiek izmantoti, lai atvieglotu tipa pierakstu. Tipu mainīgie ir aprakstīti pirms <span class="grey">=></span> zīmes. Piemēram, ja funkcijas tips ir <span class="grey">a -> b -> a</span>, tad to ir jāsaprot šādi: pirmais arguments ir jebkāda tipa, otrais arguments var būt jebkāda cita tipa, bet rezultāts ir tāda paša tipa kā pirmais arguments, jo abiem mēs izmantojam vienādu tipu mainīgo a.</p>
                 <p>Mums pašreiz ir svarīga konstrukcija pēc <span class="grey">=></span> zīmes, un funkcijai <span class="grey">add</span> bez argumentiem tā ir <span class="grey">a -> a -> a</span>. Tas nozīmē, ka tiek paņemti divi argumenti ar kaut kādu tipu un tiek atgriezta vērtība ar tādu pašu tipu.</p>
                 <p>Savukārt izteikumam <span class="grey">add 1</span> tips ir <span class="grey">add 1 :: Num a => a -> a</span> vai, ignorējot visu pirms <span class="grey">=></span> zīmes, vienkārši <span class="grey">a -> a</span>. Tas ir tāpēc, ka mēs jau padevām vienu argumentu. Šis izteikuma tips mums ļauj saprast, ka mums šim izteikumam vajag padot vēl vienu argumentu, un tad tas atgriezīs rezultātu.</p>
                 <p>Tagad izpildīsim</p>
-                <pre>λ> :t add 1 3</pre>
+                <pre><code class="haskell hljs">λ> :t add 1 3</code></pre>
                 <p>un redzēsim tipu <span class="grey">add 1 3 :: Num a => a</span> vai, ignorējot visu pirms <span class="grey">=></span> zīmes, vienkārši <span class="grey">a</span>. Šim izteikumam vairs nevajag padot argumentus, jo tam ir noteikts rezultāts ar tipu <span class="grey">a</span>. Citiem vārdiem, šis izteikums reducējas uz noteikto vērtību, ko var ātri saprast, jo nav neviena karinga operatora.</p>
                 <p>Jūs pamanījāt, ka mēs pagaidām ignorējam <span class="grey">Num</span> prefiksu. Tā ir tipu klase, un pie tās mēs drīz nonāksim. Bet pirms tam mēs izskatīsim vēl vienu piemēru izteikumu tipiem.</p>
                 <br />
                 <p>Izskatīsim piemērus ar funkciju <span class="grey">map</span>:</p>
-                <pre>λ> :t map
+                <pre><code class="haskell hljs">λ> :t map
 map :: (a -> b) -> [a] -> [b]
 
 λ> :t map (+2)
 map (+2) :: Num b => [b] -> [b]
 
 λ> :t map (+2) [1..5]
-map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
+map (+2) [1..5] :: (Enum b, Num b) => [b]</code></pre>
                 <p>Pirmajā mēs redzam standarta <span class="grey">map</span> definīciju, kas der jebkādiem tipiem. Otrajā mēs redzam, ka pazuda <span class="grey">(a -> b)</span> no tipa, jo mēs jau padevām funkciju <span class="grey">(+2)</span>. Otrās izteiksmes tips ir <span class="grey">[b] -> [b]</span>. Kāpēc ne <span class="grey">[a] -> [b]</span> - tāpēc, ka Haskell saprot, ka funkcija <span class="grey">(+2)</span> atgriež tādu pašu tipu, kāds bija padots, par ko var pārliecināties, izpildot <span class="grey">λ> :t (+2)</span>. Savukārt trešais piemērs jau reducējas uz noteiktu rezultātu, tāpēc tips ir vienkārši <span class="grey">[b]</span>.</p>
                 <p>Mēs redzam, ka katrā rindā tipu mainīgājiem parādās jaunās tipu klases. Intuitīvi var saprast, ka tās klases ievieš ierobežojumus uz iespējamiem argumentiem. Jūs varat salīdzināt, kā izmainīsies tipu apraksti, ja <span class="grey">(+2)</span> vietā tiktu izmantota funkcija <span class="grey">sqrt</span> (aprēķināt kvadrātsakni).</p>
                 <p>Varbūt kādam jau ienāca prātā doma, ka, ja Haskell valodā tips ir gan funkcijām, gan izteiksmēm, tad tās divas lietas ir viens un tas pats. Tas nav tālu no patiesības, jo mēs viegli varam izveidot funkciju no jebkuras izteiksmes. Piemēram, mums ir izteiksme <span class="grey">map (+2)</span> un mēs varam viegli izveidot funkciju no tās izteiksmes:</p>
-                <pre>λ> let mapPlus2 = map (+2)
+                <pre><code class="haskell hljs">λ> let mapPlus2 = map (+2)
 λ> mapPlus2 [1,2,3]
-[3,4,5]</pre>
+[3,4,5]</code></pre>
                 <h3>Uzdevumi</h3>
                 <p>Neizmantojot GHCi, pamēģiniet paši uzrakstīt tipu funkcijai</p>
-                <pre>filter (\x -> not $ elem x "aeiou") . map toUpper</pre>
-                <pre class="spoiler">[Char] -> [Char]</pre>
+                <pre><code class="haskell hljs">filter (\x -> not $ elem x "aeiou") . map toUpper</code></pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">[Char] -> [Char]</code></pre>
                 <p>Neizmantojot GHCi, pamēģiniet paši uzrakstīt tipu izteiksmei</p>
-                <pre>[(a, b) | a <- [1..10], let b = a^2]</pre>
-                <pre class="spoiler">(Enum t, Num t) => [(t, t)]</pre>
+                <pre><code class="haskell hljs">[(a, b) | a <- [1..10], let b = a^2]</code></pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">(Enum t, Num t) => [(t, t)]</code></pre>
                 <hr />
                 <a name="typeclasses"></a>
                 <h2>Tipu klases</h2>
@@ -487,68 +486,68 @@ map (+2) [1..5] :: (Enum b, Num b) => [b]</pre>
                 <p>Haskell ļauj veidot savus tipus, tipu klases, kā arī tipu klases var mantot īpašības no citām tipu klasēm.</p>
                 <h3>Tipu klašu veidošana</h3>
                 <p>Haskell ļauj veidot savas tipu klases. Kā piemēru izskatīsim <span class="grey">Eq</span> tipu klases definīciju:<p>
-                <pre>class  Eq a  where
+                <pre><code class="haskell hljs">class  Eq a  where
     (==), (/=) :: a -> a -> Bool
-    x /= y     =  not (x == y)</pre>
+    x /= y     =  not (x == y)</code></pre>
                 <p>Šeit mēs redzam, ka ir nodefinēta tipu klase, kurai ir divas iespējamās darbības. Pie tam, darbībai <span class="grey">(==)</span> ir aprakstīts tikai tips, bet darbībai <span class="grey">(/=)</span> - gan tips, gan kods. Kāpēc tas ir definēts tiešī šādi - jo salīdzināšanas funkcija var atšķirties dažādiem tipiem. Savukārt darbība <span class="grey">(/=)</span> vienmēr ir preteja darbībai <span class="grey">(==)</span>, tāpēc mēs varam uzreiz nodefinēt tās kodu.</p>
                 <p>Lai aprakstītu kodu darbībai ar konkrētu tipu tiek izmantots atslēgvārds instance:</p>
-                <pre>instance Eq Integer where
+                <pre><code class="haskell hljs">instance Eq Integer where
     x == y                =  x `integerEq` y
 
 instance Eq Float where
-    x == y                =  x `floatEq` y</pre>
+    x == y                =  x `floatEq` y</code></pre>
                 <p>Var iztēloties, ka, piemēram, sarakstiem šī funkcija būs krietni sarežģītāka un rekursīva.</p>
                 <h3>Tipu klašu īpašību mantošana</h3>
                 <p>Haskell valodā tipu klases var mantot īpašības no citām tipu klasēm. Piemēram, <span class="grey">Ord</span> klase manto visu no <span class="grey">Eq</span> klases, un <span class="grey">Ord</span> klasei ir aprakstītas papildus īpašības:</p>
-                <pre>class  (Eq a) => Ord a  where
+                <pre><code class="haskell hljs">class  (Eq a) => Ord a  where
     (<), (<=), (>=), (>) :: a -> a -> Bool
-    max, min             :: a -> a -> a</pre>
+    max, min             :: a -> a -> a</code></pre>
                 <p>Klašu darbību tipiem ir tāds pats apraksts, kā jebkurai funkcijai. Tas nozīmē, ka darbībai var aprakstīt ierobežojumus, izmantojot klases:</p>
-                <pre>class Foo a where
-    foo         :: Bar b => a -> b</pre>
+                <pre><code class="haskell hljs">class Foo a where
+    foo         :: Bar b => a -> b</code></pre>
                 <p>Kā var redzēt, ierobežojums ir aprakstīts rezultātam. Savukārt ierobežojumi argumentiem ir aprakstāmi ar klašu mantošanu vai ar instancēm.</p>
                 <p>Klases var mantot īpašības no vairākām klasēm:</p>
-                <pre>class (Foo a, Bar a) => Baz a where</pre>
+                <pre><code class="haskell hljs">class (Foo a, Bar a) => Baz a where</code></pre>
                 <hr />
                 <a name="own_types"></a>
                 <h2>Tipu veidošana</h2>
                 <p>Haskell ļauj programmētājam veidot savus tipus, aprakstot iespējamās vērtības:</p>
-                <pre>data Foo = A | B | C | D</pre>
+                <pre><code class="haskell hljs">data Foo = A | B | C | D</code></pre>
                 <p>Šis ir tips, kuram iespējamās vērtības ir A, B, C un D. Šobrīd ar šo tipu nevar neko darīt, jo tas neimplementē nekādu darbību. Pat ja mēģina izprintēt jebkādu vērtību, tiek parādīts error <span class="grey">No instance for (Show Foo) arising from a use of `print'</span>. Tas nozīmē, ka šim tipam vajag mantot darbības no tipu klases <span class="grey">Show</span>, lai būtu iespēja izvadīt vērtības. Salabosim to:</p>
-                <pre>data Foo = A | B | C | D
+                <pre><code class="haskell hljs">data Foo = A | B | C | D
     deriving (Show)
 
-main = print A</pre>
+main = print A</code></pre>
                 <p>Ar <span class="grey">deriving</span> atslēgvārdu mēs pateicām kompilatoram, ka tips <span class="grey">Foo</span> tagad pieder pie <span class="grey">Show</span> tipu klases. Šī klase apvieno visus tipus, kurus var izvadīt.</p>
                 <br />
                 <p>Papētīsim mūsu tipu vēl nedaudz. Mēs redzam, ka B iet pēc A, un mēs gribētu, lai izteiksme <span class="grey">succ A</span> atgrieztu B. Sākumā pārbaudīsim <span class="grey">succ</span> tipu:</p>
-                <pre>λ> :t succ
-succ :: Enum a => a -> a</pre>
+                <pre><code class="haskell hljs">λ> :t succ
+succ :: Enum a => a -> a</code></pre>
                 <p>Redzam, ka succ argumentam ir jābūt no <span class="grey">Enum</span> tipu klases. Papildinām mūsu tipu ar to:</p>
-                <pre>data Foo = A | B | C | D
+                <pre><code class="haskell hljs">data Foo = A | B | C | D
     deriving (Show, Enum)
 
 main = do
     print $ succ A
-    print [A .. D]</pre>
+    print [A .. D]</code></pre>
                 <p>Kā var saprast no piemēra, ģenerators <span class="grey">[A .. D]</span> arī pieprasa, lai tips būtu no <span class="grey">Enum</span> klases.</p>
                 <h3>Tipu konstruktori</h3>
                 <p>Haskell ļauj veidot sarežģītākus augstākas kārtas tipus, kuri sastāv no vairākām vērtībām. Pie tam, to vērtību skaits arī var būt atšķirīgs. Izveidosim tipu, kas apraksta transportlīdzēkļus - velosipēdiem būs parametri nosaukums un riteņu diametrs, savukārt mašīnām - nosaukums, riteņu diametrs un dzinēja tilpums.</p>
-                <pre>data Vehicle = Bicycle String Integer | Car String Integer Float
+                <pre><code class="haskell hljs">data Vehicle = Bicycle String Integer | Car String Integer Float
     deriving (Show)
 
-main = print $ Bicycle "Kross" 26</pre>
+main = print $ Bicycle "Kross" 26</code></pre>
                 <p>Šeit <span class="grey">Vehicle</span> ir <span class="grey">tipa konstruktors</span>, savukārt <span class="grey">Bicycle</span> un <span class="grey">Car</span> ir <span class="grey">vērtības konstruktori</span>.</p>
                 <p>Mēs redzam, ka abiem konstruktoriem ir kopējie elementi - nosaukums un riteņu diametrs. Izdalīsim tos atsevišķā tipā:</p>
-                <pre>data Transport = Transport String Integer
+                <pre><code class="haskell hljs">data Transport = Transport String Integer
     deriving (Show)
 data Vehicle = Bicycle Transport | Car Transport Float
     deriving (Show)
 
-main = print $ Car (Transport "Ford" 16) 2.0</pre>
+main = print $ Car (Transport "Ford" 16) 2.0</code></pre>
                 <h3>Record pieraksts</h3>
                 <p>Mēs iemācījāmies veidot augstākas kārtas tipus, bet pamanījām ļoti nopietnu trūkumu - vērtībām nav nosaukumu un mēs nevaram saprast, ko konkrētā vērtība nozīmē. Haskell ļauj izmantot <span class="grey">Record</span> pierakstu, kas ir pārskatāmāks:</p>
-                <pre>data Vehicle = Bicycle {name :: String, wheelSize :: Integer}
+                <pre><code class="haskell hljs">data Vehicle = Bicycle {name :: String, wheelSize :: Integer}
     | Car {name :: String, wheelSize :: Integer, engine :: Float}
     deriving (Show)
 
@@ -556,10 +555,10 @@ main = print $ Car {
         name = "Ford",
         wheelSize = 16,
         engine = 2.0
-    }</pre>
+    }</code></pre>
                 <h3>Tipu parametri</h3>
                 <p>Haskell ļauj neprecizēt konkrētus tipus konstruktorā, tā vietā var izmantot tipu parametrus.</p>
-                <pre>data Car a b c = Car {name :: a, wheelSize :: b, engine :: c}
+                <pre><code class="haskell hljs">data Car a b c = Car {name :: a, wheelSize :: b, engine :: c}
 deriving (Show)
 
 main = do
@@ -572,114 +571,114 @@ main = do
         name = "Ford",
         wheelSize = "16 inches",
         engine = "2.0 litres"
-    }</pre>
+    }</code></pre>
                 <p>Lielāka priekšrocība ir tā, ka, veidojot funkciju, kas strādā ar šiem tipiem, mēs neesam piesieti pie konkrētiem zemākas kārtas tipiem.</p>
                 <h3>Maybe konstruktors</h3>
                 <p>Viens no populārākajiem veidiem, kā tiek izmantoti tipu parametri, ir <span class="grey">Maybe</span> tipa konstruktors, kas tiek izmantots gadījumos, kad mainīgais var nepastāvēt:</p>
-                <pre>data Maybe a = Nothing | Just a</pre>
+                <pre><code class="haskell hljs">data Maybe a = Nothing | Just a</code></pre>
                 <p>To var izmantot šādi:</p>
-                <pre>foo :: Integral a => a -> Maybe a
+                <pre><code class="haskell hljs">foo :: Integral a => a -> Maybe a
 foo x = if even x
         then Just (x `div` 2)
         else Nothing
 
 main = do
     print $ foo 5
-    print $ foo 6</pre>
+    print $ foo 6</code></pre>
                 <p>Pateicoties tipa parametram, tiek panākts tas, ka <span class="grey">Maybe</span> var būt jebkāda tipa - <span class="grey">Maybe Int</span>, <span class="grey">Maybe [Float]</span>, <span class="grey">Maybe Car</span> utt.</p>
                 <h3>Uzdevumi</h3>
                 <p>Izveidojiet kvadrātsaknes (<span class="grey">sqrt</span>) funkciju, kas atgriež <span class="grey">Nothing</span>, ja skaitlis ir negatīvs.</p>
-                <pre class="spoiler">mySqrt n
+                <pre class="spoiler hidden"><code class="haskell hljs">mySqrt n
     | n >= 0    = Just $ sqrt n
     | otherwise = Nothing
 
 main = do
     print $ mySqrt 16
-    print $ mySqrt (-5)</pre>
+    print $ mySqrt (-5)</code></pre>
                 <hr />
                 <a name="functors"></a>
                 <h2>Funktori</h2>
                 <p>Haskell valodā nopietnu lomu spēlē tipu klase <span class="grey">Functor</span>. Tā apvieno visus tipu konstruktorus (vai kontekstus), kuriem ir implementēta funkcija <span class="grey">fmap</span>:</p>
-                <pre>class Functor f where
-    fmap :: (a -> b) -> f a -> f b</pre>
+                <pre><code class="haskell hljs">class Functor f where
+    fmap :: (a -> b) -> f a -> f b</code></pre>
                 <p>Pats <span class="grey">Functor</span> klases apraksts ir ļoti interesants. Mēs redzam, ka, ja agrāk mēs izmantojām klases parametru kā <span class="grey">tipu</span>, tad šeit <span class="grey">f</span> tiek izmantots kā <span class="grey">tipu konstruktors</span>. Tas nozīmē, ka tad, kad tiks veidota Functor instance, tai vajadzēs padot nevis tipu, bet tipa konstruktoru, piemēram, <span class="grey">Maybe</span>.</p>
                 <h3>fmap</h3>
                 <p>Mēs redzam, ka <span class="grey">fmap</span> funkcijai ir divi argumenti. Pirmais ir funkcija, kas pieņem tipu <span class="grey">a</span> un atgriež tipu <span class="grey">b</span>. Savukārt, otrs arguments ir tips <span class="grey">a</span>, bet ar tipa konstruktoru <span class="grey">f</span> un <span class="grey">fmap</span> rezultātam ir tips <span class="grey">b</span> ar kontekstu <span class="grey">f</span>. Var saprast, ka <span class="grey">fmap</span> ir domāta, lai izņemtu vērtību tipa <span class="grey">a</span> no <span class="grey">f</span> konteksta, izpildītu funkciju <span class="grey">(a -> b)</span> izmantojot to vērtību, un rezultātu iepakotu atpakaļ <span class="grey">f</span> kontekstā.</p>
                 <p>Skaidrs, ka šo saprast var būt grūti, tāpēc turpināsim ar piemēriem.</p>
                 <h3>Funktoru piemēri</h3>
                 <p>Paņemsim mums zināmu konstruktoru <span class="grey">Maybe</span>. Ja mums ir tips <span class="grey">Maybe Int</span> un vērtība, piemēram, <span class="grey">Just 5</span>, mēs nevaram izdarīt operacijas, kuras parasti ir pieejamas ar tipu <span class="grey">Int</span>. Piemēram, funkcijas (+2) tips ir Num a => a -> a bez tipu konstruktora. Šis kods izsauks kļūdu:</p>
-                <pre>λ> (+2) $ Just 5</pre>
+                <pre><code class="haskell hljs">λ> (+2) $ Just 5</code></pre>
                 <p>Bet mēs zinām, ka <span class="grey">fmap</span> var atbrīvot vērtību no datu konstruktora konteksta un izpildīt funkciju, kas var strādāt ar šo tipu:</p>
-                <pre>λ> fmap (+2) $ Just 5
+                <pre><code class="haskell hljs">λ> fmap (+2) $ Just 5
 Just 7
 λ> fmap (+2) $ Nothing
-Nothing</pre>
+Nothing</code></pre>
                 <p>Lai saprastu, kā tas strādā, var apskatīties <span class="grey">Functor</span> instanci <span class="grey">Maybe</span> konstruktoram:</p>
-                <pre>instance Functor Maybe where
+                <pre><code class="haskell hljs">instance Functor Maybe where
     fmap func (Just val) = Just (func val)
-    fmap func Nothing = Nothing</pre>
+    fmap func Nothing = Nothing</code></pre>
                 <p>Mēs varam redzēt, ka ar šabloniem <span class="grey">Just val</span> un <span class="grey">Nothing</span> tiek definētas divas versijas funkcijai fmap.</p>
                 <br />
                 <p>Cits mums zināms piemērs vērtībai, kas ir iepakota kontekstā, ir saraksti. Tiešām, <span class="grey">[Int]</span> ir nekas cits, ka datu konstruktors. Tas varēja izskatīties <span class="grey">List Int</span>, bet <span class="grey">[Int]</span> cukurs ir ērtāks. Ja mēs atcerēsimies fmap aprakstu:</p>
-                <pre>fmap :: (a -> b) -> f a -> f b</pre>
+                <pre><code class="haskell hljs">fmap :: (a -> b) -> f a -> f b</code></pre>
                 <p>un iztēlosimies, ka <span class="grey">f a</span> un <span class="grey">f b</span> vietā ir attiecīgi <span class="grey">[a]</span> un <span class="grey">[b]</span>, tad mēs redzēsim, ka <span class="grey">fmap</span> tips sarakstiem ne ar ko neatšķirās no <span class="grey">map</span> funkcijas apraksta:</p>
-                <pre>map :: (a -> b) -> [a] -> [b]</pre>
+                <pre><code class="haskell hljs">map :: (a -> b) -> [a] -> [b]</code></pre>
                 <p>Tāpēc nav nekāds pārsteigums, ka <span class="grey">Functor</span> instance sarakstiem izskatās šādi:</p>
-                <pre>instance Functor [] where
-    fmap = map</pre>
+                <pre><code class="haskell hljs">instance Functor [] where
+    fmap = map</code></pre>
                 <p>par ko ir viegli pārliecināties:</p>
-                <pre>λ> fmap (+2) [1 .. 5]
-[3,4,5,6,7]</pre>
+                <pre><code class="haskell hljs">λ> fmap (+2) [1 .. 5]
+[3,4,5,6,7]</code></pre>
                 <hr />
                 <a name="monads"></a>
                 <h2>Monādes</h2>
                 <p>Daudzi ir dzirdējuši par monādēm un ka to konceptu ir grūti izprast. Bet ar esošajām zināšanām par tipu sistēmu Haskellā Jums pietiks, lai viegli apgūtu šo konceptu.</p>
                 <h3>return</h3>
                 <p>Patreiz Jūs jau zināt, ka <span class="grey">Functor</span> tipu klase "izpako" vērtību no konteksta, padod to funkcijai bez kontekstiem un rezultātu "iepako" atpakaļ. Tagad izdomāsim, ka mums ir nepieciešama vienkāršāka funkcija - kas pieņem parasta tipa argumentu un iepako to kontekstā. Nosauksim to par <span class="grey">return</span>:</p>
-                <pre>return :: a -> m a</pre>
+                <pre><code class="haskell hljs">return :: a -> m a</code></pre>
                 <p>Šīs funkcijas piemēri:</p>
-                <pre>λ> return 5 :: Maybe Int
+                <pre><code class="haskell hljs">λ> return 5 :: Maybe Int
 Just 5
 λ> return 5 :: [Int]
-[5]</pre>
+[5]</code></pre>
                 <p>Kā redzat, izteikuma tipu var definēt pēc izteikuma ar <span class="grey">::</span> palīdzību</p>
                 <h3>bind vai (>>=)</h3>
                 <p>Atgriežoties pie <span class="grey">fmap</span> funkcijas - tā izņem vērtību no konteksta, padod to parastai funkcijai un pēc tam ieliek atpakaļ kontekstā. Bet, ja mums ir funkcija, kas pati atgriež vērtību kontekstā? Teiksim, funkcija ar tipu <span class="grey">a -> m b</span>, līdzīgi funkcijai <span class="grey">return</span>. Un vēl, mēs gribam tai funkcijai padot vērtību kontekstā. Šim gadījumam palīdz funkcija <span class="grey">(>>=)</span> vai kā to pieņemts saukt - bind:</p>
-                <pre>(>>=) :: m a -> (a -> m b) -> m b</pre>
+                <pre><code class="haskell hljs">(>>=) :: m a -> (a -> m b) -> m b</code></pre>
                 <p>Pēc tipa var saprast, ka šai funkcijai ir divi argumenti. Pirmais ir vērtība kontekstā, piemēram <span class="grey">Just 5</span>. Otrais ir funkcija, kas saņem argumentu bez konteksta, izdara darbību un atgriež rezultātu, kas jau ir iepakots kontekstā. Piemēram, funkcija var būt <span class="grey">(\x -> Just (x + 2))</span>. Funkcijas <span class="grey">(>>=)</span> rezultāts ir vērtība kontekstā.</p>
                 <p>Piemēri:</p>
-                <pre>λ> (>>=) (Just 5) (\x -> Just (x + 2))
+                <pre><code class="haskell hljs">λ> (>>=) (Just 5) (\x -> Just (x + 2))
 Just 7
 λ> (>>=) [4,5] (\x -> [x + 2])
-[6,7]</pre>
+[6,7]</code></pre>
                 <p>Abos piemēros augstāk ir funkcija <span class="grey">(x + 2)</span>, kuras rezultāts tiek iepakots kontekstā. Mēs varam atcerēties, ka funkcija <span class="grey">return</span> iepako kontekstā, un varam izmantot to, lai dabūtu vienu funkciju, kas der abiem gadījumiem:</p>
-                <pre>λ> let foo x = return $ x + 2
+                <pre><code class="haskell hljs">λ> let foo x = return $ x + 2
 λ> (>>=) (Just 5) foo
 Just 7
 λ> (>>=) [4,5] foo
-[6,7]</pre>
+[6,7]</code></pre>
                 <p>Haskell pats saprot, kādā kontekstā vajag iepakot vērtību - to var izprast no pirmā argumenta. Ja vēlreiz apskatīsimies <span class="grey">(>>=)</span> tipu, mēs redzēsim, ka visur tiek izmantots viens un tas pats konteksts m. Ja mēs mēģinātu implementēt <span class="grey">(>>=)</span> versiju, kura saņem argumentu vienā kontekstā, piemēram, <span class="grey">Maybe</span>, bet atgriež citā, piemēram, <span class="grey">[]</span>, tad Haskell parādītu kļūdu, jo <span class="grey">(>>=)</span> tipa apraksts pieprasa, lai konteksts būtu vienāds. Tas ir viens no piemēriem, kā Haskell tipu sistēma kontrolē programmas pareizu darbību.</p>
                 <p>Pievērsiet uzmanību, ka <span class="grey">(>>=)</span> var ērti izmantot <span class="grey">infix</span> pierakstā:</p>
-                <pre>λ> Just 5 >>= foo
-Just 7</pre>
+                <pre><code class="haskell hljs">λ> Just 5 >>= foo
+Just 7</code></pre>
                 <p>Patreiz Jums tas var nebūt acīmredzami, bet <span class="grey">(>>=)</span> funkcijai ir milzīgs pielietojums Haskell valodā.</p>
                 <h3>Monad tipu klase</h3>
                 <p>Ir tipu klase, kas sevī apvieno funkcijas <span class="grey">(>>=)</span> un <span class="grey">return</span>. Tā tipu klase saucas <span class="grey">Monad</span>. Tās definīcija iekļauj sevī vēl pāris papildus funkcijas, bet bind un return ir galvenās.</p>
                 <p>Izpētīsim Monad klases definīciju:</p>
-                <pre>infixl 1  >>, >>=
+                <pre><code class="haskell hljs">infixl 1  >>, >>=
 class  Monad m  where
     (>>=)            :: m a -> (a -> m b) -> m b
     (>>)             :: m a -> m b -> m b
     return           :: a -> m a
     fail             :: String -> m a
 
-    m >> k           =  m >>= \_ -> k</pre>
+    m >> k           =  m >>= \_ -> k</code></pre>
                 <p><span class="grey">(>>)</span> ir <span class="grey">(>>=)</span> versija, kas ignorē argumentu - funkcija ir noderīga, lai būvētu virkni neatkarīgu operāciju. Piemēram, <span class="grey">do</span> notāciju var pārrakstīt šādi:</p>
-                <pre>main = print 1 >> print 2</pre>
+                <pre><code class="haskell hljs">main = print 1 >> print 2</code></pre>
                 <p>Tātad, ja Jums ir tipu konstruktors, kuram Jūs gribat nodefinēt funkcijas <span class="grey">(>>=)</span> un <span class="grey">return</span>, tad Jūs varat to izdarīt, nodefinējot <span class="grey">Monad</span> klases instanci:</p>
-                <pre>instance Monad MyConstructor where
+                <pre><code class="haskell hljs">instance Monad MyConstructor where
     a >>= b   = someCode a b
-    return a  = someCode a</pre>
+    return a  = someCode a</code></pre>
                 <hr />
                 <a name="functors_monads"></a>
                 <h2>Vēlreiz par funktoriem un monādēm</h2>
@@ -729,7 +728,7 @@ class  Monad m  where
                 <p>Funkciju return saprast ir viegli. Ir vērts iegaumēt galvenās atšķirības starp <span class="grey">fmap</span> un <span class="grey">(>>=)</span>. Pirmkārt, <span class="grey">fmap</span> pirmais arguments ir funkcija, otrais ir vērtība, savukārt <span class="grey">(>>=)</span> pirmais arguments ir vērtība, otrais ir funkcija. Otrkārt, <span class="grey">fmap</span> izmantotā funkcija atgriež vērtību bez konteksta (kontekstu veido pati <span class="grey">fmap</span> funkcija), savukārt <span class="grey">(>>=)</span> izmantotā funkcija pati atgriež vērtību kontekstā un <span class="grey">(>>=)</span> nedara papildus darbību.</p>
                 <p>Tātad, lai tipu konstruktors (vai konteksts) varētu izmantot <span class="grey">fmap</span>, tam ir jābūt definētai <span class="grey">Functor</span> instancei. Savukārt, lai konteksts varētu izmantot <span class="grey">(>>=)</span> un <span class="grey">return</span>, tam ir jābūt definētai <span class="grey">Monad</span> instancei.</p>
                 <p>Mūsu zināmiem konstruktoriem <span class="grey">Maybe</span> un <span class="grey">[]</span> arī ir sarakstītas <span class="grey">Monad</span> instances:</p>
-                <pre>instance Monad [] where
+                <pre><code class="haskell hljs">instance Monad [] where
     return x = [x]
 
     xs >>= f = concat (map f xs)
@@ -740,28 +739,28 @@ instance Monad Maybe where
 
     (>>=) m g = case m of
                    Nothing -> Nothing
-                   Just x  -> g x</pre>
+                   Just x  -> g x</code></pre>
                 <p>Turpmāk visus konstruktorus, kas implementē <span class="grey">Monad</span> klasi, mēs vienkārši sauksim par <span class="grey">monādēm</span>. Tātad, varam teikt, ka <span class="grey">Maybe</span> un <span class="grey">[]</span> ir <span class="grey">monādes</span>.</p>
                 <p>Lai redzētu, kādas instances ir sarakstītas noteiktajam konstruktoram, var izmantot GHCi funkciju <span class="grey">:info</span>:</p>
-                <pre>λ> :info []
+                <pre><code class="haskell hljs">λ> :info []
 data [] a = [] | a : [a]        -- Defined in `GHC.Types'
 instance Eq a => Eq [a] -- Defined in `GHC.Classes'
 instance Monad [] -- Defined in `GHC.Base'
 instance Functor [] -- Defined in `GHC.Base'
 instance Ord a => Ord [a] -- Defined in `GHC.Classes'
 instance Read a => Read [a] -- Defined in `GHC.Read'
-instance Show a => Show [a] -- Defined in `GHC.Show'</pre>
+instance Show a => Show [a] -- Defined in `GHC.Show'</code></pre>
                 <hr />
                 <a name="io"></a>
                 <h2>IO Monāde</h2>
                 <p>Mēs jau zinām, kā izvadīt rindu - ar funkciju <span class="grey">print</span>. Tagad, kad mums ir zināšanas par monādēm un tipu klasēm, apskatīsimies funkcijas <span class="grey">print</span> tipu:</p>
-                <pre>λ> :t print
-print :: Show a => a -> IO ()</pre>
+                <pre><code class="haskell hljs">λ> :t print
+print :: Show a => a -> IO ()</code></pre>
                 <p>Mēs jau zinām, ka Haskell valodā katrai izteiksmei ir savs tips. Mēs redzam, ka funkcijas print rezultāta tips ir <span class="grey">IO ()</span>. Mēs jau varam saprast, ka tas ir datu konstruktors <span class="grey">IO</span> ar vērtību <span class="grey">()</span>, kas ir <span class="grey">tukšs pāris</span>. Haskell valodā <span class="grey">tukšs pāris</span> bieži tiek izmantots kā tukša vērtība.</p>
                 <p><span class="grey">IO</span> datu konstruktors ir monāde. Tas nozīmē, ka tam ir implementēta <span class="grey">Monad</span> instance un ir sarakstīti kodi funkcijām <span class="grey">return</span> un <span class="grey">(>>=)</span>. Konkrēti <span class="grey">IO</span> monādei šos kodus nevar attēlot ar Haskell kodu - tās ir realizētas zemāka līmeņa valodā. Bet, lai darbotos ar šo monādi, tas nav nepieciešams - pietiek zināt funkciju nosaukumus.</p>
                 <h3>IO darbības</h3>
                 <p>IO darbības (<span class="grey">IO actions</span>) ir nosaukums, ar kuru tiek apzīmētas <span class="grey">IO</span> monādes funkcijas. Tās darbības atšķiras no citām ar to, ka tās izpildas uzreiz - tas ir, nestrādā <span class="grey">Lazy</span> princips. Izpētīsim vienkāršu programmu, kas izmantos <span class="grey">IO</span> darbības un funkciju <span class="grey">cap</span>, kuru sarakstījām nesen:</p>
-                <pre>import Data.Char
+                <pre><code class="haskell hljs">import Data.Char
 
 cap [] = ""
 cap (x:xs) = toUpper x : xs
@@ -769,24 +768,24 @@ cap (x:xs) = toUpper x : xs
 main = do
     putStrLn "Ievadiet rindu"
     str <- getLine
-    (putStrLn . cap) str</pre>
+    (putStrLn . cap) str</code></pre>
                 <p>Konstrukciju <span class="grey">str <- getLine</span> var lasīt kā "izpildīt <span class="grey">IO</span> darbību getLine un piesaistīt tās rezultātam vārdu str". Pie tam, <span class="grey"><-</span> atbrīvo no konteksta, tas ir, str tips ir <span class="grey">String</span>, nevis <span class="grey">IO String</span>. Tāpēc zemāk mēs varam mierīgi to padot funkcijai <span class="grey">cap</span>, kuras argumenta tips ir <span class="grey">String</span>.</p>
                 <p>Tālāk mēs nedaudz paeksperimentēsim ar šo programmu, pielietojot monādiskās funkcijas.</p>
                 <br />
                 <p>Mūs interesē tipi katram izteikumam <span class="grey">do</span> notacijā. <span class="grey">putStrLn "Ievadiet rindu"</span> tips ir <span class="grey">IO ()</span>. <span class="grey">getLine</span> tips ir <span class="grey">IO String</span>. Ja iztēloties, ka <span class="grey">IO ()</span> ir <span class="grey">m a</span>, bet <span class="grey">IO String</span> ir <span class="grey">m b</span>, tad mēs redzam, ka abas izteiksmes var izmantot kā argumentus funkcijai <span class="grey">(>>)</span>, kuras tips ir <span class="grey">m a -> m b -> m b</span>. Aizvietosim abas rindas ar:</p>
-                <pre>str <- putStrLn "Ievadiet rindu" >> getLine</pre>
+                <pre><code class="haskell hljs">str <- putStrLn "Ievadiet rindu" >> getLine</code></pre>
                 <p>Izteiksmes <span class="grey">putStrLn "Ievadiet rindu" >> getLine</span> tips ir <span class="grey">IO String</span>, vai <span class="grey">m a</span>. Savukārt funkcijas <span class="grey">(putStrLn . cap)</span> tips ir <span class="grey">String -> IO ()</span>, vai <span class="grey">a -> m b</span>. Atceramies funkcijas <span class="grey">(>>=)</span> tipu - <span class="grey">m a -> (a -> m b) -> m b</span>. Acīmredzami, ka mēs varam apvienot arī šīs rindas:</p>
-                <pre>putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</pre>
+                <pre><code class="haskell hljs">putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</code></pre>
                 <p>Tā kā mums palika tikai viena rinda, mēs varam atbrīvoties no <span class="grey">do</span> notācijas:</p>
-                <pre>import Data.Char
+                <pre><code class="haskell hljs">import Data.Char
 
 cap [] = ""
 cap (x:xs) = toUpper x : xs
 
-main = putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</pre>
+main = putStrLn "Ievadiet rindu" >> getLine >>= putStrLn . cap</code></pre>
                 <h3>Uzdevumi</h3>
                 <p>Uzrakstiet programmu, kas ierakstītai rindai apgriež katru vārdu otrādi un aizvieto katru simbolu 'a' ar '4', 's' ar '5' un 'o' ar '0'. Uzrakstiet versiju ar <span class="grey">do</span> notaciju, pēc tam pārveidojiet to, izmantojot <span class="grey">(>>)</span> un <span class="grey">(>>=)</span> funkcijas. Izmantojiet funkcijas <span class="grey">words</span> un <span class="grey">unwords</span>.</p>
-                <pre class="spoiler">flipWord = foldl (\x y -> y : x) ""
+                <pre class="spoiler hidden"><code class="haskell hljs">flipWord = foldl (\x y -> y : x) ""
 
 replaceChar c
     | c == 'a' = '4'
@@ -799,46 +798,45 @@ processString = unwords . map (map replaceChar . flipWord) . words
 main = do
     putStrLn "Izvadiet rindu"
     str <- getLine
-    putStrLn $ processString str</pre>
-                <pre class="spoiler">putStrLn "Izvadiet rindu" >> getLine >>=  putStrLn . processString</pre>
+    putStrLn $ processString str</code></pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">putStrLn "Izvadiet rindu" >> getLine >>=  putStrLn . processString</code></pre>
                 <hr />
                 <a name="monadic_functions"></a>
                 <h2>Monādiskās funkcijas</h2>
                 <p>Šeit būs sarakstītas noderīgas funkcijas darbībām ar monādēm. Dažas funkcijas nāk noklusējuma pakā (Preludē), dažām ir jāveic atsevišķs <span class="grey">Control.Monad</span> imports.</p>
                 <p><b>(=<<)</b> - pretējā virziena bind funkcija. Darbības principu var izprast no funkcijas definīcijas:</p>
-                <pre>f =<< x  =  x >>= f</pre>
+                <pre><code class="haskell hljs">f =<< x  =  x >>= f</code></pre>
                 <br />
                 <p><b>join (Control.Monad)</b> - noņem vienu konteksta līmeni, piemēram, <span class="grey">m (m a)</span> pārtop par <span class="grey">m a</span>. Funkcijas definīcija:</p>
-                <pre>join x  =  x >>= id</pre>
+                <pre><code class="haskell hljs">join x  =  x >>= id</code></pre>
                 <p>Piemēri:</p>
-                <pre>λ> join $ Just (Just 3)
+                <pre><code class="haskell hljs">λ> join $ Just (Just 3)
 Just 3
 λ> join $ Just (Nothing)
 Nothing
 λ> join $ [[1], [2,3], [4]]
-[1,2,3,4]</pre>
+[1,2,3,4]</code></pre>
                 <p>Nedaudz par <span class="grey">id</span> funkciju - tā funkcija atgriež vērtību bez izmaiņām. Var teikt, ka tā funkcija neko nedara. Funkcijas id kods ir <span class="grey">id x = x</span>.</p>
                 <p>Interesants fakts par <span class="grey">id</span> funkciju - tā ir vienīgā tīra funkcija, kuras tips ir <span class="grey">a -> a</span>, bez konteksta. Padomājiet, kāpēc tieši tā, kā arī padomājiet, kāpēc <span class="grey">join</span> definīcija ir tieši tāda.</p>
                 <p>Atgriežoties pie join - tās tips ir <span class="grey">Monad m => m (m a) -> m a</span>. Vēlreiz Jūs varat pamanīt, ka ar Haskell funkcijām bieži darbības principu var saprast, izpētot tās tipu.</p>
                 <br />
                 <p><b>liftM (Control.Monad)</b> - Pārveidot funkciju <span class="grey">a -> b</span> par <span class="grey">m a -> m b</span>. Piemēram, mēs padodam funkciju <span class="grey">sqrt</span>, izteikuma <span class="grey">liftM sqrt</span> rezultāts būs jauna funkcija ar tipu <span class="grey">m a -> m b</span>. Kā var noprast, šī jaunā funkcija pieņem vērtību kontekstā un atgriež vērtību kontekstā. Piemērs:</p>
-                <pre>λ> (liftM sqrt) (Just 5)
-Just 2.23606797749979</pre>
+                <pre><code class="haskell hljs">λ> (liftM sqrt) (Just 5)
+Just 2.23606797749979</code></pre>
                 <p>Funkcijas <span class="grey">liftM</span> definīcija:</p>
-                <pre>liftM :: Monad m => (a1 -> r) -> m a1 -> m r
+                <pre><code class="haskell hljs">liftM :: Monad m => (a1 -> r) -> m a1 -> m r
 liftM f m1 = do
     x1 <- m1
-    return (f x1)</pre>
+    return (f x1)</code></pre>
                 <br />
                 <p><b>liftM2 (Control.Monad)</b> - pārveido funkciju tipa <span class="grey">a -> b -> c</span> par <span class="grey">m a -> m b -> m c</span>:</p>
-                <pre>liftM2 :: Monad m => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r
+                <pre><code class="haskell hljs">liftM2 :: Monad m => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r
 liftM2 f m1 m2 = do
     x1 <- m1
     x2 <- m2
-    return (f x1 x2)</pre>
+    return (f x1 x2)</code></pre>
                 <p>Eksistē arī <span class="grey">liftM3</span>, <span class="grey">liftM4</span> un <span class="grey">liftM5</span>:</p>
-                <pre>
-liftM3 :: Monad m =>
+                <pre><code class="haskell hljs">liftM3 :: Monad m =>
         (a1 -> a2 -> a3 -> r)
         -> m a1 -> m a2 -> m a3 -> m r
 
@@ -848,40 +846,39 @@ liftM4 :: Monad m =>
 
 liftM5 :: Monad m =>
         (a1 -> a2 -> a3 -> a4 -> a5 -> r)
-        -> m a1 -> m a2 -> m a3 -> m a4 -> m a5 -> m r</pre>
+        -> m a1 -> m a2 -> m a3 -> m a4 -> m a5 -> m r</code></pre>
                 <br />
                 <p><b>ap (Control.Monad)</b> - noder, ja mums ir funkcija monādē, piemēram <span class="grey">m (a -> b)</span>, un vērtība monādē <span class="grey">m a</span>. Rezultāts ir tajā pašā monādē - <span class="grey">m b</span>.</p>
-                <pre>ap :: Monad m => m (a -> b) -> m a -> m b
-ap = liftM2 id</pre>
+                <pre><code class="haskell hljs">ap :: Monad m => m (a -> b) -> m a -> m b
+ap = liftM2 id</code></pre>
                 <p>Piemērs:</p>
-                <pre>λ> ap (Just (+2)) (Just 3)
+                <pre><code class="haskell hljs">λ> ap (Just (+2)) (Just 3)
 Just 5
 λ> ap [(+2), (^2)] [3,4]
-[5,6,9,16]</pre>
+[5,6,9,16]</code></pre>
                 <p>Ap noder kā aizvietojums <span class="grey">liftMn</span> funkcijām: <span class="grey">liftMn f x1 x2 .. xn = return f `ap` x1 `ap` x2 `ap` .. `ap` xn</span>.</p>
                 <h3>Uzdevumi</h3>
                 <p>Uzrakstiet funkciju, kas pārveido sarakstu <span class="grey">["abc", "de", "f"]</span> par rindu <span class="grey">"abcdef"</span>, izmantojot monādiskās funkcijas.</p>
-                <pre class="spoiler">myConcat l = join l</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">myConcat l = join l</code></pre>
                 <p>Izveidojiet <span class="grey">map</span> funkcijas analogu, izmantojot monādiskās funkcijas.</p>
-                <pre class="spoiler">myMap f = liftM f</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">myMap f = liftM f</code></pre>
                 <p>Izveidojiet <span class="grey">fmap</span> funkcijas versiju, izmantojot (>>=) un return.</p>
-                <pre class="spoiler">myFmap f n = n >>= return . f</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">myFmap f n = n >>= return . f</code></pre>
                 <p>Izmantojot monādiskās funkcijas, uzrakstiet funkciju, kas sasummē katru saraksta elementu ar katru otra saraksta elemenu. Piemēram, <span class="grey">mySum [2, 3] [5, 6]</span> - <span class="grey">[7, 8, 8, 9]</span></p>
-                <pre class="spoiler">let mySum l1 l2 = liftM2 (+) l1 l2</pre>
+                <pre class="spoiler hidden"><code class="haskell hljs">let mySum l1 l2 = liftM2 (+) l1 l2</code></pre>
                 <p>Uzrakstiet funkcijas <span class="grey">liftM4</span> kodu.</p>
-                <pre class="spoiler">
-liftM4 f m1 m2 m3 m4 = do
+                <pre class="spoiler hidden"><code class="haskell hljs">liftM4 f m1 m2 m3 m4 = do
     x1 <- m1
     x2 <- m2
     x3 <- m3
     x4 <- m4
-    return (f x1 x2 x3 x4)</pre>
+    return (f x1 x2 x3 x4)</code></pre>
                 <p>Uzdevums, kas neattiecas uz monādiskām funkcijām, bet ir domāts, lai pārbaudītu visu, kas ir iemācīts iepriekš. Izveidojiet programmu, kas saņem rindu ar vairākiem skaitļiem un izvada katra skaitļa ciparu summu, piemēram, "1234 5678" -> "10 26". Izmantojiet funkcijas <span class="grey">read</span> un <span class="grey">show</span> konvertācijai uz un no <span class="grey">Integer</span>, un funkciju <span class="grey">sum</span>, lai sasummētu visus saraksta skaitļus. Izmantojiet <span class="grey">(>>)</span> un <span class="grey">(>>=)</span>, neizmantojiet <span class="grey">do</span> notāciju. Nevienā funkcijā nedrīkst būt norādīti argumenti - izmantojiet <span class="grey">eta reduction</span> visur, piemēram, nevis "foo l = map func l", bet "foo = map func".</p>
-                <pre class="spoiler">toInt = read . return
+                <pre class="spoiler hidden"><code class="haskell hljs">toInt = read . return
 
 sumDigits = map (show . sum . map toInt) . words
 
-main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigits</pre>
+main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigits</code></pre>
                 <hr />
                 <a name="end"></a>
                 <h2>Kopsavilkums</h2>
@@ -922,6 +919,7 @@ main = putStrLn "Ievadiet skaitļus" >> getLine >>= putStrLn . unwords . sumDigi
         <div id="tooltip_factorial" class="tooltip">Faktoriālis ir funkcija ar argumentu n, kuras rezultāts ir visu skaitļu no 1 līdz n reizinājums, piemēram, fact(5) = 1*2*3*4*5 = 120. Tiek pieņemta faktoriāļa definīcija: ja n ir 0, tad faktoriālis ir 1, citos gadījumos faktoriālis ir n reiz faktoriālis no n-1.</div>
         <div id="tooltip_interface" class="tooltip">Interface ir kaut kas līdzīgs klašu šablonam. Visās klasēs, kas implementē kādu interfeisu, ir jābūt nodefinetām visām īpašībām un metodēm, kas ir aprakstītas šablonā.</div>
     </div>
+    <script type="text/javascript" src="/highlight/highlight.pack.js"></script>
     <script type="text/javascript" src="/main.js"></script>
     <script type="text/javascript" src="/index.js"></script>
     <script type="text/javascript" src="/spoiler.js"></script>
